@@ -271,13 +271,13 @@ export const AppProvider = ({ children }) => {
       const lat = pos.coords.latitude;
       const lon = pos.coords.longitude;
       
-      // Diamond Chemist approximate coordinates (Dombivli East)
-      const SHOP_LAT = 19.218330;
-      const SHOP_LON = 73.086700;
+      // Diamond Chemist Exact Coordinates
+      const SHOP_LAT = 19.198509803965546;
+      const SHOP_LON = 73.10590402019947;
       
       const dist = getDistance(SHOP_LAT, SHOP_LON, lat, lon);
       
-      const IS_DEMO = true; // Hardcoded to avoid needing server restart
+      const IS_DEMO = false;
       if (!IS_DEMO && dist > 50) {
         alert(`We only deliver within 50 metres. Your location is approximately ${Math.round(dist)} metres away.`);
         setLocating(false);
@@ -377,7 +377,7 @@ export const AppProvider = ({ children }) => {
     if (!form.address.trim()) errs.address = 'Street/Area is required';
     
     // Hardcoded to true for demo so you don't need to restart the server!
-    const IS_DEMO = true; 
+    const IS_DEMO = false; 
     if (!IS_DEMO) {
       if (!form.gps) errs.address = 'Please use "Detect Location" to verify you are within our 50-metre delivery zone.';
     }
