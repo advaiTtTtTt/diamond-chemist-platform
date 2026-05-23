@@ -359,6 +359,64 @@ import { PrintJobsTab } from '../admin/PrintJobsTab';
 export const AdminPage = () => {
   const { orders, navigate, updateOrderStatus, logoutAdmin } = useAppContext();
   const [adminTab, setAdminTab] = React.useState('orders');
+  const [isUploading, setIsUploading] = React.useState(false);
+  const [uploadStats, setUploadStats] = React.useState('');
+
+  const handleCsvUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setIsUploading(true);
+    setUploadStats('Parsing CSV...');
+    try {
+      const Papa = (await import('papaparse')).default;
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: async (results) => {
+          try {
+            const rows = results.data;
+            setUploadStats(`Processing ${rows.length} products...`);
+            const { supabase } = await import('../lib/supabase');
+            
+            const formattedProducts = rows.map(row => {
+              let name = row.Name || row.name || row.Item;
+              if (!name) return null;
+              let cat = row.Category || row.category;
+              if (!cat) {
+                const n = name.toLowerCase();
+                if (n.includes('paracetamol') || n.includes('pain') || n.includes('balm')) cat = 'Pain Relief';
+                else if (n.includes('vitamin') || n.includes('calcium') || n.includes('protein')) cat = 'Vitamins';
+                else if (n.includes('syrup') || n.includes('cough')) cat = 'Cold & Flu';
+                else cat = 'Medicines';
+              }
+              return {
+                name: name.trim(),
+                price: parseFloat(row.Price || row.price || row.MRP || 0),
+                discount_price: row.DiscountPrice || row.discount_price ? parseFloat(row.DiscountPrice || row.discount_price) : null,
+                category: cat,
+                stock: parseInt(row.Stock || row.stock || row.Qty || 100)
+              };
+            }).filter(Boolean);
+
+            setUploadStats(`Syncing to Database...`);
+            const { error } = await supabase.from('products').upsert(formattedProducts, { onConflict: 'name' });
+            
+            if (error) throw error;
+            setUploadStats('Upload Complete! 🎉');
+            setTimeout(() => setUploadStats(''), 3000);
+          } catch (err) {
+            alert('Upload failed: ' + err.message);
+            setUploadStats('');
+          } finally {
+            setIsUploading(false);
+          }
+        }
+      });
+    } catch (err) {
+      alert('Error loading parser');
+      setIsUploading(false);
+    }
+  };
   const stats = {
     total: orders.length,
     pending: orders.filter(o => o.status !== 'Delivered').length,
@@ -385,19 +443,41 @@ export const AdminPage = () => {
           background: '#F5F2EB',
           border: '1.5px dashed #DDD8CE',
           borderRadius: 12,
-          padding: '20px',
+          padding: '40px 20px',
           textAlign: 'center',
-          marginTop: 16
+          marginTop: 16,
+          position: 'relative'
         }}>
-          <i className="ti ti-table-import" 
-             style={{fontSize: 28, color: '#9A9888', display: 'block', marginBottom: 8}} />
-          <div style={{fontWeight: 600, marginBottom: 4}}>
-            Bulk Stock Upload via Excel
-          </div>
-          <div style={{fontSize: 13, color: '#9A9888'}}>
-            Upload your distributor price list to update 
-            all products at once — coming in next update
-          </div>
+          {isUploading ? (
+            <div>
+              <i className="ti ti-loader ti-spin" style={{fontSize: 32, color: 'var(--primary-600)', marginBottom: 12, display: 'inline-block'}} />
+              <div style={{fontWeight: 600, color: 'var(--primary-900)'}}>{uploadStats}</div>
+            </div>
+          ) : (
+            <>
+              <i className="ti ti-table-import" style={{fontSize: 36, color: 'var(--primary-500)', display: 'block', marginBottom: 12}} />
+              <div style={{fontWeight: 700, fontSize: 18, color: 'var(--primary-900)', marginBottom: 8}}>
+                Bulk Stock Upload
+              </div>
+              <div style={{fontSize: 14, color: 'var(--text-secondary)', marginBottom: 20}}>
+                Upload your distributor's CSV/Excel file.<br/>
+                Expected columns: Name, Price, Category, Stock.
+              </div>
+              {uploadStats && <div style={{ color: 'var(--success)', fontWeight: 600, marginBottom: 16 }}>{uploadStats}</div>}
+              <label style={{
+                background: 'var(--primary-700)',
+                color: 'white',
+                padding: '10px 24px',
+                borderRadius: 50,
+                fontWeight: 600,
+                cursor: 'pointer',
+                display: 'inline-block'
+              }}>
+                Select CSV File
+                <input type="file" accept=".csv" style={{ display: 'none' }} onChange={handleCsvUpload} />
+              </label>
+            </>
+          )}
         </div>
       ) : <>
       <div className="stats-row">
