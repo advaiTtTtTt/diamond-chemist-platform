@@ -2,6 +2,7 @@
 import { CHEMIST_PRODUCTS } from './chemistProducts';
 
 export const CATEGORIES = [
+  { name: 'Medicines', icon: 'ti-pill' },
   { name: 'Pain Relief', icon: 'ti-flame' },
   { name: 'Cold & Flu', icon: 'ti-snowflake' },
   { name: 'Stomach Care', icon: 'ti-heart-rate-monitor' },
