@@ -42,15 +42,30 @@ export const AppProvider = ({ children }) => {
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
   const [isUploadingRx, setIsUploadingRx] = useState(false);
   const [printTrackCode, setPrintTrackCode] = useState('');
+  
+  // Customer Auth & Points
+  const [customerUser, setCustomerUser] = useState(null);
+  const [customerProfile, setCustomerProfile] = useState(null);
+  const [showCustomerAuth, setShowCustomerAuth] = useState(false);
+  
   const searchRef = useRef(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setAdminAuth(!!session);
+      setAdminAuth(!!session && session.user?.email === 'haste6inertia@gmail.com');
+      if (session && session.user?.email !== 'haste6inertia@gmail.com') {
+        setCustomerUser(session.user);
+      }
     });
 
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      setAdminAuth(!!session);
+      setAdminAuth(!!session && session.user?.email === 'haste6inertia@gmail.com');
+      if (session && session.user?.email !== 'haste6inertia@gmail.com') {
+        setCustomerUser(session.user);
+      } else if (!session) {
+        setCustomerUser(null);
+        setCustomerProfile(null);
+      }
     });
 
     const fetchProducts = async () => {
@@ -103,6 +118,30 @@ export const AppProvider = ({ children }) => {
       }
     };
   }, []);
+
+  const fetchCustomerProfile = async () => {
+    if (!customerUser) return;
+    try {
+      const { data: profile } = await supabase.from('profiles').select('*').eq('id', customerUser.id).single();
+      if (profile) {
+        setCustomerProfile(profile);
+        // Pre-fill checkout form if empty
+        setForm(prev => ({ 
+          ...prev, 
+          name: prev.name || profile.full_name, 
+          phone: prev.phone || profile.phone 
+        }));
+      }
+      const { data: pts } = await supabase.rpc('get_active_points', { customer_id: customerUser.id });
+      setPoints(pts || 0);
+    } catch (e) {
+      console.log('Error fetching profile:', e);
+    }
+  };
+
+  useEffect(() => {
+    fetchCustomerProfile();
+  }, [customerUser]);
 
   const cartCount = cart.reduce((s, c) => s + c.qty, 0);
   const cartTotal = cart.reduce((s, c) => s + c.qty * c.price, 0);
@@ -308,22 +347,23 @@ export const AppProvider = ({ children }) => {
   };
 
   const shareWebsite = async () => {
+    if (!customerProfile) {
+      alert('Please Login or Sign Up first to get your unique Referral Link!');
+      setShowCustomerAuth(true);
+      return;
+    }
+    const refLink = `${window.location.origin}/?ref=${customerProfile.referral_code}`;
     try {
       if (navigator.share) {
         await navigator.share({
           title: 'Diamond Chemist',
-          text: 'Order medicines from Diamond Chemist!',
-          url: window.location.origin,
+          text: `Use my code ${customerProfile.referral_code} to get 20 FREE Diamond Points on sign up!`,
+          url: refLink,
         });
       } else {
-        await navigator.clipboard.writeText(window.location.origin);
-        alert('Link copied to clipboard!');
+        await navigator.clipboard.writeText(refLink);
+        alert('Your unique Referral Link copied to clipboard!');
       }
-      const newPoints = points + 50;
-      setPoints(newPoints);
-      const currentForm = JSON.parse(localStorage.getItem('diamond_customer') || '{}');
-      localStorage.setItem('diamond_customer', JSON.stringify({ ...currentForm, points: newPoints }));
-      alert('Thanks for sharing! You earned 50 points.');
     } catch (err) {
       console.log('Share error:', err);
     }
@@ -437,6 +477,14 @@ export const AppProvider = ({ children }) => {
     navigate('home');
   };
 
+  const logoutCustomer = async () => {
+    await supabase.auth.signOut();
+    setCustomerUser(null);
+    setCustomerProfile(null);
+    setPoints(0);
+    navigate('home');
+  };
+
   const getProds = () => {
     if (aiResults !== null) return aiResults;
     if (selCat) return products.filter(p => p.category === selCat);
@@ -454,6 +502,7 @@ export const AppProvider = ({ children }) => {
     orders, lastOrder, updateOrderStatus,
     adminAuth, adminEmail, setAdminEmail, adminPw, setAdminPw, showAdminModal, setShowAdminModal, openAdmin, loginAdmin, logoutAdmin, authError, isLoggingIn,
     printTrackCode, setPrintTrackCode, points, usePoints, setUsePoints, discount, finalTotal, shareWebsite,
+    customerUser, customerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer
   };
 
   return (

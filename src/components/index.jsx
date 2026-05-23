@@ -1,9 +1,10 @@
 import React from 'react';
+export * from './CustomerAuthModal';
 import { useAppContext } from '../context/AppContext';
 import { CATEGORIES, QUICK_SEARCHES } from '../data/products';
 
 export const Navbar = () => {
-  const { navigate, cartCount, badgeBounce, openAdmin, shareWebsite, points } = useAppContext();
+  const { navigate, cartCount, badgeBounce, shareWebsite, points, customerProfile, setShowCustomerAuth, logoutCustomer } = useAppContext();
   return (
     <nav className="navbar">
       <div className="nav-brand" style={{ cursor: 'pointer' }} onClick={() => navigate('home')}>
@@ -20,10 +21,22 @@ export const Navbar = () => {
           <i className="ti ti-share" style={{ marginRight: 4 }}></i>Share & Earn
         </button>
       </div>
-      <div className="nav-right">
-        {points > 0 && (
-          <div className="points-badge" style={{ background: '#FEF3C7', color: '#D97706', padding: '4px 10px', borderRadius: '20px', fontSize: '14px', fontWeight: 600, marginRight: '10px' }}>
-            🪙 {points} pts
+      <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        {!customerProfile ? (
+          <button onClick={() => setShowCustomerAuth(true)} style={{ background: 'var(--primary-700)', color: 'white', border: 'none', padding: '8px 16px', borderRadius: 50, fontWeight: 600, cursor: 'pointer', fontSize: 14 }}>
+            Login / Sign Up
+          </button>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', lineHeight: 1.2 }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--primary-900)' }}>Hi, {customerProfile.full_name?.split(' ')[0] || 'User'}</span>
+              <span style={{ fontSize: 11, cursor: 'pointer', color: 'var(--text-secondary)', textDecoration: 'underline' }} onClick={logoutCustomer}>Logout</span>
+            </div>
+            {points > 0 && (
+              <div className="points-badge" style={{ background: '#FEF3C7', color: '#D97706', padding: '4px 10px', borderRadius: '20px', fontSize: '14px', fontWeight: 600 }}>
+                🪙 {points} pts
+              </div>
+            )}
           </div>
         )}
         <button className="cart-btn" onClick={() => navigate('cart')}>

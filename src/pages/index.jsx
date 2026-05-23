@@ -55,7 +55,7 @@ export const ShopPage = () => {
 };
 
 export const CartPage = () => {
-  const { navigate, cartCount, cart, cartTotal, deliveryFee, updateQty, removeFromCart } = useAppContext();
+  const { navigate, cartCount, cart, cartTotal, deliveryFee, updateQty, removeFromCart, customerProfile, setShowCustomerAuth } = useAppContext();
   return (
     <div className="page">
       <div className="page-header">
@@ -99,7 +99,14 @@ export const CartPage = () => {
                   Minimum Order ₹200 (Add ₹{200 - cartTotal} more)
                 </button>
               ) : (
-                <button className="btn-checkout" onClick={() => navigate('checkout')}>Proceed to Checkout →</button>
+                <button className="btn-checkout" onClick={() => {
+                  if (!customerProfile) {
+                    alert('Please Login or Sign Up to place your order securely.');
+                    setShowCustomerAuth(true);
+                  } else {
+                    navigate('checkout');
+                  }
+                }}>Proceed to Checkout →</button>
               )}
             </div>
           </div>
