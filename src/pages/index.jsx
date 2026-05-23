@@ -4,13 +4,14 @@ import { useAppContext } from '../context/AppContext';
 export * from './privacy';
 export * from './policies';
 import { CATEGORIES } from '../data/products';
-import { Hero, CatSection, PopularSection, SearchBar, ProductCard, ServicesSection } from '../components';
+import { Hero, CatSection, PopularSection, SearchBar, ProductCard, ServicesSection, LoyaltySection } from '../components';
 
 export const HomePage = () => (
   <div style={{ animation: 'fadeIn .2s ease' }}>
     <Hero />
     <ServicesSection />
     <CatSection />
+    <LoyaltySection />
     <PopularSection />
   </div>
 );

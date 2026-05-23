@@ -235,3 +235,32 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export const LoyaltySection = () => {
+  const { shareWebsite, points } = useAppContext();
+  return (
+    <section className="section" style={{ background: 'linear-gradient(135deg, var(--primary-900), var(--primary-700))', borderRadius: 16, padding: '40px 24px', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginTop: 10, marginBottom: 32, position: 'relative', overflow: 'hidden' }}>
+      <i className="ti ti-gift" style={{ fontSize: 48, color: '#FCD34D', marginBottom: 16 }}></i>
+      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, marginBottom: 8, color: 'white' }}>Diamond Rewards Program</h2>
+      <p style={{ fontSize: 16, opacity: 0.9, maxWidth: 600, marginBottom: 24, lineHeight: 1.5 }}>
+        Earn 50 Diamond Points (worth ₹50) every time you share our website with your friends or family! Use points at checkout to get up to 50% off your medicine orders.
+      </p>
+      
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', zIndex: 1 }}>
+        <button onClick={shareWebsite} style={{ background: '#FCD34D', color: 'var(--primary-900)', border: 'none', padding: '14px 28px', borderRadius: 50, fontSize: 16, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 14px rgba(0,0,0,0.2)' }}>
+          <i className="ti ti-share" style={{ fontSize: 20 }}></i> Share Website Now
+        </button>
+      </div>
+
+      {points > 0 && (
+        <div style={{ marginTop: 24, background: 'rgba(255,255,255,0.1)', padding: '12px 24px', borderRadius: 50, border: '1px solid rgba(255,255,255,0.2)' }}>
+          Your current balance: <strong style={{ color: '#FCD34D', fontSize: 18, marginLeft: 6 }}>🪙 {points} Points</strong>
+        </div>
+      )}
+      
+      <div style={{ position: 'absolute', top: -30, right: -20, opacity: 0.1, fontSize: 150 }}><i className="ti ti-diamond"></i></div>
+      <div style={{ position: 'absolute', bottom: -30, left: -20, opacity: 0.1, fontSize: 150 }}><i className="ti ti-coin"></i></div>
+    </section>
+  );
+};
+
