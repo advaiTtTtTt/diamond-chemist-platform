@@ -86,9 +86,7 @@ export const AppProvider = ({ children }) => {
     const fetchOrders = async () => {
       const { data: sessionData } = await supabase.auth.getSession();
       if (sessionData?.session) {
-        const { data, error } = await supabase.functions.invoke('get-orders', {
-          headers: { Authorization: `Bearer ${sessionData.session.access_token}` }
-        });
+        const { data, error } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
         if (data && !error) setOrders(data);
       } else {
         setOrders([]); // Non-admins don't need to fetch the historical orders list
@@ -407,9 +405,13 @@ export const AppProvider = ({ children }) => {
       };
       error = null;
     } else {
-      const res = await supabase.functions.invoke('place-order', {
-        body: { customer: { ...form }, cart: [...cart], deliveryFee, discount }
-      });
+      const dbOrder = {
+        customer_info: { ...form },
+        items: [...cart],
+        total_amount: finalTotal,
+        status: 'Received'
+      };
+      const res = await supabase.from('orders').insert([dbOrder]).select().single();
       order = res.data;
       error = res.error;
     }

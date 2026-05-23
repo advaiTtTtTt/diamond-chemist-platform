@@ -23,44 +23,24 @@ export const CustomerAuthModal = () => {
 
     try {
       if (isSignUp) {
-        // 1. Sign up user
         const { data: authData, error: authError } = await supabase.auth.signUp({
           email: form.email,
           password: form.password,
+          options: {
+            data: {
+              full_name: form.name,
+              phone: form.phone,
+              referral_code: form.refCode
+            }
+          }
         });
         if (authError) throw authError;
         
         if (!authData || !authData.user) {
           throw new Error("Account creation failed. This email may already be registered. Please try logging in.");
         }
-
-        // 2. Check referral code if provided
-        let referrerId = null;
-        if (form.refCode) {
-          const { data: refData } = await supabase.from('profiles').select('id').eq('referral_code', form.refCode.toUpperCase()).single();
-          if (refData) referrerId = refData.id;
-        }
-
-        // 3. Create profile
-        const myRefCode = generateReferralCode(form.name);
-        const { error: profileError } = await supabase.from('profiles').insert([{
-          id: authData.user.id,
-          full_name: form.name,
-          phone: form.phone,
-          referral_code: myRefCode,
-          referred_by: referrerId
-        }]);
-        if (profileError) throw profileError;
-
-        // 4. Give welcome bonus if referred
-        if (referrerId) {
-          await supabase.from('points_ledger').insert([{
-            user_id: authData.user.id,
-            amount: 20,
-            transaction_type: 'welcome_bonus',
-            expires_at: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString()
-          }]);
-        }
+        
+        // Profile and Points creation is now automatically handled securely by the Supabase backend Trigger!
       } else {
         // Login
         const { error: loginError } = await supabase.auth.signInWithPassword({
