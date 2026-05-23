@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppProvider, useAppContext } from './context/AppContext';
-import { Navbar } from './components';
-import { HomePage, ShopPage, CartPage, CheckoutPage, SuccessPage, AboutPage, AdminPage, PrivacyPage, UserOrdersPage } from './pages';
+import { Navbar, Footer } from './components';
+import { HomePage, ShopPage, CartPage, CheckoutPage, SuccessPage, AboutPage, AdminPage, PrivacyPage, UserOrdersPage, TermsPage, RefundPage, ShippingPage, ContactPage } from './pages';
 import { PrintLandingPage, PrintOrderPage, PrintSuccessScreen, PrintTrackingScreen } from './features/print';
 
 class ErrorBoundary extends React.Component {
@@ -103,10 +103,16 @@ function AppContent() {
       {page === 'about' && <AboutPage />}
       {page === 'admin' && <AdminPage />}
       {page === 'privacy' && <PrivacyPage />}
+      {page === 'terms' && <TermsPage />}
+      {page === 'refund' && <RefundPage />}
+      {page === 'shipping' && <ShippingPage />}
+      {page === 'contact' && <ContactPage />}
       {page === 'print' && <PrintLandingPage />}
       {page === 'print-order' && <PrintOrderPage />}
       {page === 'print-success' && <PrintSuccessScreen />}
       {page === 'print-track' && <PrintTrackingScreen />}
+      
+      {page !== 'checkout' && page !== 'cart' && page !== 'success' && <Footer />}
     </div>
   );
 }

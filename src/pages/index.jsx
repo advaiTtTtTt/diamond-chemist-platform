@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppContext } from '../context/AppContext';
 /* eslint-disable react-refresh/only-export-components */
 export * from './privacy';
+export * from './policies';
 import { CATEGORIES } from '../data/products';
 import { Hero, CatSection, PopularSection, SearchBar, ProductCard, ServicesSection } from '../components';
 

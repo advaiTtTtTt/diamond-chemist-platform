@@ -207,3 +207,31 @@ export const SearchBar = () => {
     </div>
   );
 };
+
+export const Footer = () => {
+  const { navigate } = useAppContext();
+  return (
+    <footer style={{ background: 'var(--primary-900)', color: 'rgba(255,255,255,0.8)', padding: '40px 20px', marginTop: 40 }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 40, justifyContent: 'space-between' }}>
+        <div style={{ flex: '1 1 250px' }}>
+          <h3 style={{ color: 'white', marginBottom: 16, fontFamily: "'Cormorant Garamond', serif", fontSize: 24 }}>Diamond Chemist</h3>
+          <p style={{ fontSize: 14, marginBottom: 8 }}>Shop No.3, Mauli Dham Society, Shankara Nagar Rd, near SVB Complex, Dombivli East, Kalyan, Maharashtra 421203</p>
+          <p style={{ fontSize: 14 }}>📞 +91 98671 25593</p>
+        </div>
+        <div style={{ flex: '1 1 200px' }}>
+          <h4 style={{ color: 'white', marginBottom: 16 }}>Legal Policies</h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <span onClick={() => { navigate('terms'); window.scrollTo(0,0); }} style={{ cursor: 'pointer', fontSize: 14, textDecoration: 'underline' }}>Terms & Conditions</span>
+            <span onClick={() => { navigate('privacy'); window.scrollTo(0,0); }} style={{ cursor: 'pointer', fontSize: 14, textDecoration: 'underline' }}>Privacy Policy</span>
+            <span onClick={() => { navigate('refund'); window.scrollTo(0,0); }} style={{ cursor: 'pointer', fontSize: 14, textDecoration: 'underline' }}>Refund & Cancellation</span>
+            <span onClick={() => { navigate('shipping'); window.scrollTo(0,0); }} style={{ cursor: 'pointer', fontSize: 14, textDecoration: 'underline' }}>Shipping & Delivery</span>
+            <span onClick={() => { navigate('contact'); window.scrollTo(0,0); }} style={{ cursor: 'pointer', fontSize: 14, textDecoration: 'underline' }}>Contact Us</span>
+          </div>
+        </div>
+      </div>
+      <div style={{ textAlign: 'center', marginTop: 40, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.1)', fontSize: 12 }}>
+        © {new Date().getFullYear()} Diamond Chemist. All rights reserved.
+      </div>
+    </footer>
+  );
+};
