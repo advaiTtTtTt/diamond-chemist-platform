@@ -1,4 +1,6 @@
 // ─── PRODUCT CATALOG ───
+import { CHEMIST_PRODUCTS } from './chemistProducts';
+
 export const CATEGORIES = [
   { name: 'Pain Relief', icon: 'ti-flame' },
   { name: 'Cold & Flu', icon: 'ti-snowflake' },
@@ -11,7 +13,7 @@ export const CATEGORIES = [
   { name: 'Stationery', icon: 'ti-pencil' },
 ];
 
-export const PRODUCTS = [
+const baseProducts = [
   { id:1, name:'Dolo 650', desc:'Paracetamol 650mg – Fever & pain relief', price:32, brand:'Micro Labs', category:'Pain Relief', popular:true },
   { id:2, name:'Crocin Advance', desc:'500mg Paracetamol – Fast fever action', price:28, brand:'GSK', category:'Pain Relief', popular:true },
   { id:3, name:'Cetirizine 10mg', desc:'Antihistamine – Allergy & cold relief', price:15, brand:'Cipla', category:'Cold & Flu', popular:true },
@@ -33,6 +35,8 @@ export const PRODUCTS = [
   { id:19, name:'Fevicol MR', desc:'Adhesive glue 100g', price:35, brand:'Pidilite', category:'Stationery', popular:false },
   { id:20, name:'Geometry Box', desc:'Mathematical drawing instruments', price:120, brand:'Camel', category:'Stationery', popular:false },
 ];
+
+export const PRODUCTS = [...baseProducts, ...CHEMIST_PRODUCTS];
 
 export const QUICK_SEARCHES = ['Fever', 'Cold', 'Stomach', 'Vitamin', 'Baby', 'First Aid'];
 
