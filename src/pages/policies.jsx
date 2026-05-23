@@ -87,7 +87,7 @@ export const ContactPage = () => {
         </div>
         <div style={{ marginTop: 20, marginBottom: 10 }}>
           <p><strong>Email Address:</strong><br/>
-          support@diamondchemist.com</p>
+          diamondchemist21@gmail.com</p>
         </div>
         <div style={{ marginTop: 20 }}>
           <p><strong>Store Hours:</strong><br/>

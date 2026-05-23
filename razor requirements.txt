@@ -1,0 +1,70 @@
+🌐 Part 2 — Website Requirements (You Build This)
+Razorpay requires the following pages to be live on the website before approval — they run automated checks on your URL during submission: Razorpay
+MANDATORY PAGES — all must be live before KYC submission:
+
+  [ ] Privacy Policy
+      — what data you collect, why, how it's used
+      — must mention phone numbers, addresses, GPS data
+
+  [ ] Terms & Conditions
+      — rules of using the platform
+      — liability, age restrictions, acceptable use
+
+  [ ] Refund & Cancellation Policy
+      — must state processing timelines explicitly
+        e.g. "Refunds processed within 5–7 business days"
+      — for print jobs: what happens if print fails
+      — for medicines: what happens if item unavailable
+
+  [ ] Shipping / Delivery Policy
+      — delivery area (50 metres)
+      — estimated delivery time
+      — what happens if delivery fails
+
+  [ ] Contact Us page
+      — working phone number with business hours
+      — working email address
+      — physical shop address
+
+  [ ] Pricing page (or pricing visible on product pages)
+      — all product prices clearly displayed
+      — print pricing clearly displayed
+      — no hidden charges
+Both the Privacy Policy and Refund Policy must be linked in the footer of every page — not just reachable from a menu. Razorpay
+
+🖥️ Part 3 — Website Technical Requirements (You Verify This)
+  [ ] Website must be on a live domain (not localhost, 
+      not a preview URL like vercel.app)
+      — get diamondchemist.in or similar before submitting
+
+  [ ] SSL certificate active (HTTPS, not HTTP)
+      — Vercel handles this automatically on custom domains
+
+  [ ] Checkout flow must be complete and testable
+      — Razorpay reviewer will go through the 
+        entire purchase journey themselves
+
+  [ ] At least 5 live product listings visible
+      — the 15 demo products satisfy this easily
+
+  [ ] Shop name, logo, and address visible on the site
+      — must match the business registration documents
+
+  [ ] No broken links, no "coming soon" on critical pages
+      — remove or hide incomplete features before submission
+
+💰 Part 4 — Razorpay Account Setup (You + Chemist Together)
+  [ ] Create account at razorpay.com with chemist's email
+  [ ] Fill business type: Individual / Sole Proprietor
+  [ ] Enter business category: 
+        Pharmacy / Healthcare / Medical Supplies
+  [ ] Enter website URL (must be live domain)
+  [ ] Upload all documents from Part 1
+  [ ] Enter bank account details for settlement
+  [ ] Set settlement cycle: T+2 (standard, money arrives 
+      2 business days after transaction)
+  [ ] Enable payment methods:
+        UPI (most important in Mumbai — GPay, PhonePe, Paytm)
+        Debit/Credit Cards
+        Net Banking
+        Keep COD as additional option in your app

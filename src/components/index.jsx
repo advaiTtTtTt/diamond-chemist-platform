@@ -1,7 +1,7 @@
 import React from 'react';
 export * from './CustomerAuthModal';
 import { useAppContext } from '../context/AppContext';
-import { CATEGORIES, QUICK_SEARCHES } from '../data/products';
+import { CATEGORIES, QUICK_SEARCHES } from '../data/constants';
 
 export const Navbar = () => {
   const { navigate, cartCount, badgeBounce, shareWebsite, points, customerProfile, setShowCustomerAuth, logoutCustomer, openAdmin } = useAppContext();

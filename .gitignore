@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 \n# Data files\n*.csv\nimport_csv.js
+
+# Local Netlify folder
+.netlify
