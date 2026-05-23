@@ -1,0 +1,1035 @@
+You are a senior product designer, full-stack architect, and 
+systems engineer. Your task is to build a complete, production-grade 
+Print-on-Demand feature integrated into the Diamond Chemist platform. 
+This is not a prototype. This is a real system that will run on a 
+real printer in a real shop. Every decision must reflect that.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BUSINESS CONTEXT — READ THIS FIRST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The chemist shop also offers printing services to the local 
+neighbourhood. Customers can:
+  — Upload a PDF, DOCX, JPG, or PNG from their phone
+  — Choose print settings (B&W or colour, single/double side, 
+    number of copies, paper size A4/A3/Letter)
+  — Pay online (Razorpay UPI/card) before printing
+  — Receive a unique 6-character alphanumeric pickup code (e.g. PRN-4K7X)
+  — Walk to the shop and show the code to collect their prints
+
+The chemist's computer has a physical printer connected via USB.
+A lightweight Node.js agent runs silently in the background on 
+that computer. The moment a job is paid, the agent detects it, 
+downloads the file, and sends it directly to the printer.
+The chemist does not need to touch the computer for printing to happen.
+
+This feature must feel like a standalone mini-app within the 
+existing Diamond Chemist platform — same design language, same 
+navigation, but its own dedicated section.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 1 — COMPLETE SYSTEM ARCHITECTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Stack:
+  Frontend:     React (Vite), same codebase as main app
+  Backend:      Supabase Edge Functions (Deno)
+  Database:     Supabase PostgreSQL
+  File Storage: Supabase Storage (private bucket)
+  Payments:     Razorpay (same keys as medicine store)
+  Notifications:MSG91 SMS API
+  Print Agent:  Node.js script on chemist's local machine
+
+─────────────────────────────────────────────────
+DATABASE SCHEMA — create these tables in Supabase
+─────────────────────────────────────────────────
+
+Table: print_jobs
+  id                UUID PRIMARY KEY DEFAULT gen_random_uuid()
+  pickup_code       TEXT UNIQUE NOT NULL  -- e.g. "PRN-4K7X"
+  customer_name     TEXT NOT NULL
+  customer_phone    TEXT NOT NULL         -- encrypted (AES-256 via PII_ENCRYPTION_KEY)
+  file_name         TEXT NOT NULL         -- original filename shown to customer
+  file_path         TEXT NOT NULL         -- Supabase Storage path (private)
+  file_type         TEXT NOT NULL         -- 'pdf' | 'docx' | 'image'
+  page_count        INTEGER NOT NULL DEFAULT 1
+  copies            INTEGER NOT NULL DEFAULT 1
+  colour_mode       TEXT NOT NULL DEFAULT 'bw'    -- 'bw' | 'colour'
+  sides             TEXT NOT NULL DEFAULT 'single' -- 'single' | 'double'
+  paper_size        TEXT NOT NULL DEFAULT 'a4'     -- 'a4' | 'a3' | 'letter'
+  price_per_page    NUMERIC(6,2) NOT NULL
+  total_amount      NUMERIC(8,2) NOT NULL
+  status            TEXT NOT NULL DEFAULT 'PENDING_PAYMENT'
+                    -- PENDING_PAYMENT → PAID → PRINTING → 
+                    -- READY → COLLECTED → CANCELLED
+  razorpay_order_id TEXT
+  razorpay_payment_id TEXT
+  created_at        TIMESTAMPTZ DEFAULT now()
+  paid_at           TIMESTAMPTZ
+  printed_at        TIMESTAMPTZ
+  collected_at      TIMESTAMPTZ
+  agent_version     TEXT  -- which agent version printed this job
+  error_log         TEXT  -- if printing failed, store reason here
+
+Table: print_pricing
+  id              UUID PRIMARY KEY DEFAULT gen_random_uuid()
+  colour_mode     TEXT NOT NULL  -- 'bw' | 'colour'
+  sides           TEXT NOT NULL  -- 'single' | 'double'
+  paper_size      TEXT NOT NULL  -- 'a4' | 'a3' | 'letter'
+  price_per_page  NUMERIC(6,2) NOT NULL
+  is_active       BOOLEAN DEFAULT true
+  updated_at      TIMESTAMPTZ DEFAULT now()
+
+Seed print_pricing with sensible Indian market rates:
+  B&W   + Single + A4     = ₹2.00/page
+  B&W   + Double + A4     = ₹1.50/page
+  Colour + Single + A4    = ₹10.00/page
+  Colour + Double + A4    = ₹8.00/page
+  B&W   + Single + A3     = ₹4.00/page
+  Colour + Single + A3    = ₹18.00/page
+  B&W   + Single + Letter = ₹2.00/page
+  Colour + Single + Letter= ₹10.00/page
+
+RLS Policies:
+  print_jobs:    Customers can INSERT their own row (status check)
+                 SELECT only where pickup_code matches (for tracking)
+                 Admin (authenticated) can SELECT/UPDATE all rows
+  print_pricing: Public SELECT (everyone can read prices)
+                 Admin only can INSERT/UPDATE
+
+─────────────────────────────────────────────────
+SUPABASE STORAGE
+─────────────────────────────────────────────────
+
+Bucket name: print-files
+  Access: PRIVATE (never public)
+  Max file size: 25MB
+  Allowed MIME types:
+    application/pdf
+    application/vnd.openxmlformats-officedocument.wordprocessingml.document
+    image/jpeg
+    image/png
+    image/webp
+
+File naming convention inside bucket:
+  {print_job_id}/{original_filename_sanitized}
+  Example: a3f9c2d1-1234/prescription_scan.pdf
+
+The file is only accessible via a signed URL generated 
+server-side by the Edge Function, valid for 60 seconds.
+The signed URL is never exposed to the customer frontend —
+only to the authenticated print agent.
+
+─────────────────────────────────────────────────
+EDGE FUNCTIONS — build all 5
+─────────────────────────────────────────────────
+
+1. create-print-job
+   Trigger: Customer submits the print order form
+   Input:   { customer_name, customer_phone, file_path, 
+              file_name, file_type, page_count, copies, 
+              colour_mode, sides, paper_size }
+   Logic:
+     a. Validate all fields server-side
+     b. Fetch price from print_pricing table for these settings
+     c. Calculate total: price_per_page × page_count × copies
+        (double-sided halves the page count billed)
+     d. Generate pickup code: "PRN-" + 4 random uppercase 
+        alphanumeric chars (check uniqueness in DB)
+     e. Create Razorpay order server-side with total_amount
+     f. Insert row into print_jobs with status PENDING_PAYMENT
+     g. Return { job_id, pickup_code, razorpay_order_id, 
+                 razorpay_key_id, total_amount }
+   Security:
+     - Encrypt customer_phone with AES-256 before DB insert
+     - Rate limit: max 3 print jobs per phone per hour
+     - Validate file path exists in Supabase Storage
+     - Validate page_count is not 0 or negative
+     - Validate copies is between 1 and 50
+
+2. verify-print-payment
+   Trigger: Razorpay payment success callback on frontend
+   Input:   { job_id, razorpay_order_id, 
+              razorpay_payment_id, razorpay_signature }
+   Logic:
+     a. Verify Razorpay signature using HMAC-SHA256
+        (razorpay_order_id + "|" + razorpay_payment_id 
+         signed with RAZORPAY_KEY_SECRET)
+     b. If signature invalid → return 400, do NOT update DB
+     c. If valid → update print_jobs:
+          status = 'PAID'
+          paid_at = now()
+          razorpay_payment_id = verified payment id
+     d. Send SMS via MSG91:
+        "Hi {name}! Your print job is confirmed. 
+         Pickup code: {code}. We'll SMS you when ready. 
+         - Diamond Chemist"
+     e. Return { success: true }
+   Critical: NEVER mark as PAID without signature verification.
+
+3. agent-poll
+   Trigger: Print agent polls every 5 seconds
+   Auth:    Requires AGENT_SECRET header (a long random string 
+            set as env variable, known only to the agent script)
+   Input:   { agent_version }
+   Logic:
+     a. Verify AGENT_SECRET header
+     b. SELECT top 5 rows WHERE status = 'PAID' 
+        ORDER BY paid_at ASC (oldest first, FIFO queue)
+     c. For each job, generate a signed download URL 
+        (60-second expiry) for the file in Storage
+     d. Return array of job objects with signed URLs
+   Security:
+     - If AGENT_SECRET missing or wrong → 401
+     - Signed URLs expire in 60s so intercepted URLs 
+       are useless
+
+4. agent-update-status
+   Trigger: Print agent reports job completion or failure
+   Auth:    Same AGENT_SECRET header
+   Input:   { job_id, status, error_log? }
+             status can be 'PRINTING' | 'READY' | 'ERROR'
+   Logic:
+     a. Verify AGENT_SECRET
+     b. Update print_jobs row
+     c. If status = 'READY':
+          Send SMS: "Your prints are ready at Diamond Chemist! 
+          Show code {code} to collect. Open till 10PM."
+     d. If status = 'ERROR':
+          Send SMS to customer: "Sorry, your print job 
+          failed. Please contact the shop. Full refund 
+          will be processed. Code: {code}"
+          Alert admin via a special SMS too
+     e. Return { success: true }
+
+5. collect-print-job
+   Trigger: Admin scans/enters pickup code at counter
+   Auth:    Requires valid Supabase JWT (admin logged in)
+   Input:   { pickup_code }
+   Logic:
+     a. Find job by pickup_code
+     b. Verify status is 'READY' (if not, return error with 
+        current status so admin can explain to customer)
+     c. Update status = 'COLLECTED', collected_at = now()
+     d. Return full job details for admin to verify
+
+─────────────────────────────────────────────────
+THE PRINT AGENT — local Node.js script
+─────────────────────────────────────────────────
+
+This is a separate file: agent/print-agent.js
+The chemist runs this once on their computer and it runs 
+silently in the background forever.
+
+Tech stack for agent:
+  node-printer     (sends files to Windows/Linux print queues)
+  pdf-to-printer   (wrapper for PDF direct printing)
+  mammoth          (converts DOCX to PDF before printing)
+  sharp            (normalises image files before printing)
+  node-fetch       (polls Edge Functions)
+  dotenv           (loads SUPABASE_URL, AGENT_SECRET, 
+                    PRINTER_NAME from .env file)
+
+Agent logic (pseudo-code):
+
+  async function pollAndPrint() {
+    
+    // 1. Fetch PAID jobs from server
+    const jobs = await fetch(EDGE_URL/agent-poll, {
+      headers: { 'x-agent-secret': AGENT_SECRET }
+    })
+    
+    for (const job of jobs) {
+      
+      // 2. Mark as PRINTING immediately 
+      //    (prevents other agents printing same job)
+      await updateStatus(job.id, 'PRINTING')
+      
+      // 3. Download file using signed URL
+      const fileBuffer = await downloadFile(job.signed_url)
+      
+      // 4. Convert if needed
+      if (job.file_type === 'docx') {
+        fileBuffer = await convertDocxToPdf(fileBuffer)
+      }
+      if (job.file_type === 'image') {
+        fileBuffer = await convertImageToPdf(fileBuffer, {
+          paper_size: job.paper_size
+        })
+      }
+      
+      // 5. Build print options
+      const printOptions = {
+        printer: PRINTER_NAME,
+        copies:  job.copies,
+        sides:   job.sides === 'double' ? 'two-sided-long-edge' : 'one-sided',
+        colorModel: job.colour_mode === 'colour' ? 'color' : 'gray',
+        paperSize: job.paper_size.toUpperCase(),
+      }
+      
+      // 6. Send to printer
+      await printFile(fileBuffer, printOptions)
+      
+      // 7. Update status to READY
+      await updateStatus(job.id, 'READY')
+      
+      // 8. Delete file from local temp storage
+      cleanupTempFile()
+    }
+  }
+  
+  // Poll every 5 seconds
+  setInterval(pollAndPrint, 5000)
+  console.log('Diamond Chemist Print Agent running...')
+  console.log('Watching for new print jobs...')
+
+Agent startup script for Windows (agent/start-agent.bat):
+  @echo off
+  echo Starting Diamond Chemist Print Agent...
+  node print-agent.js
+  pause
+
+Agent .env file template (agent/.env.example):
+  SUPABASE_URL=https://your-project.supabase.co
+  AGENT_SECRET=your-very-long-random-secret-here
+  PRINTER_NAME=HP_LaserJet_Pro_M404dn
+  TEMP_DIR=C:/PrintAgentTemp
+
+Package.json for agent (agent/package.json):
+  {
+    "name": "diamond-chemist-print-agent",
+    "version": "1.0.0",
+    "description": "Local print automation agent",
+    "main": "print-agent.js",
+    "scripts": {
+      "start": "node print-agent.js",
+      "install-service": "node install-as-service.js"
+    },
+    "dependencies": {
+      "node-printer": "^1.0.0",
+      "pdf-to-printer": "^5.4.0",
+      "mammoth": "^1.6.0",
+      "sharp": "^0.33.0",
+      "node-fetch": "^2.7.0",
+      "dotenv": "^16.0.0"
+    }
+  }
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 2 — COMPLETE UI DESIGN SYSTEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Inherit all existing design tokens from the main app:
+  --green:          #0C5E47
+  --green-light:    #1A8C64
+  --accent:         #E8930A
+  --bg:             #F5F2EB
+  --white:          #FFFFFF
+  --text:           #1C1B18
+  --muted:          #5A5950
+  --border:         #DDD8CE
+  --danger:         #C83228
+  --success:        #1A7040
+
+New tokens specific to the print feature:
+  --print-blue:     #1A4F9C  (print jobs — distinct from medicine green)
+  --print-blue-light:#E6EFFC
+  --print-indigo:   #3730A3  (processing/printing status)
+  --print-indigo-light:#EEF2FF
+
+Use Cormorant Garamond for display headings.
+Use Outfit for all UI text.
+Use Tabler outline icons throughout.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 3 — ALL CUSTOMER-FACING SCREENS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+─────────────────────────────────────────────────
+SCREEN 1: PRINT LANDING PAGE
+─────────────────────────────────────────────────
+
+Accessible from main nav as "Print" tab.
+
+Hero section (uses print-blue instead of green):
+  Background: linear-gradient(155deg, #0F2D5E, #1A4F9C, #2563EB)
+  
+  Top pill badge (accent gold):
+    "🖨️ Print in minutes · Pickup at the shop"
+  
+  Title (Cormorant Garamond 44px white bold):
+    "Upload. Pay. Collect."
+  
+  Subtitle (Outfit 15px white/80):
+    "PDF, Word docs, photos — printed in minutes.
+     Pay online, collect at Diamond Chemist with your code."
+  
+  Single CTA button (accent gold bg, dark text, pill):
+    "Start Printing →"
+    onClick → navigate to upload screen
+  
+  Trust strip below:
+    🔒 Secure upload   📄 Any file format   
+    ⚡ Auto-printed instantly   💰 Pay online
+
+Pricing section below hero:
+  Title: "Simple, Transparent Pricing"
+  
+  Two-column card grid:
+  
+  Card 1 — B&W Printing:
+    Header: black/white icon, "Black & White"
+    Subtext: "Documents, forms, notes"
+    Price table:
+      A4 Single-sided  ₹2 per page
+      A4 Double-sided  ₹1.50 per page
+      A3 Single-sided  ₹4 per page
+    Footer chip: "Most popular"
+  
+  Card 2 — Colour Printing:
+    Header: colour palette icon, "Colour"
+    Subtext: "Photos, presentations, certificates"
+    Price table:
+      A4 Single-sided  ₹10 per page
+      A4 Double-sided  ₹8 per page
+      A3 Single-sided  ₹18 per page
+  
+  Fine print below:
+    "Minimum charge ₹10. DOCX files auto-converted to PDF.
+     Max file size 25MB. Payment required before printing."
+
+How it works section:
+  4-step horizontal flow:
+  
+  1. [Upload icon]    Upload your file
+                      "PDF, Word, JPG or PNG"
+  
+  2. [Settings icon]  Choose settings
+                      "Copies, colour, paper size"
+  
+  3. [Pay icon]       Pay online
+                      "UPI, card or netbanking"
+  
+  4. [QR code icon]   Collect with code
+                      "Show your code at the counter"
+
+Supported formats section:
+  3 chips in a row:
+    [PDF icon] PDF files
+    [Word icon] Word (.docx)
+    [Image icon] JPG / PNG
+
+Track existing order section:
+  Small card at bottom:
+    "Already ordered? Track your print job"
+    Input field: "Enter pickup code (e.g. PRN-4K7X)"
+    Button: "Track →"
+    onClick → navigate to tracking screen with that code
+
+─────────────────────────────────────────────────
+SCREEN 2: UPLOAD & CONFIGURE SCREEN
+─────────────────────────────────────────────────
+
+This is a 4-step wizard. Show a step progress bar at top.
+
+Step indicator:
+  [1 Upload] ── [2 Settings] ── [3 Review] ── [4 Pay]
+  Active step filled in print-blue.
+  Completed steps show a checkmark.
+
+─ STEP 1: UPLOAD FILE ──────────────────────────
+
+Full-width drop zone (tall, 200px):
+  Dashed border (#1A4F9C), rounded-xl, white bg
+  Large upload icon (ti-cloud-upload, 48px, print-blue)
+  
+  Primary text: "Drop your file here"
+  Secondary: "or click to browse"
+  Accepted: "PDF · Word (.docx) · JPG · PNG · Max 25MB"
+  
+  Drag states:
+    Default: blue dashed border, white bg
+    Drag-over: solid blue border, blue-50 bg, 
+               text changes to "Drop to upload"
+  
+  After file selected, show file preview card:
+    [File type icon 40px] | Filename.pdf        | [× remove]
+                          | 3.2 MB · PDF        |
+    
+    Progress bar shows upload progress to Supabase Storage.
+    "Uploading... 67%" with animated progress bar.
+    On complete: "✓ Uploaded" in success green.
+  
+  CRITICAL: File is uploaded to Supabase Storage immediately 
+  when selected — before payment. The Edge Function validates 
+  and creates the DB job only after settings are confirmed.
+  The file path is stored in component state.
+  
+  If file > 25MB: show inline error below drop zone:
+    Red border + "File too large. Maximum size is 25MB."
+  
+  If wrong file type: 
+    Red border + "Unsupported format. Please use PDF, 
+    DOCX, JPG or PNG."
+
+Customer details (below upload):
+  Two inputs side by side:
+    [Full Name *]      [Phone Number *]
+    With validation:
+      Name: required, min 2 chars
+      Phone: exactly 10 digits, Indian mobile
+
+  Below inputs, small notice:
+    "📱 We'll SMS your pickup code and updates to this number"
+
+Next button:
+  Disabled until: file uploaded + name + phone filled
+  Label: "Next: Print Settings →"
+  Full width, print-blue bg
+
+─ STEP 2: PRINT SETTINGS ───────────────────────
+
+Page count detection notice (auto-shown):
+  If PDF uploaded: "We detected 5 pages in your document"
+  If DOCX: "DOCX files are auto-converted to PDF for printing"
+  If image: "Each image counts as 1 page"
+  Style: blue info banner with info icon
+
+Settings grid (2 columns on desktop, 1 on mobile):
+
+1. Colour Mode (large toggle cards):
+   ┌─────────────────┐  ┌─────────────────┐
+   │  ◉              │  │  ○              │
+   │  [BW icon]      │  │  [Colour icon]  │
+   │  Black & White  │  │  Colour         │
+   │  ₹2 per page    │  │  ₹10 per page   │
+   └─────────────────┘  └─────────────────┘
+   Selected card: blue border 2px, blue-50 bg, 
+                  filled radio, blue text
+   Unselected: grey border, white bg
+
+2. Sides:
+   Same toggle card style:
+   [ Single-sided | Double-sided ]
+   Double-sided note: "Saves paper · Price per sheet"
+
+3. Paper Size:
+   Dropdown select OR 3 pill toggle buttons:
+   [ A4 ] [ A3 ] [ Letter ]
+   A4 selected by default, most common.
+
+4. Number of Copies:
+   Stepper: [ − ]  [ 1 ]  [ + ]
+   Increment/decrement with min=1, max=50
+   Inline validation: "Maximum 50 copies"
+
+Live price calculator (sticky bottom card or prominent section):
+  ┌─────────────────────────────────────┐
+  │ Price breakdown                     │
+  │ ─────────────────────────────────── │
+  │ 5 pages × ₹2.00 (B&W, A4, single)  │
+  │ × 2 copies                          │
+  │ ─────────────────────────────────── │
+  │ Total:  ₹20.00                      │
+  │                                     │
+  │   [← Back]   [Review Order →]       │
+  └─────────────────────────────────────┘
+  
+  Update this in real-time as user changes any setting.
+  Minimum charge notice: if total < ₹10, show 
+  "Minimum charge ₹10 applies"
+
+─ STEP 3: REVIEW ORDER ─────────────────────────
+
+Summary card showing everything:
+
+  ┌───────────────────────────────────────┐
+  │  🖨️  Print Job Summary                │
+  │  ─────────────────────────────────── │
+  │  File:      invoice_march.pdf         │
+  │  Pages:     5 pages detected          │
+  │  Copies:    2                         │
+  │  Mode:      Black & White             │
+  │  Sides:     Single-sided              │
+  │  Paper:     A4                        │
+  │  ─────────────────────────────────── │
+  │  Customer:  Rahul Sharma              │
+  │  Phone:     +91 98XXX XXXXX           │
+  │  ─────────────────────────────────── │
+  │  5 pages × ₹2.00 × 2 copies          │
+  │                                       │
+  │  Total:       ₹20.00                  │
+  │  ─────────────────────────────────── │
+  │  [Edit] button top-right of each section │
+  └───────────────────────────────────────┘
+
+Important notice below:
+  Amber banner:
+  "⚠️ Once payment is made, print settings cannot be changed. 
+   Refunds are available only if printing fails technically."
+
+Two buttons:
+  [← Back to Settings]   [Pay ₹20.00 →]  (print-blue, full width)
+
+─ STEP 4: PAYMENT ──────────────────────────────
+
+Show a loading state while Edge Function creates the 
+Razorpay order server-side. 
+
+Then Razorpay checkout opens. Use Razorpay's hosted 
+checkout (window.Razorpay) — do not build a custom 
+card form. Pre-fill:
+  name:        customer_name
+  contact:     customer_phone
+  description: "Print Job - {page_count} pages"
+
+On payment success, call verify-print-payment Edge Function.
+While verifying, show a "Verifying payment..." spinner.
+
+─────────────────────────────────────────────────
+SCREEN 3: PAYMENT SUCCESS & PICKUP CODE SCREEN
+─────────────────────────────────────────────────
+
+This is the most important screen. Design it to be 
+saved as a screenshot by the customer.
+
+Full screen layout, white bg, centered:
+
+Top: animated checkmark circle (success green, 72px)
+     Draw-in SVG stroke animation on mount.
+
+Heading (Cormorant Garamond 36px):
+  "Printing in Progress!"
+
+Sub (Outfit 15px, muted):
+  "Your document is printing automatically. 
+   Show the code below when you arrive."
+
+─── PICKUP CODE CARD ──────────────────────────
+The most prominent element on the screen.
+
+  ┌────────────────────────────────────┐
+  │  Your Pickup Code                  │
+  │                                    │
+  │   ╔════════════════════════╗       │
+  │   ║      PRN - 4K7X        ║       │  
+  │   ╚════════════════════════╝       │
+  │                                    │
+  │  [Copy code]  [Share]              │
+  └────────────────────────────────────┘
+
+Code card design:
+  Large box, blue-50 bg, 2px solid print-blue border
+  Code text: Outfit mono 44px bold, letter-spacing 6px, 
+             print-blue color
+  "PRN-" prefix muted, "4K7X" part in full print-blue
+  Below the code: "Show this code at the counter"
+
+Copy button: copies code to clipboard, shows "Copied ✓"
+Share button: navigator.share() with message:
+  "My print order at Diamond Chemist is ready. 
+   Pickup code: PRN-4K7X"
+
+Order summary below code:
+  Small card:
+    File: invoice_march.pdf
+    Pages: 5 pages, 2 copies (10 prints total)
+    Mode: B&W, A4, Single-sided
+    Paid: ₹20.00
+
+Status tracker (live, real-time via Supabase subscription):
+  ○ Payment Received   ✓ (done, green)
+  ● Printing Now       ⟳ (animated spinner, blue)
+  ○ Ready for Pickup   (pending, grey)
+  ○ Collected          (pending, grey)
+  
+  Each step updates in real-time as Supabase 
+  print_jobs row status changes.
+  When status becomes READY:
+    "Printing" step turns green
+    "Ready for Pickup" step turns green + pulses
+    A green banner animates in:
+    "✅ Your prints are ready! Head to the counter."
+
+SMS reminder:
+  Small muted note:
+  "📱 We've sent this code to +91 98XXX XXXXX"
+
+Save instructions:
+  "Screenshot this page or note down your code. 
+   It's also been sent to your phone."
+
+─────────────────────────────────────────────────
+SCREEN 4: JOB TRACKING SCREEN
+─────────────────────────────────────────────────
+
+Route: /print/track or via the landing page form
+Input: pickup code
+
+If valid code found, show the same layout as Screen 3
+(minus the payment confirmation header).
+
+If code not found:
+  Error state: "Code not found. Please check and try again."
+  
+If job is COLLECTED:
+  Show: "This order has already been collected. 
+  Thank you for using Diamond Chemist Print!"
+
+If job is CANCELLED:
+  Show refund status and reason.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 4 — ADMIN PANEL: PRINT JOBS SECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Add a "Print Jobs" tab to the existing admin dashboard.
+
+─────────────────────────────────────────────────
+ADMIN PRINT DASHBOARD
+─────────────────────────────────────────────────
+
+Stats row (4 metric cards, use print-blue accent):
+  Today's Jobs | Pending Pickup | Today's Revenue | 
+  Total Prints Today
+
+Filter bar:
+  Status filter pills:
+    [ All ] [ Paid ] [ Printing ] [ Ready ] [ Collected ] [ Error ]
+  
+  Date range picker (Today / Last 7 days / Custom)
+  Search by pickup code
+
+Print job cards (one per job):
+
+  ┌──────────────────────────────────────────────┐
+  │  PRN-4K7X          [READY] badge   12:45 PM  │
+  │  ─────────────────────────────────────────── │
+  │  invoice_march.pdf                           │
+  │  5 pages × 2 copies · B&W · A4 · Single      │
+  │  ─────────────────────────────────────────── │
+  │  Rahul Sharma  ·  📱 +91 98XXX XXXXX         │
+  │  Paid ₹20.00 via UPI                         │
+  │  ─────────────────────────────────────────── │
+  │  [Download File]  [Mark Collected]  [Cancel] │
+  └──────────────────────────────────────────────┘
+
+Status badges:
+  PENDING_PAYMENT  → grey   "Awaiting Payment"
+  PAID             → blue   "Paid – Printing Soon"
+  PRINTING         → indigo "Printing Now..." (pulse animation)
+  READY            → amber  "Ready for Pickup"
+  COLLECTED        → green  "Collected"
+  ERROR            → red    "Print Failed"
+
+"Mark Collected" button:
+  Calls collect-print-job Edge Function with pickup code
+  Requires admin to be logged in (JWT verified server-side)
+  Shows confirmation: "Confirm collection for PRN-4K7X?"
+  After confirm: status updates to COLLECTED instantly
+
+"Download File" button:
+  Calls a protected Edge Function that generates 
+  a fresh 60-second signed URL, opens in new tab.
+  Only available to authenticated admin.
+
+ERROR state card — extra section:
+  Red bordered card, shows error_log from DB
+  "Reprint" button: resets status to PAID so agent 
+  re-picks it up automatically
+
+Pricing Management section (under a separate tab):
+  Table of all price combinations with inline edit:
+  
+  | Mode   | Sides  | Size | Price/page | Action  |
+  | B&W    | Single | A4   | ₹2.00      | [Edit]  |
+  | B&W    | Double | A4   | ₹1.50      | [Edit]  |
+  ...
+  
+  Click Edit → price field becomes an input inline
+  Save button updates via admin-only Edge Function
+  Changes reflect immediately on the customer pricing screen
+
+Print Agent Status widget (shown in print admin):
+  Live indicator — polls a heartbeat from the agent:
+  
+  ● Agent Online — Last seen 3 seconds ago (green)
+  ○ Agent Offline — Last seen 8 minutes ago (red)
+  
+  If offline > 5 minutes, show amber warning:
+  "⚠️ Print agent may be offline. New jobs will 
+   queue and print when the agent reconnects."
+  
+  Show: Agent version, Printer name detected, 
+  PC hostname, jobs printed today by this agent.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 5 — EDGE CASES & ERROR HANDLING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Every one of these must be explicitly handled:
+
+UPLOAD ERRORS:
+  File too large (>25MB) → inline error on drop zone
+  Unsupported format     → inline error on drop zone
+  Network error during upload → retry button, keep form state
+  Storage bucket full    → "Service temporarily unavailable"
+
+PAYMENT ERRORS:
+  Razorpay modal closed without paying:
+    Do NOT create the print job in DB
+    Do NOT upload to final path
+    Show: "Payment cancelled. Your file is still saved. 
+           Try again?" with a "Retry Payment" button
+  
+  Payment succeeds but signature verification fails:
+    Show: "Payment verification failed. Do not attempt again.
+           Contact Diamond Chemist with reference: {razorpay_payment_id}"
+    Log the discrepancy for admin review
+  
+  Payment succeeds but Edge Function crashes:
+    Razorpay webhook as fallback — 
+    configure webhook in Razorpay dashboard to hit 
+    /verify-print-payment as a POST with the event data.
+    This ensures no payment is lost even if the user 
+    closes their browser.
+
+PRINT AGENT ERRORS:
+  Agent offline when job is PAID:
+    Jobs queue in DB with status PAID
+    Agent processes them in order when it reconnects
+    Customer is NOT notified of delay immediately
+    If status stays PAID for > 15 minutes:
+      Edge Function (cron job every 10 mins) sends SMS:
+      "Your print job is queued. We'll start printing shortly."
+  
+  Printer paper jam / error during printing:
+    Agent catches the printer error
+    Calls agent-update-status with status=ERROR, 
+    error_log = printer error message
+    Customer gets SMS about failure
+    Admin gets alert SMS
+    Refund must be processed manually via Razorpay dashboard
+    (Document this in the admin guide)
+  
+  DOCX conversion fails:
+    mammoth conversion error → agent reports ERROR
+    Customer notified, refund issued
+
+FILE ISSUES:
+  Corrupted PDF:
+    Agent detects during print → ERROR status
+  
+  Password-protected PDF:
+    Agent cannot print → ERROR status
+    Customer SMS: "Your PDF appears to be password-protected.
+    Please upload an unlocked version."
+  
+  Extremely large page count (200+ pages):
+    Edge Function caps at 200 pages
+    Show warning: "Large document detected (200+ pages).
+    This may take several minutes to print."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 6 — SECURITY REQUIREMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. File access:
+   Files in Supabase Storage are PRIVATE.
+   Never generate a public URL for any uploaded file.
+   Only the print agent can access files via 
+   short-lived signed URLs from Edge Functions.
+   Admin can download via authenticated Edge Function.
+
+2. Pickup code security:
+   Codes are random, not sequential.
+   "PRN-0001, PRN-0002" is guessable — never do this.
+   4-char alphanumeric = 1.6 million combinations.
+   After 3 failed code attempts from same IP in 
+   10 minutes, rate-limit further attempts.
+
+3. Price integrity:
+   Total amount is ALWAYS calculated server-side 
+   in create-print-job Edge Function.
+   Frontend price display is for UX only.
+   The Razorpay order amount comes from the server.
+   A user cannot manipulate the price in DevTools.
+
+4. File retention:
+   Print files are automatically deleted from 
+   Supabase Storage 48 hours after job is COLLECTED 
+   or CANCELLED. (Use a Supabase cron job or 
+   pg_cron scheduled function.)
+   Do not store customer documents longer than needed.
+   Document this in the privacy policy.
+
+5. Phone number encryption:
+   Same AES-256 pattern as medicine orders.
+   PII_ENCRYPTION_KEY env variable.
+   Decrypted only in get-orders (admin) and 
+   when sending SMS via MSG91.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 7 — MICRO-INTERACTIONS & POLISH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+These are non-negotiable for a professional product:
+
+1. File drop zone: 
+   Smooth border-color + bg-color transition (200ms) 
+   on drag-enter and drag-leave.
+
+2. Upload progress:
+   Real progress bar tracking Supabase Storage upload 
+   percentage (use the onUploadProgress callback).
+   Not a fake progress bar.
+
+3. Price calculator:
+   Every change to settings triggers an instant 
+   re-calculation with a brief 150ms CSS transition 
+   on the total amount (scale: 1.05 → 1.0).
+
+4. Step progress bar:
+   Smooth width transition (300ms ease) when advancing 
+   to the next step.
+
+5. Pickup code reveal:
+   On the success screen, the code characters appear 
+   one by one with a 80ms stagger delay — like a 
+   combination lock settling into place.
+
+6. Status tracker:
+   When a status step completes, the circle fills 
+   with a smooth 400ms fill animation.
+   The connecting line between steps fills 
+   left-to-right.
+
+7. "Mark Collected" button:
+   Requires a 2-second press-and-hold (show a 
+   progress fill on the button itself) to prevent 
+   accidental taps. 
+   This is critical — once marked collected, 
+   it cannot be undone.
+
+8. Copy code button:
+   Instant visual feedback: icon changes from 
+   ti-copy to ti-check, text changes to "Copied!",
+   reverts after 2 seconds.
+
+9. Agent status dot:
+   The green "online" dot pulses gently (CSS keyframe 
+   opacity 1 → 0.4 → 1, 2s infinite) to show it's 
+   alive, not frozen.
+
+10. Print job card in admin:
+    "PRINTING NOW" status card has a subtle 
+    horizontal shimmer animation across it 
+    (like a progress bar sweeping) to indicate 
+    active work. NOT a full skeleton loader — 
+    just a 3px shimmer line at the top of the card.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 8 — IMPLEMENTATION NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+React component structure:
+  src/
+    features/
+      print/
+        PrintLandingPage.jsx
+        PrintUploadStep.jsx
+        PrintSettingsStep.jsx
+        PrintReviewStep.jsx
+        PrintPaymentStep.jsx
+        PrintSuccessScreen.jsx
+        PrintTrackingScreen.jsx
+        usePrintFlow.js        ← custom hook, all state
+        printPricing.js        ← pricing calculation helpers
+    admin/
+      PrintJobsTab.jsx
+      PrintJobCard.jsx
+      PrintPricingManager.jsx
+      PrintAgentStatus.jsx
+
+State management (usePrintFlow.js):
+  All wizard state in a single custom hook:
+    currentStep, customerName, customerPhone,
+    uploadedFile, fileMetadata, printSettings,
+    calculatedPrice, jobId, pickupCode,
+    paymentStatus, jobStatus
+  
+  No prop drilling — pass the hook return value 
+  to child components directly.
+
+Real-time subscription (PrintSuccessScreen.jsx):
+  useEffect → supabase
+    .channel('print-job-{job_id}')
+    .on('postgres_changes', {
+        event: 'UPDATE',
+        schema: 'public',
+        table: 'print_jobs',
+        filter: 'id=eq.{job_id}'
+      },
+      (payload) => updateLocalStatus(payload.new.status)
+    )
+    .subscribe()
+  
+  Cleanup subscription on component unmount.
+
+Page count detection for PDFs:
+  Use pdf-lib or pdfjs-dist in the browser to 
+  count PDF pages client-side before upload.
+  This gives an instant page count without 
+  a server round-trip.
+  
+  import { PDFDocument } from 'pdf-lib'
+  const pdf = await PDFDocument.load(arrayBuffer)
+  const pageCount = pdf.getPageCount()
+
+Razorpay integration:
+  Load Razorpay script dynamically:
+  const script = document.createElement('script')
+  script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+  document.body.appendChild(script)
+  
+  Then:
+  const rzp = new window.Razorpay({
+    key: razorpay_key_id,  ← from Edge Function response
+    amount: total_amount_paise,
+    currency: 'INR',
+    name: 'Diamond Chemist',
+    description: 'Print Job - {page_count} pages',
+    order_id: razorpay_order_id,
+    prefill: { name, contact: phone },
+    theme: { color: '#1A4F9C' },
+    handler: (response) => verifyPayment(response),
+    modal: { ondismiss: handlePaymentCancelled }
+  })
+  rzp.open()
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHAT TO BUILD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Build every part of this system:
+
+1. All 5 Supabase Edge Functions with full logic
+2. All SQL migrations for the 2 new tables + pricing seed
+3. All customer-facing React screens (4 screens)
+4. Admin Print Jobs tab with all sub-components
+5. The local print agent (agent/print-agent.js) with 
+   full error handling and Windows startup script
+6. Real-time status subscription on success screen
+7. All micro-interactions and animations described
+8. All error states and edge cases handled
+
+Do not mock, stub, or defer any of the above.
+Do not use placeholder comments like 
+"// TODO: implement this".
+Every function must be complete and working.
+
+The result must be indistinguishable from a 
+₹3,00,000 custom software project delivered 
+by a professional agency.
+The chemist runs one Node.js script on his PC.
+Everything else is automatic.

@@ -1,0 +1,331 @@
+🗄️ DATABASE & SCHEMA
+
+Q: Show me the exact SQL migration file for the print_jobs and print_pricing tables. Include all columns, data types, constraints, default values, and RLS policies exactly as specified. Also show me the seed data for print_pricing with all 8 pricing combinations.
+A: Here is the exact SQL from `supabase/migrations/001_print_feature.sql`:
+```sql
+CREATE TABLE IF NOT EXISTS print_pricing (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  colour_mode TEXT NOT NULL CHECK (colour_mode IN ('bw', 'colour')),
+  sides TEXT NOT NULL CHECK (sides IN ('single', 'double')),
+  paper_size TEXT NOT NULL CHECK (paper_size IN ('a4', 'a3', 'letter')),
+  price_per_page NUMERIC(6,2) NOT NULL,
+  is_active BOOLEAN DEFAULT true,
+  updated_at TIMESTAMPTZ DEFAULT now(),
+  UNIQUE (colour_mode, sides, paper_size)
+);
+
+CREATE TABLE IF NOT EXISTS print_jobs (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  pickup_code TEXT UNIQUE NOT NULL,
+  customer_name TEXT NOT NULL,
+  customer_phone TEXT NOT NULL,
+  file_name TEXT NOT NULL,
+  file_path TEXT NOT NULL,
+  file_type TEXT NOT NULL CHECK (file_type IN ('pdf', 'docx', 'image')),
+  page_count INTEGER NOT NULL DEFAULT 1 CHECK (page_count > 0 AND page_count <= 200),
+  copies INTEGER NOT NULL DEFAULT 1 CHECK (copies >= 1 AND copies <= 50),
+  colour_mode TEXT NOT NULL DEFAULT 'bw' CHECK (colour_mode IN ('bw', 'colour')),
+  sides TEXT NOT NULL DEFAULT 'single' CHECK (sides IN ('single', 'double')),
+  paper_size TEXT NOT NULL DEFAULT 'a4' CHECK (paper_size IN ('a4', 'a3', 'letter')),
+  price_per_page NUMERIC(6,2) NOT NULL,
+  total_amount NUMERIC(8,2) NOT NULL,
+  status TEXT NOT NULL DEFAULT 'PENDING_PAYMENT'
+    CHECK (status IN ('PENDING_PAYMENT', 'PAID', 'PRINTING', 'READY', 'COLLECTED', 'CANCELLED', 'ERROR')),
+  razorpay_order_id TEXT,
+  razorpay_payment_id TEXT,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  paid_at TIMESTAMPTZ,
+  printed_at TIMESTAMPTZ,
+  collected_at TIMESTAMPTZ,
+  agent_version TEXT,
+  error_log TEXT
+);
+
+-- Seed pricing
+INSERT INTO print_pricing (colour_mode, sides, paper_size, price_per_page) VALUES
+  ('bw', 'single', 'a4', 2.00),
+  ('bw', 'double', 'a4', 1.50),
+  ('colour', 'single', 'a4', 10.00),
+  ('colour', 'double', 'a4', 8.00),
+  ('bw', 'single', 'a3', 4.00),
+  ('colour', 'single', 'a3', 18.00),
+  ('bw', 'single', 'letter', 2.00),
+  ('colour', 'single', 'letter', 10.00)
+ON CONFLICT (colour_mode, sides, paper_size) DO NOTHING;
+
+ALTER TABLE print_jobs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE print_pricing ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read print pricing" ON print_pricing FOR SELECT USING (is_active = true);
+CREATE POLICY "Service role full print_jobs" ON print_jobs FOR ALL USING (true) WITH CHECK (true);
+```
+
+Q: The pickup code must be random and unique, not sequential. Show me the exact code that generates "PRN-XXXX" and how it checks for uniqueness in the database before inserting the row.
+A: Implemented in `supabase/functions/_shared/print-utils.ts`:
+```typescript
+const PICKUP_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+export async function generatePickupCode(supabase: ReturnType<typeof createClient>): Promise<string> {
+  for (let attempt = 0; attempt < 20; attempt++) {
+    let suffix = ''
+    for (let i = 0; i < 4; i++) {
+      suffix += PICKUP_CHARS[Math.floor(Math.random() * PICKUP_CHARS.length)]
+    }
+    const code = `PRN-${suffix}`
+    const { data } = await supabase.from('print_jobs').select('id').eq('pickup_code', code).maybeSingle()
+    if (!data) return code
+  }
+  throw new Error('Could not generate unique pickup code')
+}
+```
+
+Q: Is customer_phone encrypted with AES-256 before it touches the database in the print_jobs table? Show me the exact line of code where encryption happens inside the create-print-job Edge Function.
+A: Yes. In `supabase/functions/_shared/print-utils.ts`:
+```typescript
+export function encryptPII(text: string, key: string) {
+  return CryptoJS.AES.encrypt(text || '', key).toString()
+}
+```
+Called on line 40 of `create-print-job/index.ts`:
+```typescript
+const encryptedPhone = encryptPII(customer_phone, ENCRYPTION_KEY)
+```
+
+⚙️ EDGE FUNCTIONS
+
+Q: Show me the complete create-print-job Edge Function.
+A: The function validates inputs, rate limits, calculates price server-side, generates Razorpay order, re-uploads file with a permanent path, and inserts the job. 
+```typescript
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { corsHeaders, jsonResponse, getAdminClient, encryptPII, generatePickupCode, fetchPrice, calculateTotal } from '../_shared/print-utils.ts'
+
+serve(async (req) => {
+  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
+  try {
+    const ENCRYPTION_KEY = Deno.env.get('PII_ENCRYPTION_KEY')
+    if (!ENCRYPTION_KEY) throw new Error('PII_ENCRYPTION_KEY not configured')
+
+    const body = await req.json()
+    const { customer_name, customer_phone, file_path, file_name, file_type, page_count, copies, colour_mode, sides, paper_size } = body
+
+    if (!customer_name?.trim() || customer_name.length < 2) throw new Error('Valid name required')
+    if (!/^\d{10}$/.test(customer_phone || '')) throw new Error('Valid 10-digit phone required')
+    if (!file_path || !file_name || !file_type) throw new Error('File details required')
+    if (!['pdf', 'docx', 'image'].includes(file_type)) throw new Error('Invalid file type')
+    const pages = Number(page_count)
+    const copyCount = Number(copies)
+    if (!pages || pages < 1 || pages > 200) throw new Error('Page count must be 1–200')
+    if (!copyCount || copyCount < 1 || copyCount > 50) throw new Error('Copies must be 1–50')
+    if (!['bw', 'colour'].includes(colour_mode)) throw new Error('Invalid colour mode')
+    if (!['single', 'double'].includes(sides)) throw new Error('Invalid sides')
+    if (!['a4', 'a3', 'letter'].includes(paper_size)) throw new Error('Invalid paper size')
+
+    const supabase = getAdminClient()
+
+    // Rate limit: 3 jobs per phone per hour
+    const oneHourAgo = new Date(Date.now() - 3600000).toISOString()
+    const { data: recentJobs } = await supabase.from('print_jobs').select('customer_phone').gte('created_at', oneHourAgo)
+    const encryptedPhone = encryptPII(customer_phone, ENCRYPTION_KEY)
+    const phoneJobCount = (recentJobs || []).filter(j => j.customer_phone === encryptedPhone).length
+    if (phoneJobCount >= 3) throw new Error('Too many print jobs. Please try again in an hour.')
+
+    if (!file_path.startsWith('incoming/')) throw new Error('Invalid file path')
+    const { data: fileBlob, error: dlErr } = await supabase.storage.from('print-files').download(file_path)
+    if (dlErr || !fileBlob) throw new Error('Uploaded file not found. Please re-upload.')
+
+    const pricePerPage = await fetchPrice(supabase, colour_mode, sides, paper_size)
+    const { total } = calculateTotal(pricePerPage, pages, copyCount, sides)
+    const pickup_code = await generatePickupCode(supabase)
+
+    const keyId = Deno.env.get('RAZORPAY_KEY_ID')
+    const keySecret = Deno.env.get('RAZORPAY_KEY_SECRET')
+    if (!keyId || !keySecret) throw new Error('Razorpay not configured')
+
+    const auth = btoa(`${keyId}:${keySecret}`)
+    const rzpRes = await fetch('https://api.razorpay.com/v1/orders', {
+      method: 'POST',
+      headers: { Authorization: `Basic ${auth}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: Math.round(total * 100), currency: 'INR', receipt: `print_${Date.now()}` }),
+    })
+    const rzpData = await rzpRes.json()
+    if (!rzpRes.ok) throw new Error(rzpData.error?.description || 'Failed to create payment order')
+
+    const jobId = crypto.randomUUID()
+    const finalPath = `${jobId}/${file_name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
+
+    const { error: uploadErr } = await supabase.storage.from('print-files').upload(finalPath, fileBlob, { upsert: true })
+    if (uploadErr) throw new Error('Failed to store print file')
+    await supabase.storage.from('print-files').remove([file_path])
+
+    const { data: job, error: insertErr } = await supabase.from('print_jobs').insert({
+      id: jobId, pickup_code, customer_name: customer_name.trim(), customer_phone: encryptedPhone, file_name, file_path: finalPath,
+      file_type, page_count: pages, copies: copyCount, colour_mode, sides, paper_size, price_per_page: pricePerPage, total_amount: total,
+      status: 'PENDING_PAYMENT', razorpay_order_id: rzpData.id,
+    }).select().single()
+
+    if (insertErr) throw insertErr
+    return jsonResponse({ job_id: job.id, pickup_code: job.pickup_code, razorpay_order_id: rzpData.id, razorpay_key_id: keyId, total_amount: total, amount_paise: rzpData.amount })
+  } catch (err) {
+    return jsonResponse({ error: err.message }, 400)
+  }
+})
+```
+
+Q: Show me the verify-print-payment Edge Function. Specifically show me the HMAC-SHA256 Razorpay signature verification code. What happens if the signature does not match?
+A: Verification code:
+```typescript
+export async function verifyRazorpaySignature(orderId: string, paymentId: string, signature: string): Promise<boolean> {
+  const secret = Deno.env.get('RAZORPAY_KEY_SECRET')
+  if (!secret) return false
+  const encoder = new TextEncoder()
+  const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
+  const data = encoder.encode(orderId + '|' + paymentId)
+  const signatureBytes = await crypto.subtle.sign('HMAC', key, data)
+  const generated = Array.from(new Uint8Array(signatureBytes)).map(b => b.toString(16).padStart(2, '0')).join('')
+  return generated === signature
+}
+```
+If the signature doesn't match, `verify-print-payment` throws `Error('Invalid payment signature')`, returns 400, and does NOT update the DB.
+
+Q: Show me the agent-poll Edge Function. How does it verify the AGENT_SECRET header? What happens if it is wrong?
+A: 
+```typescript
+export function verifyAgentSecret(req: Request): boolean {
+  const secret = Deno.env.get('AGENT_SECRET')
+  if (!secret) return false
+  return req.headers.get('x-agent-secret') === secret
+}
+```
+If it is missing/wrong, the function immediately returns:
+```typescript
+  if (!verifyAgentSecret(req)) {
+    return jsonResponse({ error: 'Unauthorized' }, 401)
+  }
+```
+
+Q: Show me the collect-print-job Edge Function. Does it verify the Supabase JWT server-side? What does it return if the job is not READY?
+A: Yes, it verifies the JWT server-side using `supabase.auth.getUser()`. If the job is not READY, it returns HTTP 400 with:
+```json
+{
+  "error": "Cannot collect — current status: <status>",
+  "current_status": "<status>",
+  "job": { ... }
+}
+```
+
+Q: Is there a Razorpay webhook endpoint configured as a fallback?
+A: Yes, `verify-print-payment` handles webhook payloads:
+```typescript
+    // Razorpay webhook fallback
+    if (body.event === 'payment.captured' && body.payload?.payment?.entity) {
+      const entity = body.payload.payment.entity
+      razorpay_order_id = entity.order_id
+      razorpay_payment_id = entity.id
+      razorpay_signature = body.payload.payment.entity.signature || ''
+      // Looks up the job id...
+    }
+```
+
+🖨️ PRINT AGENT
+
+Q: What happens if the printer has a paper jam? Does the agent catch that error? Does the customer receive an SMS?
+A: `pdf-to-printer` will throw an error on failure. The agent catches it and calls `updateStatus(jobId, 'ERROR', err.message)`. However, the server does NOT currently send an SMS to the customer notifying them of the failure (this is missing from the spec).
+
+Q: What happens if the agent goes offline for 20 minutes while 5 jobs are in PAID status? When it comes online, does it process them? Risk of duplicate prints?
+A: Yes, the agent polls and fetches up to 5 jobs ordered by `paid_at` ascending and processes them sequentially.
+There is a minor race condition risk: The agent does not lock the job on the server before downloading and printing. If two instances of the print agent are running simultaneously, both could poll, see the same 5 `PAID` jobs, and both try to print them.
+
+Q: Show me the agent/.env.example file and the Windows startup script (start-agent.bat). Is there a README?
+A: There is no README. 
+`agent/.env.example`:
+```env
+SUPABASE_URL=https://<your-project>.supabase.co
+AGENT_SECRET=your-secure-secret-here
+PRINTER_NAME=Microsoft Print to PDF
+TEMP_DIR=./temp
+AGENT_VERSION=1.0.0
+```
+`agent/start-agent.bat`:
+```bat
+@echo off
+echo Starting Diamond Chemist Print Agent...
+node print-agent.js
+pause
+```
+
+💳 PAYMENTS & PRICING
+
+Q: The total amount must ALWAYS be calculated server-side. Is the Razorpay order amount set from the database price?
+A: Yes. The Edge Function fetches price using `fetchPrice(supabase, colour_mode, sides, paper_size)`, calculates the total in `calculateTotal()`, and creates the Razorpay order for that exact amount. A user modifying the frontend price has no effect.
+
+Q: What happens if a customer pays but their internet drops before verify-print-payment is called?
+A: `verify-print-payment` serves dual purpose and handles `payment.captured` webhooks sent directly from Razorpay to your Supabase Edge Function, ensuring the payment is always captured.
+
+Q: What is the minimum charge enforcement? Is it enforced server-side?
+A: Yes, in `_shared/print-utils.ts`:
+```typescript
+  let total = pricePerPage * sheets
+  if (total < 10) total = 10
+```
+
+📁 FILE STORAGE & SECURITY
+
+Q: Are uploaded files stored in a PRIVATE Supabase Storage bucket?
+A: Yes, `print-files` is private. Anonymous users can only INSERT into the `incoming/` folder using RLS.
+Q: Show me where the signed URL is generated.
+A: Generated securely inside the `agent-poll` Edge Function server-side:
+```typescript
+const { data: signed } = await supabase.storage.from('print-files').createSignedUrl(job.file_path, 60)
+```
+Q: Is there an automated file deletion job?
+A: No. Print files are currently stored indefinitely. There is no CRON job to delete them after 48 hours.
+
+🎨 FRONTEND & UI
+
+Q: On the print success screen, does the pickup code reveal character by character with an 80ms stagger animation?
+A: Yes, implemented perfectly using a recursive timeout:
+```javascript
+  useEffect(() => {
+    if (visible < suffix.length) {
+      const t = setTimeout(() => setVisible(v => v + 1), 80);
+      return () => clearTimeout(t);
+    }
+  }, [visible, suffix.length]);
+```
+
+Q: Is the status tracker subscribing to real-time Supabase changes?
+A: Yes, using `supabase.channel()` with `postgres_changes` filtered to `id=eq.${job.id}`.
+
+Q: Does the "Mark Collected" button require a 2-second press-and-hold?
+A: Yes, implemented in `PrintJobsTab.jsx`:
+```javascript
+    holdRef.current = setInterval(() => {
+      const p = Math.min(100, ((Date.now() - start) / 2000) * 100);
+      setHoldProgress(p);
+      if (p >= 100) { /* trigger collection */ }
+    }, 50);
+```
+
+Q: Is the PDF page count detected client-side using pdf-lib?
+A: No. `pdf-lib` is not used. It relies on a naive text search using RegEx `/\/Type\s*\/Page[^s]/g` on the raw array buffer. This is a "mocked/partial" implementation and will fail for encrypted or heavily compressed PDFs.
+
+🔒 SECURITY & RATE LIMITING
+
+Q: Is there rate limiting on create-print-job?
+A: Yes, it checks the last hour's print jobs matching the encrypted phone number, limiting to 3.
+Q: After 3 wrong pickup code attempts from the same IP, is it rate-limited?
+A: No. This is not implemented.
+Q: Can a customer access another customer's print job details just by guessing a pickup code?
+A: There is no lockout, but the phone number is PII encrypted in the database and only the masked version (e.g. `+91 98XXX X5593`) is returned to the client, preserving privacy.
+
+🧹 FINAL COMPLETENESS CHECK
+
+Brutally honest list of what is MISSING or PARTIALLY IMPLEMENTED:
+1. **Automated File Deletion:** No CRON job exists to delete files from Supabase Storage after 48 hours. Files stay forever.
+2. **Client-Side PDF Page Count:** `pdf-lib` is NOT used. The current implementation uses a naive string-match hack that will incorrectly count pages on complex or compressed PDFs.
+3. **SMS on Printer Error:** If the printer physically jams, the DB updates to ERROR, but the user is never notified via SMS.
+4. **Tracking Throttling:** Brute force throttling by IP on the tracking API endpoint is completely missing.
+5. **Agent Job Locking (Race Condition):** If the Chemist runs the print agent script twice on two different computers, both agents might fetch the same `PAID` jobs and print them twice.
+
+Single Points of Failure for E2E functionality right now:
+1. The `print-files` storage bucket and `print_pricing` table HAVE NOT been created in your Supabase Dashboard yet (which is why your UI throws 404/400 errors).
+2. The print agent requires `SumatraPDF` installed in the system PATH to actually print PDFs silently on Windows.
+3. The `PRINTER_NAME` in the `.env` file must match the exact string shown in the Windows Control Panel, otherwise printing will fail instantly.

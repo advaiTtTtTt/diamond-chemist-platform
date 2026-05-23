@@ -1,0 +1,109 @@
+Walk me through exactly where order data is stored in this app. 
+
+What happens to all placed orders if the browser tab is closed 
+
+or refreshed? Is any order data persisted to a database or server? 
+
+If a customer places an order and closes the app, can the shop 
+
+owner still see it?
+
+If two customers place orders at the same time, how does the app 
+
+handle that? Is there any order queue, conflict resolution, or 
+
+race condition protection?
+
+The admin panel uses a hardcoded password. Where is that password 
+
+stored? Is it visible in the browser's source code or JavaScript 
+
+bundle? Can any user open DevTools and find it?
+
+Is there any authentication token, session management, or JWT 
+
+being used? What stops a user from directly navigating to the 
+
+admin panel URL and bypassing the password entirely?
+
+The app calls the Anthropic Claude API directly from the browser. 
+
+Where is the API key stored? Is it exposed in network requests 
+
+visible in Chrome DevTools? What is the risk of someone stealing 
+
+that API key?
+
+What happens if a customer submits the checkout form twice by 
+
+double-clicking the Place Order button? Will duplicate orders 
+
+be created? Is there any debounce or submission lock?
+
+Is there any stock management? If a product shows 5 units in 
+
+stock and 10 customers add it to their cart simultaneously, 
+
+what happens? Can the shop receive orders for out-of-stock items?
+
+If the shop owner refreshes the admin dashboard page, do the 
+
+orders disappear? How does the shop owner receive new order 
+
+notifications — is there any alert, sound, or push notification?
+
+This app is meant for delivery within 50 metres. How does it 
+
+actually verify that the customer is within 50 metres? Is there 
+
+any geolocation check, or can someone from another city place 
+
+an order?
+
+How does the shop owner know when a new order arrives in real 
+
+time? Is there WebSocket, polling, or any live update mechanism? 
+
+Or does the owner have to manually refresh the page?
+
+What happens when the internet connection drops mid-checkout? 
+
+Is the order saved locally and retried, or is it lost permanently?
+
+List all the ways this app can silently fail — situations where 
+
+something goes wrong but the user sees no error message and has 
+
+no idea what happened.
+
+Is there any error boundary in the React app? If a component 
+
+crashes due to an unexpected API response or null data, what 
+
+does the customer see?
+
+How is the Claude AI search handled if the API is down or returns 
+
+an error? Does the app gracefully fall back to local search, or 
+
+does it break silently?
+
+What would need to change to deploy this app to production for a 
+
+real paying customer? List every feature, system, and 
+
+infrastructure piece that is currently missing or mocked.
+
+Is this app GDPR or Indian IT Act compliant? Does it have a 
+
+privacy policy, terms of service, or data retention policy? 
+
+Is customer phone number and address data stored securely?
+
+What is the bus factor of this app? If the developer who built 
+
+it is unavailable, how easy is it for another developer to 
+
+maintain, debug, or extend it? Is there any documentation, 
+
+comments, or architecture notes?

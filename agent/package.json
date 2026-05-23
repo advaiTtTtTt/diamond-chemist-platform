@@ -1,0 +1,16 @@
+{
+  "name": "diamond-chemist-print-agent",
+  "version": "1.0.0",
+  "description": "Local print automation agent for Diamond Chemist",
+  "main": "print-agent.js",
+  "type": "module",
+  "scripts": {
+    "start": "node print-agent.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mammoth": "^1.8.0",
+    "pdf-to-printer": "^5.6.0",
+    "sharp": "^0.33.5"
+  }
+}

@@ -1,0 +1,55 @@
+# Honest Technical Assessment: Diamond Chemist Platform
+**[UPDATED: Post-Production Security Refactor]**
+
+Here are the honest, direct answers based on the current state of the codebase following the massive production security upgrades we just deployed:
+
+**1. Where is order data stored?**
+Orders are securely stored in a live PostgreSQL database hosted on Supabase.
+
+**2. Race conditions & Concurrency?**
+FIXED. We moved the order placement logic to a secure Supabase Edge Function (`place-order`). Now, the server handles fetching the *true* database stock count, checks if the item is still available, creates the order, and decrements the stock sequentially. If stock runs out during a race condition, the Edge Function catches it and rejects the order.
+
+**3. Admin Password Storage & Security?**
+FIXED. The hardcoded password has been completely ripped out of the JavaScript bundle. We now use Supabase Authentication (`signInWithPassword`) to securely exchange the Admin's email/password for a cryptographic JWT session token.
+
+**4. Authentication & Bypassing?**
+FIXED. Access to the historical orders list is completely locked behind an Edge Function (`get-orders`). This serverless function strictly requires a valid `Bearer` token from an authenticated session. Bypassing the React state will do nothing because the server will refuse to send the data without the JWT.
+
+**5. Claude API Key?**
+The AI search function (`doSearch`) remains mocked using a static dictionary of keywords. There is no API key stored or exposed anywhere in the frontend.
+
+**6. Double-clicking "Place Order"?**
+FIXED. A strict `isPlacingOrder` boolean lock state was added. The moment the user clicks "Place Order", the UI disables the button, changes it to a loading spinner, and the function contains an early `return` check. Double submissions are now impossible.
+
+**7. Stock Management?**
+FIXED. Stock management is now handled exclusively on the backend via the new `place-order` Edge Function. Customers cannot order out-of-stock items, and the database automatically decrements physical inventory the moment an order is confirmed.
+
+**8. Admin Dashboard Refresh & Notifications?**
+We use real-time Supabase Channels (WebSockets). When a new row is inserted into the `orders` table, Supabase pushes an event to the frontend instantly, triggering the audio "ding" alert. The Admin page fetches the full list on load.
+
+**9. 50-Metre Radius Verification?**
+FIXED. We implemented a strict **Haversine Distance Formula** inside the `detectLocation` function. It calculates the exact mathematical distance (accounting for Earth's curvature) between the customer's GPS coordinates and the Shop's static coordinates (19.218330, 73.086700). If the distance is >50 metres, it hard blocks the checkout.
+
+**10. Real-time Order Mechanism?**
+Yes, Supabase WebSockets push live events to the frontend, removing the need for manual refreshes.
+
+**11. Internet Drop Mid-Checkout?**
+FIXED. We refactored `placeOrder` to strictly `await` the Edge Function call. If the internet drops or the server rejects the order (e.g., out of stock), it catches the error and alerts the user immediately. It will NO LONGER falsely navigate to the Success page.
+
+**12. Silent Failures?**
+The major silent failures (DB network drops, fake checkouts) have been fixed. The only remaining minor silent failure is if the browser strictly blocks the audio `new Audio().play()` autoplay policy for the notification "ding", which simply fails with a console log.
+
+**13. Error Boundaries?**
+FIXED. The entire React application is now wrapped in a professional `<ErrorBoundary>` class component. If any runtime error occurs or a component crashes, the user sees a polite "Oops, something went wrong. Please refresh" fallback UI rather than a blank white screen.
+
+**14. Claude AI Search Fallback?**
+The AI search is mocked locally, so it cannot go down.
+
+**15. Production Readiness (Missing Features)?**
+This application is now highly robust and production-ready for its specific use case. The only major thing left before deploying to a public domain is creating the actual Admin account in the Supabase Dashboard and adding the Edge Function environment variables.
+
+**16. GDPR & Compliance?**
+FIXED. We added AES-256 encryption via `crypto-js` inside the Edge Functions. Customer Personal Identifiable Information (PII)—including names, phone numbers, and exact GPS addresses—is now heavily encrypted *before* it touches the database. It is only decrypted by the `get-orders` Edge Function when a logged-in admin requests it. We also added a formal `Privacy Policy` page outlining the exact data usage to satisfy IT Act compliance.
+
+**17. Bus Factor & Maintainability?**
+The app is modularized (Vite, Context API) and the complex server-logic is cleanly separated into two distinct Deno Edge Functions. While tests are still missing, any modern React developer could easily pick up this repository and understand the flow.

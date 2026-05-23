@@ -1,0 +1,158 @@
+🗄️ DATABASE & SCHEMA
+Show me the exact SQL migration file for the print_jobs 
+and print_pricing tables. Include all columns, data types, 
+constraints, default values, and RLS policies exactly as 
+specified. Also show me the seed data for print_pricing 
+with all 8 pricing combinations.
+The pickup code must be random and unique, not sequential. 
+Show me the exact code that generates "PRN-XXXX" and 
+how it checks for uniqueness in the database before 
+inserting the row.
+Is customer_phone encrypted with AES-256 before it 
+touches the database in the print_jobs table? 
+Show me the exact line of code where encryption happens 
+inside the create-print-job Edge Function.
+
+⚙️ EDGE FUNCTIONS
+Show me the complete create-print-job Edge Function. 
+I want to see: field validation, server-side price 
+calculation from the print_pricing table, Razorpay 
+order creation, pickup code generation, and the 
+DB insert. Every line, no summarising.
+Show me the verify-print-payment Edge Function. 
+Specifically show me the HMAC-SHA256 Razorpay 
+signature verification code. Is the formula exactly 
+razorpay_order_id + "|" + razorpay_payment_id 
+signed with RAZORPAY_KEY_SECRET? What happens 
+if the signature does not match — does it still 
+update the database?
+Show me the agent-poll Edge Function. How does it 
+verify the AGENT_SECRET header? What happens if the 
+header is missing or wrong? Does it return a 401 
+or does it still return job data?
+Show me the collect-print-job Edge Function. Does 
+it verify the Supabase JWT server-side using 
+auth.getUser() or does it just check if a token 
+string exists? What does it return if the job 
+status is not READY — for example if it is still 
+PRINTING or already COLLECTED?
+Is there a Razorpay webhook endpoint configured 
+as a fallback for when the user closes the browser 
+after payment succeeds but before verify-print-payment 
+is called? If yes, show me that Edge Function. 
+If no, what happens to that payment?
+
+🖨️ PRINT AGENT
+Show me the complete print-agent.js file. I want 
+to see: the polling loop, the DOCX to PDF conversion 
+using mammoth, the image to PDF conversion using sharp, 
+the actual printer call with all options (copies, sides, 
+colour mode, paper size), the status update calls, 
+and the error handling for printer failures.
+What happens if the printer has a paper jam while 
+printing job PRN-4K7X? Does the agent catch that 
+error? Does it call agent-update-status with 
+status=ERROR and the error message? Does the 
+customer receive an SMS about the failure?
+What happens if the agent goes offline for 20 minutes 
+while 5 jobs are in PAID status? When the agent 
+comes back online, does it process all 5 jobs in 
+order? Is there any risk of two agents (if run 
+accidentally on two machines) printing the same 
+job twice?
+Show me the agent/.env.example file and the 
+Windows startup script (start-agent.bat). 
+Is there a README explaining how the chemist 
+installs and runs this on his PC?
+
+💳 PAYMENTS & PRICING
+The total amount for a print job must ALWAYS be 
+calculated server-side. Show me the exact calculation 
+in the Edge Function. Is the Razorpay order amount 
+set from the database price or from a value the 
+frontend sends? Can a user change the price in 
+DevTools before the request is made?
+What happens if a customer clicks Pay, the Razorpay 
+modal opens, they pay successfully, but then their 
+internet drops before verify-print-payment is called? 
+Is that ₹20 lost forever or does the webhook 
+catch it?
+What is the minimum charge enforcement? If a customer 
+orders 1 page at ₹2, the total is ₹2 but the minimum 
+is ₹10. Is this enforced server-side in the Edge 
+Function or only shown as a UI warning on the frontend?
+
+📁 FILE STORAGE & SECURITY
+Are uploaded files stored in a PRIVATE Supabase 
+Storage bucket? Show me the bucket configuration. 
+Is there any public URL that exposes customer 
+documents? Can someone guess a file path and 
+download another customer's document?
+The agent accesses files via a 60-second signed URL. 
+Show me exactly where that signed URL is generated — 
+is it inside the agent-poll Edge Function server-side, 
+or does the frontend generate it? If the signed URL 
+is intercepted, what is the worst case?
+Is there an automated file deletion job that removes 
+print files from Storage 48 hours after the job is 
+COLLECTED or CANCELLED? Show me that cron job or 
+scheduled function. If it does not exist, customer 
+documents are stored forever — is that acceptable?
+
+🎨 FRONTEND & UI
+On the print success screen, does the pickup code 
+reveal character by character with an 80ms stagger 
+animation as specified? Show me that animation code. 
+If it is a simple fade-in instead, say so.
+Is the status tracker on the success screen 
+subscribing to real-time Supabase changes using 
+supabase.channel() with a postgres_changes listener 
+filtered to that specific job ID? Show me the 
+useEffect and the cleanup function. If it is 
+polling instead of real-time, say so.
+Does the "Mark Collected" button in the admin panel 
+require a 2-second press-and-hold to prevent 
+accidental taps? Show me that implementation. 
+This is critical because once marked collected 
+it cannot be undone.
+Is the PDF page count detected client-side using 
+pdf-lib before the file is uploaded, giving the 
+user an instant count without a server round-trip? 
+Or does the page count come from the server after 
+upload? Show me that code.
+Does the price calculator update in real-time as 
+the user changes settings — colour mode, sides, 
+copies — with no button click required? Is the 
+total always calculated from the fetched 
+print_pricing table data or is it hardcoded 
+in the frontend?
+
+🔒 SECURITY & RATE LIMITING
+Is there rate limiting on the create-print-job 
+Edge Function that blocks more than 3 print jobs 
+from the same phone number per hour? Show me 
+that logic.
+After 3 wrong pickup code attempts from the same 
+IP in 10 minutes, does the system rate-limit 
+further attempts? Where is this implemented — 
+Edge Function, Supabase RLS, or not implemented 
+at all?
+Can a customer access another customer's print job 
+details just by guessing a pickup code and calling 
+the tracking API? Is there any throttling or 
+lockout on the tracking endpoint?
+
+🧹 FINAL COMPLETENESS CHECK
+Give me a brutally honest checklist of everything 
+in the original spec that is NOT yet implemented, 
+partially implemented, or implemented differently 
+than specified. Do not tell me what IS done. 
+Only tell me what is missing, skipped, mocked, 
+or incomplete.
+If I handed this to the chemist today and he ran 
+the print agent on his Windows PC, uploaded a PDF 
+from his phone, paid ₹20 via UPI, and waited — 
+would the printer physically start printing 
+automatically? Walk me through every single thing 
+that would need to be true for that to work end 
+to end. Identify any single point of failure.
