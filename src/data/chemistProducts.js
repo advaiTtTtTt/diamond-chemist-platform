@@ -1,4 +1,3 @@
-// Auto-generated from chemist database
 export const CHEMIST_PRODUCTS = [
   {
     "id": 1000,
@@ -15,7 +14,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 11/28",
     "price": 135,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -42,7 +41,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 05/27",
     "price": 98,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -60,7 +59,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50GM, Expiry: 02/29",
     "price": 134,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -69,7 +68,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 10/28",
     "price": 283,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -78,7 +77,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/30",
     "price": 214,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -105,7 +104,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 08/28",
     "price": 154,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -123,7 +122,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 10/28",
     "price": 110,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -168,7 +167,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 NO'S, Expiry: 05/27",
     "price": 111,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -213,7 +212,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 125ML, Expiry: 08/27",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -222,7 +221,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 151,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -231,7 +230,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 05/27",
     "price": 47,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -240,7 +239,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 G, Expiry: 11/27",
     "price": 74,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -249,7 +248,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 06/27",
     "price": 93,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -276,7 +275,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 21'S, Expiry: 01/28",
     "price": 68,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -303,7 +302,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 6`S, Expiry: 07/27",
     "price": 186,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -348,7 +347,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 59,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -357,7 +356,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 150GM, Expiry: 11/27",
     "price": 145,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -366,7 +365,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 60 ML, Expiry: 10/27",
     "price": 159,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -384,7 +383,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50ML, Expiry: 01/28",
     "price": 267,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -402,7 +401,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20'S, Expiry: 02/28",
     "price": 254,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -411,7 +410,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 09/27",
     "price": 55,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -429,7 +428,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 09/27",
     "price": 116,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -456,7 +455,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 09/27",
     "price": 619,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -465,7 +464,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 09/27",
     "price": 619,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -519,7 +518,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 11/28",
     "price": 115,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -528,7 +527,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 01/28",
     "price": 302,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -537,7 +536,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/28",
     "price": 90,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -546,7 +545,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 118,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -555,7 +554,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 12/27",
     "price": 186,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -564,7 +563,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 11/27",
     "price": 391,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -627,7 +626,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 12/27",
     "price": 226,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -636,7 +635,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 8GM, Expiry: 02/28",
     "price": 25,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -645,7 +644,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 68,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -663,7 +662,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 21.8GM, Expiry: 01/28",
     "price": 24,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -681,7 +680,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 4.4GM, Expiry: 01/28",
     "price": 5,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -708,7 +707,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/28",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -726,7 +725,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 05/27",
     "price": 650,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -762,7 +761,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 70BOTTLE, Expiry: 01/28",
     "price": 392,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -771,7 +770,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15ML, Expiry: 06/27",
     "price": 111,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -834,7 +833,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 6`S, Expiry: 07/27",
     "price": 186,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -852,7 +851,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 NO'S, Expiry: 06/27",
     "price": 122,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -870,7 +869,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10`S, Expiry: 07/27",
     "price": 27,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -897,7 +896,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 10/27",
     "price": 294,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -924,7 +923,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 01/28",
     "price": 198,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -942,7 +941,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 11/27",
     "price": 220,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -951,7 +950,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 0BOX, Expiry: 02/29",
     "price": 19,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "First Aid",
     "popular": false
   },
   {
@@ -969,7 +968,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 161,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -987,7 +986,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15TAB, Expiry: 06/27",
     "price": 186,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1032,7 +1031,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 12'S, Expiry: 02/27",
     "price": 342,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1068,7 +1067,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 12/28",
     "price": 153,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1077,7 +1076,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/27",
     "price": 177,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1104,7 +1103,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 09/27",
     "price": 48,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "First Aid",
     "popular": false
   },
   {
@@ -1113,7 +1112,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 08/28",
     "price": 98,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1131,7 +1130,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 32,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -1140,7 +1139,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10ML, Expiry: 12/27",
     "price": 28,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -1176,7 +1175,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 GRAM, Expiry: 12/27",
     "price": 97,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1185,7 +1184,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 8GM, Expiry: 02/28",
     "price": 25,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1203,7 +1202,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 02/29",
     "price": 85,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1230,7 +1229,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 07/28",
     "price": 211,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1248,7 +1247,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 NO'S, Expiry: 11/28",
     "price": 162,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1257,7 +1256,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 10/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1266,7 +1265,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 119,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1275,7 +1274,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 14 NO'S, Expiry: 01/28",
     "price": 6,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1293,7 +1292,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 02/28",
     "price": 53,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1410,7 +1409,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 12/27",
     "price": 179,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1419,7 +1418,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10C, Expiry: 01/27",
     "price": 468,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -1464,7 +1463,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 59,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1518,7 +1517,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 12/27",
     "price": 187,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -1536,7 +1535,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15CAP, Expiry: 11/27",
     "price": 239,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -1554,7 +1553,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 02/27",
     "price": 79,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -1590,7 +1589,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 12/27",
     "price": 141,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1626,7 +1625,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 02/28",
     "price": 118,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1635,7 +1634,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10CAP, Expiry: 06/27",
     "price": 93,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -1653,7 +1652,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 60 ML, Expiry: 11/27",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1716,7 +1715,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 08/27",
     "price": 185,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1734,7 +1733,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 01/28",
     "price": 238,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1743,7 +1742,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 262,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1770,7 +1769,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 10/27",
     "price": 41,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -1824,7 +1823,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 05/27",
     "price": 1500,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1833,7 +1832,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50ML, Expiry: 11/28",
     "price": 270,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1842,7 +1841,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 5ML, Expiry: 04/27",
     "price": 606,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -1851,7 +1850,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 300ML, Expiry: 01/29",
     "price": 326,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -1860,7 +1859,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 10/26",
     "price": 207,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -1905,7 +1904,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 12/27",
     "price": 141,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -1923,7 +1922,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 ML, Expiry: 03/28",
     "price": 125,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -1986,7 +1985,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 07/28",
     "price": 60,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2004,7 +2003,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15TAB, Expiry: 05/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -2013,7 +2012,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 STRIP, Expiry: 07/28",
     "price": 140,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -2022,7 +2021,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 11/27",
     "price": 722,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -2031,7 +2030,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 12/27",
     "price": 188,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2067,7 +2066,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 08/27",
     "price": 53,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -2076,7 +2075,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/27",
     "price": 203,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2085,7 +2084,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/29",
     "price": 195,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2094,7 +2093,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 104,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2103,7 +2102,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 59,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2148,7 +2147,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15ML, Expiry: 06/27",
     "price": 111,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -2184,7 +2183,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 12/28",
     "price": 153,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2238,7 +2237,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 01/28",
     "price": 252,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -2265,7 +2264,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/27",
     "price": 187,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2274,7 +2273,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 76,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -2283,7 +2282,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 TAB, Expiry: 06/27",
     "price": 159,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -2337,7 +2336,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 12/28",
     "price": 26,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -2382,7 +2381,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 12/27",
     "price": 179,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -2409,7 +2408,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 09/27",
     "price": 113,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2418,7 +2417,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 25ML, Expiry: 01/29",
     "price": 70,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -2427,7 +2426,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 500ML, Expiry: 02/28",
     "price": 360,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -2490,7 +2489,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/28",
     "price": 137,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2499,7 +2498,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 106,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2517,7 +2516,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 134,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2535,7 +2534,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 08/27",
     "price": 159,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -2589,7 +2588,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 10/28",
     "price": 33,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2634,7 +2633,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 5GM, Expiry: 03/27",
     "price": 17,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -2670,7 +2669,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2688,7 +2687,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 125ML, Expiry: 09/28",
     "price": 429,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -2832,7 +2831,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/28",
     "price": 669,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2841,7 +2840,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 06/28",
     "price": 346,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2850,7 +2849,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 11/27",
     "price": 164,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -2859,7 +2858,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 77,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -2868,7 +2867,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 04/27",
     "price": 650,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -2877,7 +2876,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 08/28",
     "price": 193,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -2922,7 +2921,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 225ML, Expiry: 12/28",
     "price": 338,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -2931,7 +2930,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 600ML, Expiry: 02/29",
     "price": 288,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -2940,7 +2939,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50ML, Expiry: 12/28",
     "price": 141,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -2976,7 +2975,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 10/27",
     "price": 164,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -3030,7 +3029,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 150ML, Expiry: 12/27",
     "price": 488,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -3039,7 +3038,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 150ML, Expiry: 02/28",
     "price": 488,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -3075,7 +3074,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/28",
     "price": 221,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3093,7 +3092,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 08/27",
     "price": 48,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -3138,7 +3137,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 12/27",
     "price": 103,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -3156,7 +3155,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 09/27",
     "price": 107,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -3192,7 +3191,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 72PACKET, Expiry: 01/28",
     "price": 99,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -3210,7 +3209,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 150ML, Expiry: 03/28",
     "price": 143,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -3264,7 +3263,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 12/27",
     "price": 144,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3273,7 +3272,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 04/27",
     "price": 239,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3300,7 +3299,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 106,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3309,7 +3308,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 08/27",
     "price": 131,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -3318,7 +3317,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 06/27",
     "price": 131,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -3327,7 +3326,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 60ML, Expiry: 06/27",
     "price": 69,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -3345,7 +3344,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 08/27",
     "price": 160,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3372,7 +3371,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 08/28",
     "price": 270,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3399,7 +3398,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 104,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3426,7 +3425,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 MILLILITRE, Expiry: 09/27",
     "price": 70,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -3444,7 +3443,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 65,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3453,7 +3452,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 259,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3471,7 +3470,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 11/27",
     "price": 146,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -3525,7 +3524,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 12/27",
     "price": 111,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -3552,7 +3551,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 3`S, Expiry: 10/28",
     "price": 88,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -3561,7 +3560,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/27",
     "price": 62,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3570,7 +3569,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 06/28",
     "price": 270,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3579,7 +3578,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20 G, Expiry: 10/27",
     "price": 183,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -3597,7 +3596,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 09/27",
     "price": 105,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3606,7 +3605,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 117,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3624,7 +3623,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: NOS, Expiry: 12/27",
     "price": 30,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -3669,7 +3668,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 12/28",
     "price": 200,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -3741,7 +3740,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 01/29",
     "price": 164,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -3786,7 +3785,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 02/29",
     "price": 84,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3822,7 +3821,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/29",
     "price": 84,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3885,7 +3884,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/28",
     "price": 65,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -3912,7 +3911,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 03/27",
     "price": 221,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3921,7 +3920,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15ML, Expiry: 11/27",
     "price": 113,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -3930,7 +3929,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/29",
     "price": 84,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -3975,7 +3974,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/28",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4011,7 +4010,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 225ML, Expiry: 02/29",
     "price": 338,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -4020,7 +4019,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 05/27",
     "price": 196,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4029,7 +4028,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 163,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4038,7 +4037,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 05/27",
     "price": 91,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4074,7 +4073,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 01/28",
     "price": 300,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4128,7 +4127,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 04/27",
     "price": 312,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -4155,7 +4154,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 141,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4182,7 +4181,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 1GM, Expiry: 12/27",
     "price": 37,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -4218,7 +4217,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 80ML, Expiry: 11/27",
     "price": 139,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4227,7 +4226,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 01/28",
     "price": 238,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4254,7 +4253,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 11/27",
     "price": 155,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -4263,7 +4262,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 04/27",
     "price": 88,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4272,7 +4271,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 09/27",
     "price": 105,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4362,7 +4361,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 5ML, Expiry: 01/28",
     "price": 305,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4380,7 +4379,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 05/28",
     "price": 539,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4398,7 +4397,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50 ML, Expiry: 02/28",
     "price": 94,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4407,7 +4406,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 STRIP, Expiry: 11/27",
     "price": 25,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4416,7 +4415,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/28",
     "price": 406,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4425,7 +4424,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/28",
     "price": 221,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4515,7 +4514,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 121,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -4551,7 +4550,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 04/27",
     "price": 650,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -4560,7 +4559,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 08/27",
     "price": 178,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -4578,7 +4577,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 08/27",
     "price": 178,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -4596,7 +4595,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 TAB, Expiry: 09/27",
     "price": 337,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -4605,7 +4604,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 02/28",
     "price": 92,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4623,7 +4622,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10C, Expiry: 01/27",
     "price": 468,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4632,7 +4631,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 05/27",
     "price": 372,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -4668,7 +4667,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 NO'S, Expiry: 05/27",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4686,7 +4685,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 10/26",
     "price": 116,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -4695,7 +4694,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 12'S, Expiry: 02/27",
     "price": 342,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4731,7 +4730,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 5ML, Expiry: 12/27",
     "price": 305,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4794,7 +4793,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 08/27",
     "price": 103,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4821,7 +4820,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 08/27",
     "price": 160,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4839,7 +4838,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 03/28",
     "price": 450,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4857,7 +4856,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 25GM, Expiry: 12/27",
     "price": 165,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4866,7 +4865,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 12/27",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4884,7 +4883,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 02/28",
     "price": 395,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4902,7 +4901,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 09/27",
     "price": 282,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4911,7 +4910,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 55GM, Expiry: 06/27",
     "price": 248,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4920,7 +4919,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 05/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -4929,7 +4928,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 21GM, Expiry: 01/28",
     "price": 23,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -4938,7 +4937,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 110 ML, Expiry: 01/28",
     "price": 10,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -4947,7 +4946,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 120,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -4992,7 +4991,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/27",
     "price": 61,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5001,7 +5000,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 11/27",
     "price": 160,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5019,7 +5018,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 01/29",
     "price": 84,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -5037,7 +5036,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 ML, Expiry: 08/27",
     "price": 253,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -5064,7 +5063,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 06/28",
     "price": 97,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -5091,7 +5090,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 08/27",
     "price": 448,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -5100,7 +5099,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 08/27",
     "price": 66,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -5118,7 +5117,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 11/27",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -5154,7 +5153,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20 NO'S, Expiry: 12/28",
     "price": 42,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5163,7 +5162,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/28",
     "price": 275,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -5172,7 +5171,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/27",
     "price": 143,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5190,7 +5189,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 06/27",
     "price": 349,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -5199,7 +5198,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 10/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -5298,7 +5297,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 04/27",
     "price": 239,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5307,7 +5306,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 02/28",
     "price": 144,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5325,7 +5324,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 08/27",
     "price": 160,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5334,7 +5333,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 05/27",
     "price": 154,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5388,7 +5387,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/27",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -5433,7 +5432,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/27",
     "price": 91,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5460,7 +5459,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 09/27",
     "price": 41,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -5487,7 +5486,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/28",
     "price": 141,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5496,7 +5495,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/27",
     "price": 91,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5505,7 +5504,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/27",
     "price": 91,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5550,7 +5549,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 10/27",
     "price": 169,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -5577,7 +5576,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 TAB, Expiry: 04/27",
     "price": 159,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -5595,7 +5594,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5604,7 +5603,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20 NO'S, Expiry: 12/28",
     "price": 42,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5613,7 +5612,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 04/27",
     "price": 265,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5622,7 +5621,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/28",
     "price": 329,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5631,7 +5630,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 08/28",
     "price": 166,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5676,7 +5675,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/27",
     "price": 403,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -5712,7 +5711,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 80GM, Expiry: 11/27",
     "price": 210,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -5748,7 +5747,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 03/27",
     "price": 175,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -5784,7 +5783,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 G, Expiry: 11/28",
     "price": 316,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -5874,7 +5873,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 262,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5901,7 +5900,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 09/28",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5919,7 +5918,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 121,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -5928,7 +5927,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/27",
     "price": 61,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -5946,7 +5945,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6027,7 +6026,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 10/28",
     "price": 33,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6036,7 +6035,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6090,7 +6089,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 08/28",
     "price": 550,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -6108,7 +6107,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 08/28",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6135,7 +6134,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 11/27",
     "price": 125,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -6189,7 +6188,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 04/27",
     "price": 217,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6198,7 +6197,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 59,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6207,7 +6206,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 40GM, Expiry: 12/27",
     "price": 129,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -6216,7 +6215,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 40GM, Expiry: 01/28",
     "price": 99,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -6225,7 +6224,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 40GM, Expiry: 11/27",
     "price": 79,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -6261,7 +6260,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 225ML, Expiry: 01/29",
     "price": 338,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -6270,7 +6269,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 7'S, Expiry: 09/27",
     "price": 125,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6279,7 +6278,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 09/28",
     "price": 153,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6324,7 +6323,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 NO'S, Expiry: 09/28",
     "price": 153,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6342,7 +6341,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/27",
     "price": 247,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6360,7 +6359,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 NO'S, Expiry: 10/27",
     "price": 154,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6387,7 +6386,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 GRAM, Expiry: 01/28",
     "price": 86,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6405,7 +6404,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10`S, Expiry: 11/28",
     "price": 20,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6414,7 +6413,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 106,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6423,7 +6422,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 05/28",
     "price": 308,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6450,7 +6449,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 45 STRIP, Expiry: 08/28",
     "price": 13,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6468,7 +6467,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6477,7 +6476,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 11/27",
     "price": 102,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6486,7 +6485,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 60ML, Expiry: 06/27",
     "price": 249,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6495,7 +6494,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 21GM, Expiry: 01/28",
     "price": 23,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6504,7 +6503,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 106,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6522,7 +6521,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 05/28",
     "price": 137,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6531,7 +6530,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 07/28",
     "price": 197,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6567,7 +6566,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 02/28",
     "price": 395,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6594,7 +6593,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30'S, Expiry: 01/28",
     "price": 122,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6603,7 +6602,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 106,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6657,7 +6656,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 09/27",
     "price": 113,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6666,7 +6665,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 1PC, Expiry: 01/29",
     "price": 50,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6702,7 +6701,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 244,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6711,7 +6710,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50GM, Expiry: 02/29",
     "price": 35,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6720,7 +6719,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 02/29",
     "price": 60,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6729,7 +6728,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 01/29",
     "price": 15,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6738,7 +6737,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 03/29",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6756,7 +6755,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 25 MILLILITRE, Expiry: 06/27",
     "price": 12,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "First Aid",
     "popular": false
   },
   {
@@ -6765,7 +6764,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 1PIC, Expiry: 04/28",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6774,7 +6773,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 1PIC, Expiry: 04/28",
     "price": 140,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6810,7 +6809,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10CAP, Expiry: 06/27",
     "price": 93,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -6828,7 +6827,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 150GM, Expiry: 10/27",
     "price": 333,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6837,7 +6836,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 08/27",
     "price": 268,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6846,7 +6845,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 12/27",
     "price": 282,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6855,7 +6854,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/27",
     "price": 28,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -6864,7 +6863,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 08/27",
     "price": 155,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6873,7 +6872,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/28",
     "price": 50,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -6882,7 +6881,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 09/27",
     "price": 209,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6891,7 +6890,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 06/28",
     "price": 97,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6936,7 +6935,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 21.8GM, Expiry: 10/27",
     "price": 24,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -6954,7 +6953,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 03/28",
     "price": 54,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -6972,7 +6971,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 08/27",
     "price": 117,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -6990,7 +6989,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 08/27",
     "price": 100,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -7026,7 +7025,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 05/28",
     "price": 160,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -7080,7 +7079,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10TAB, Expiry: 10/27",
     "price": 76,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -7089,7 +7088,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 01/28",
     "price": 137,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -7107,7 +7106,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 08/27",
     "price": 302,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7116,7 +7115,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 170ML, Expiry: 07/27",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -7125,7 +7124,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 06/28",
     "price": 262,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -7170,7 +7169,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200 ML, Expiry: 07/27",
     "price": 186,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -7188,7 +7187,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 07/28",
     "price": 197,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7242,7 +7241,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 03/27",
     "price": 465,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7251,7 +7250,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 150ML, Expiry: 11/28",
     "price": 471,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7269,7 +7268,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 GM, Expiry: 08/27",
     "price": 207,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -7278,7 +7277,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 21.8GM, Expiry: 10/27",
     "price": 24,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7323,7 +7322,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 05/27",
     "price": 750,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7350,7 +7349,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 G, Expiry: 04/28",
     "price": 211,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7368,7 +7367,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 12/28",
     "price": 88,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -7404,7 +7403,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 107,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7467,7 +7466,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/28",
     "price": 50,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -7503,7 +7502,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 08/27",
     "price": 100,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -7521,7 +7520,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200 GRAM, Expiry: 07/27",
     "price": 90,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7530,7 +7529,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200 GRAM, Expiry: 12/27",
     "price": 85,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7539,7 +7538,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 07/27",
     "price": 50,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7575,7 +7574,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 120,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7593,7 +7592,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 TAB, Expiry: 04/27",
     "price": 73,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -7602,7 +7601,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/27",
     "price": 30,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -7665,7 +7664,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 08/27",
     "price": 345,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7683,7 +7682,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 225ML, Expiry: 01/29",
     "price": 338,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -7692,7 +7691,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/28",
     "price": 235,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7701,7 +7700,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 5ML, Expiry: 11/27",
     "price": 100,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7710,7 +7709,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 07/27",
     "price": 602,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -7773,7 +7772,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 9ML, Expiry: 09/28",
     "price": 277,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -7872,7 +7871,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 12/26",
     "price": 161,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -7908,7 +7907,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15ML, Expiry: 12/27",
     "price": 61,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -7917,7 +7916,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 05/28",
     "price": 60,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7926,7 +7925,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 02/28",
     "price": 203,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7953,7 +7952,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 12/26",
     "price": 84,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -7989,7 +7988,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 01/28",
     "price": 238,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -7998,7 +7997,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8007,7 +8006,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 07/27",
     "price": 48,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -8034,7 +8033,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 02/29",
     "price": 295,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -8043,7 +8042,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 05/27",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8061,7 +8060,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 186,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8079,7 +8078,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 ML, Expiry: 07/27",
     "price": 104,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -8133,7 +8132,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/27",
     "price": 143,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8151,7 +8150,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 121,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -8160,7 +8159,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/27",
     "price": 259,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8178,7 +8177,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 60ML, Expiry: 11/26",
     "price": 125,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -8214,7 +8213,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 04/27",
     "price": 265,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8223,7 +8222,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/27",
     "price": 359,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8232,7 +8231,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 186,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8268,7 +8267,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 60ML, Expiry: 11/27",
     "price": 88,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -8286,7 +8285,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 03/27",
     "price": 91,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8349,7 +8348,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20 NO'S, Expiry: 12/28",
     "price": 42,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8358,7 +8357,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10C, Expiry: 01/27",
     "price": 468,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -8376,7 +8375,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8439,7 +8438,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 01/28",
     "price": 298,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -8448,7 +8447,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 01/28",
     "price": 155,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -8475,7 +8474,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 06/28",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8484,7 +8483,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 25GM, Expiry: 06/30",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -8502,7 +8501,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50 ML, Expiry: 02/28",
     "price": 94,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -8511,7 +8510,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10ML, Expiry: 10/28",
     "price": 33,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -8547,7 +8546,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/27",
     "price": 85,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8556,7 +8555,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/28",
     "price": 221,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8583,7 +8582,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10C, Expiry: 01/27",
     "price": 468,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -8610,7 +8609,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 01/27",
     "price": 263,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -8646,7 +8645,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 04/27",
     "price": 140,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -8655,7 +8654,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10  TAB, Expiry: 08/27",
     "price": 219,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -8664,7 +8663,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10TAB, Expiry: 05/27",
     "price": 65,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -8673,7 +8672,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 02/27",
     "price": 79,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -8691,7 +8690,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 32,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -8727,7 +8726,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/27",
     "price": 247,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8745,7 +8744,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15CAP, Expiry: 11/27",
     "price": 239,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -8781,7 +8780,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 01/28",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8808,7 +8807,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20 GM, Expiry: 11/27",
     "price": 130,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -8817,7 +8816,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 09/27",
     "price": 107,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -8853,7 +8852,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15  GM, Expiry: 08/27",
     "price": 85,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -8925,7 +8924,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 07/28",
     "price": 669,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8943,7 +8942,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/27",
     "price": 259,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -8970,7 +8969,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 10/29",
     "price": 102,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9060,7 +9059,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 04/27",
     "price": 650,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -9078,7 +9077,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15ML, Expiry: 09/28",
     "price": 118,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -9105,7 +9104,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 25'S, Expiry: 07/27",
     "price": 465,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9150,7 +9149,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 10/29",
     "price": 102,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9168,7 +9167,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 12/26",
     "price": 169,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -9177,7 +9176,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/28",
     "price": 166,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9204,7 +9203,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 155,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9213,7 +9212,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20`S, Expiry: 01/28",
     "price": 58,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -9222,7 +9221,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 10/26",
     "price": 116,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -9231,7 +9230,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 8'S, Expiry: 03/27",
     "price": 264,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -9258,7 +9257,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/27",
     "price": 172,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -9276,7 +9275,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 10/29",
     "price": 102,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9285,7 +9284,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 06/27",
     "price": 122,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -9339,7 +9338,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 125ML, Expiry: 11/27",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -9384,7 +9383,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 01/28",
     "price": 58,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -9402,7 +9401,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 0 NO'S, Expiry: 10/30",
     "price": 17,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9411,7 +9410,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 25GM, Expiry: 11/27",
     "price": 164,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -9420,7 +9419,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 MILLILITRE, Expiry: 09/27",
     "price": 70,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -9429,7 +9428,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 12/27",
     "price": 150,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -9456,7 +9455,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 02/28",
     "price": 395,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -9528,7 +9527,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50 ML, Expiry: 02/28",
     "price": 94,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -9546,7 +9545,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 8ML, Expiry: 09/27",
     "price": 45,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -9591,7 +9590,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 NO'S, Expiry: 04/27",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9618,7 +9617,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20 NO'S, Expiry: 08/27",
     "price": 193,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9645,7 +9644,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 01/28",
     "price": 118,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9654,7 +9653,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20'S, Expiry: 10/28",
     "price": 353,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9663,7 +9662,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 10/27",
     "price": 266,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -9672,7 +9671,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/27",
     "price": 121,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9717,7 +9716,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 04/28",
     "price": 211,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9726,7 +9725,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 04/28",
     "price": 211,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9753,7 +9752,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50 ML, Expiry: 02/28",
     "price": 94,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -9762,7 +9761,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100GM, Expiry: 01/29",
     "price": 155,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -9843,7 +9842,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 02/28",
     "price": 525,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -9861,7 +9860,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 109,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9870,7 +9869,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 05/27",
     "price": 103,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -9906,7 +9905,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10TAB, Expiry: 06/27",
     "price": 141,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -9933,7 +9932,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 11/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -9951,7 +9950,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 12/27",
     "price": 165,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -9969,7 +9968,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 118,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -9978,7 +9977,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 09/27",
     "price": 211,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10005,7 +10004,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 04/27",
     "price": 734,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10014,7 +10013,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 12/27",
     "price": 40,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "First Aid",
     "popular": false
   },
   {
@@ -10068,7 +10067,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 4.4GM, Expiry: 07/27",
     "price": 5,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10122,7 +10121,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75 GM, Expiry: 10/27",
     "price": 67,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10131,7 +10130,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10CAP, Expiry: 12/27",
     "price": 79,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -10158,7 +10157,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 500ML, Expiry: 11/27",
     "price": 280,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -10167,7 +10166,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 250ML, Expiry: 04/27",
     "price": 160,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -10185,7 +10184,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/27",
     "price": 75,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10230,7 +10229,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 60ML, Expiry: 06/28",
     "price": 154,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -10266,7 +10265,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/28",
     "price": 157,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10338,7 +10337,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30'S, Expiry: 01/28",
     "price": 122,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10356,7 +10355,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 11/27",
     "price": 106,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10365,7 +10364,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 11/27",
     "price": 107,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10374,7 +10373,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10392,7 +10391,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10401,7 +10400,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 06/28",
     "price": 270,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10410,7 +10409,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 02/27",
     "price": 420,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10428,7 +10427,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20GM, Expiry: 12/27",
     "price": 128,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -10446,7 +10445,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 09/28",
     "price": 137,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10455,7 +10454,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 262,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10464,7 +10463,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 11/28",
     "price": 80,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10482,7 +10481,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75ML, Expiry: 12/27",
     "price": 99,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10491,7 +10490,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75ML, Expiry: 11/27",
     "price": 99,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10509,7 +10508,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 120BOX, Expiry: 08/27",
     "price": 680,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -10536,7 +10535,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15`S, Expiry: 09/29",
     "price": 33,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -10545,7 +10544,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 NO'S, Expiry: 01/28",
     "price": 112,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10581,7 +10580,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 04/27",
     "price": 574,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10599,7 +10598,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 1GM, Expiry: 01/28",
     "price": 65,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10608,7 +10607,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 70ML, Expiry: 10/28",
     "price": 260,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10617,7 +10616,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200ML, Expiry: 03/27",
     "price": 175,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -10635,7 +10634,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 02/27",
     "price": 380,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10653,7 +10652,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30ML, Expiry: 01/27",
     "price": 35,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -10662,7 +10661,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 03/27",
     "price": 583,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10671,7 +10670,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100ML, Expiry: 12/27",
     "price": 170,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -10698,7 +10697,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 10/27",
     "price": 108,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10707,7 +10706,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 GRAM, Expiry: 02/27",
     "price": 97,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10779,7 +10778,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 400GM, Expiry: 06/27",
     "price": 734,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10797,7 +10796,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50GM, Expiry: 05/27",
     "price": 246,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10824,7 +10823,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 06/27",
     "price": 206,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10833,7 +10832,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 120ML, Expiry: 09/27",
     "price": 436,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10851,7 +10850,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50GM, Expiry: 05/27",
     "price": 246,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10860,7 +10859,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 09/27",
     "price": 209,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10869,7 +10868,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 200GM, Expiry: 06/27",
     "price": 268,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10878,7 +10877,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 11/27",
     "price": 238,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10905,7 +10904,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 20'S, Expiry: 11/28",
     "price": 43,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -10923,7 +10922,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 250GM, Expiry: 02/27",
     "price": 345,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -10932,7 +10931,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 70ML, Expiry: 10/28",
     "price": 260,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10986,7 +10985,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 75GM, Expiry: 01/28",
     "price": 225,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -10995,7 +10994,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 12/27",
     "price": 238,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -11004,7 +11003,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15'S, Expiry: 10/27",
     "price": 11,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -11013,7 +11012,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 11/28",
     "price": 304,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -11022,7 +11021,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 1GM, Expiry: 05/28",
     "price": 72,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -11040,7 +11039,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 100 ML, Expiry: 12/27",
     "price": 198,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -11049,7 +11048,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30GM, Expiry: 08/28",
     "price": 171,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -11067,7 +11066,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 1X10G PCS, Expiry: 11/27",
     "price": 136,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Cold & Flu",
     "popular": false
   },
   {
@@ -11085,7 +11084,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10'S, Expiry: 08/28",
     "price": 265,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Devices",
     "popular": false
   },
   {
@@ -11103,7 +11102,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 30 NO'S, Expiry: 06/27",
     "price": 48,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -11121,7 +11120,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 50GM, Expiry: 10/28",
     "price": 134,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -11166,7 +11165,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10CAP, Expiry: 11/27",
     "price": 112,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Stomach Care",
     "popular": false
   },
   {
@@ -11193,7 +11192,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15 TAB, Expiry: 04/27",
     "price": 75,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Vitamins",
     "popular": false
   },
   {
@@ -11211,7 +11210,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 08/27",
     "price": 103,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
@@ -11229,7 +11228,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10 STRIP, Expiry: 04/28",
     "price": 140,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Pain Relief",
     "popular": false
   },
   {
@@ -11247,7 +11246,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 10GM, Expiry: 11/27",
     "price": 70,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Baby Care",
     "popular": false
   },
   {
@@ -11274,7 +11273,7 @@ export const CHEMIST_PRODUCTS = [
     "desc": "Pack: 15GM, Expiry: 12/27",
     "price": 111,
     "brand": "Diamond Chemist",
-    "category": "Medicines",
+    "category": "Skin Care",
     "popular": false
   },
   {
