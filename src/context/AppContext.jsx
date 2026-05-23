@@ -27,6 +27,8 @@ export const AppProvider = ({ children }) => {
     address: savedForm.address || '', 
     notes: '', gps: savedForm.gps || null, prescription: null 
   });
+  const [points, setPoints] = useState(savedForm.points || 0);
+  const [usePoints, setUsePoints] = useState(false);
   const [errors, setErrors] = useState({});
   const [locating, setLocating] = useState(false);
   const [orders, setOrders] = useState(savedOrders);
@@ -105,6 +107,8 @@ export const AppProvider = ({ children }) => {
   const cartCount = cart.reduce((s, c) => s + c.qty, 0);
   const cartTotal = cart.reduce((s, c) => s + c.qty * c.price, 0);
   const deliveryFee = 0;
+  const discount = usePoints ? Math.min(points, Math.floor(cartTotal * 0.5)) : 0;
+  const finalTotal = cartTotal + deliveryFee - discount;
 
   const triggerBounce = () => { setBadgeBounce(true); setTimeout(() => setBadgeBounce(false), 400); };
 
@@ -303,6 +307,28 @@ export const AppProvider = ({ children }) => {
     reader.readAsDataURL(file);
   };
 
+  const shareWebsite = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Diamond Chemist',
+          text: 'Order medicines from Diamond Chemist!',
+          url: window.location.origin,
+        });
+      } else {
+        await navigator.clipboard.writeText(window.location.origin);
+        alert('Link copied to clipboard!');
+      }
+      const newPoints = points + 50;
+      setPoints(newPoints);
+      const currentForm = JSON.parse(localStorage.getItem('diamond_customer') || '{}');
+      localStorage.setItem('diamond_customer', JSON.stringify({ ...currentForm, points: newPoints }));
+      alert('Thanks for sharing! You earned 50 points.');
+    } catch (err) {
+      console.log('Share error:', err);
+    }
+  };
+
   const placeOrder = async () => {
     if (isPlacingOrder) return;
     
@@ -332,7 +358,9 @@ export const AppProvider = ({ children }) => {
         id: 'RX' + Math.floor(100000 + Math.random() * 900000),
         customer: { ...form },
         items: [...cart],
-        total: cartTotal + deliveryFee,
+        total: finalTotal,
+        subtotal: cartTotal,
+        discount: discount,
         delivery_fee: deliveryFee,
         status: 'Received',
         time: new Date().toLocaleString('en-IN')
@@ -340,7 +368,7 @@ export const AppProvider = ({ children }) => {
       error = null;
     } else {
       const res = await supabase.functions.invoke('place-order', {
-        body: { customer: { ...form }, cart: [...cart], deliveryFee }
+        body: { customer: { ...form }, cart: [...cart], deliveryFee, discount }
       });
       order = res.data;
       error = res.error;
@@ -354,8 +382,12 @@ export const AppProvider = ({ children }) => {
       return;
     }
 
+    const newPoints = usePoints ? points - discount : points;
+    setPoints(newPoints);
+    setUsePoints(false);
+
     localStorage.setItem('diamond_customer', JSON.stringify({
-      name: form.name, phone: form.phone, building: form.building, address: form.address, gps: form.gps
+      name: form.name, phone: form.phone, building: form.building, address: form.address, gps: form.gps, points: newPoints
     }));
 
     const newOrders = [order, ...orders];
@@ -421,7 +453,7 @@ export const AppProvider = ({ children }) => {
     form, setForm, errors, setErrors, locating, detectLocation, handlePrescriptionUpload, isUploadingRx, placeOrder, isPlacingOrder,
     orders, lastOrder, updateOrderStatus,
     adminAuth, adminEmail, setAdminEmail, adminPw, setAdminPw, showAdminModal, setShowAdminModal, openAdmin, loginAdmin, logoutAdmin, authError, isLoggingIn,
-    printTrackCode, setPrintTrackCode,
+    printTrackCode, setPrintTrackCode, points, usePoints, setUsePoints, discount, finalTotal, shareWebsite,
   };
 
   return (

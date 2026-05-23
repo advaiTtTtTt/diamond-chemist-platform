@@ -3,7 +3,7 @@ import { useAppContext } from '../context/AppContext';
 import { CATEGORIES, QUICK_SEARCHES } from '../data/products';
 
 export const Navbar = () => {
-  const { navigate, cartCount, badgeBounce, openAdmin } = useAppContext();
+  const { navigate, cartCount, badgeBounce, openAdmin, shareWebsite, points } = useAppContext();
   return (
     <nav className="navbar">
       <div className="nav-brand" style={{ cursor: 'pointer' }} onClick={() => navigate('home')}>
@@ -16,8 +16,16 @@ export const Navbar = () => {
         <button className="nav-link" onClick={() => navigate('print')}>Print</button>
         <button className="nav-link" onClick={() => navigate('orders')}>My Orders</button>
         <button className="nav-link" onClick={() => navigate('about')}>About</button>
+        <button className="nav-link" onClick={shareWebsite} style={{ color: 'var(--primary-700)', fontWeight: 600 }}>
+          <i className="ti ti-share" style={{ marginRight: 4 }}></i>Share & Earn
+        </button>
       </div>
       <div className="nav-right">
+        {points > 0 && (
+          <div className="points-badge" style={{ background: '#FEF3C7', color: '#D97706', padding: '4px 10px', borderRadius: '20px', fontSize: '14px', fontWeight: 600, marginRight: '10px' }}>
+            🪙 {points} pts
+          </div>
+        )}
         <button className="cart-btn" onClick={() => navigate('cart')}>
           <i className="ti ti-shopping-cart"></i>
           {cartCount > 0 && <span className={'cart-badge' + (badgeBounce ? ' bounce' : '')}>{cartCount}</span>}

@@ -108,7 +108,7 @@ export const CartPage = () => {
 };
 
 export const CheckoutPage = () => {
-  const { navigate, form, setForm, errors, locating, detectLocation, handlePrescriptionUpload, isUploadingRx, cart, cartTotal, deliveryFee, placeOrder, isPlacingOrder } = useAppContext();
+  const { navigate, form, setForm, errors, locating, detectLocation, handlePrescriptionUpload, isUploadingRx, cart, cartTotal, deliveryFee, placeOrder, isPlacingOrder, points, usePoints, setUsePoints, discount, finalTotal } = useAppContext();
   return (
     <div className="page" style={{ maxWidth: 1000 }}>
       <div className="page-header">
@@ -188,8 +188,25 @@ export const CheckoutPage = () => {
             <div style={{ borderTop: '1px dashed var(--border-default)', margin: '10px 0' }} />
             <div className="summary-item"><span>Subtotal</span><span>₹{cartTotal}</span></div>
             <div className="summary-item"><span>Delivery</span><span style={{ color: 'var(--success)' }}>Free</span></div>
+            {points > 0 && (
+              <div style={{ marginTop: 12, padding: 12, background: 'var(--primary-50)', borderRadius: 8, border: '1px solid var(--primary-200)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 14 }}>Use Points (🪙 {points})</div>
+                    <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Get up to 50% off!</div>
+                  </div>
+                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                    <input type="checkbox" checked={usePoints} onChange={e => setUsePoints(e.target.checked)} style={{ marginRight: 6, transform: 'scale(1.2)' }} />
+                    <span style={{ fontSize: 14, fontWeight: 600 }}>Apply</span>
+                  </label>
+                </div>
+              </div>
+            )}
+            {discount > 0 && (
+              <div className="summary-item" style={{ color: 'var(--success)' }}><span>Discount applied</span><span>-₹{discount}</span></div>
+            )}
             <div className="summary-item" style={{ fontWeight: 700, fontSize: 16, marginTop: 6 }}>
-              <span>Total</span><span style={{ color: 'var(--primary-700)' }}>₹{cartTotal + deliveryFee}</span>
+              <span>Total</span><span style={{ color: 'var(--primary-700)' }}>₹{finalTotal}</span>
             </div>
             <div style={{ background: 'var(--primary-50)', border: '1px solid var(--primary-200)', borderRadius: 10, padding: '10px 14px', marginTop: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
               <i className="ti ti-qrcode" style={{ fontSize: 20, color: 'var(--primary-700)' }}></i>
