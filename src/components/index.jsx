@@ -4,7 +4,7 @@ import { useAppContext } from '../context/AppContext';
 import { CATEGORIES, QUICK_SEARCHES } from '../data/products';
 
 export const Navbar = () => {
-  const { navigate, cartCount, badgeBounce, shareWebsite, points, customerProfile, setShowCustomerAuth, logoutCustomer } = useAppContext();
+  const { navigate, cartCount, badgeBounce, shareWebsite, points, customerProfile, setShowCustomerAuth, logoutCustomer, openAdmin } = useAppContext();
   return (
     <nav className="navbar">
       <div className="nav-brand" style={{ cursor: 'pointer' }} onClick={() => navigate('home')}>
