@@ -29,6 +29,10 @@ export const CustomerAuthModal = () => {
           password: form.password,
         });
         if (authError) throw authError;
+        
+        if (!authData || !authData.user) {
+          throw new Error("Account creation failed. This email may already be registered. Please try logging in.");
+        }
 
         // 2. Check referral code if provided
         let referrerId = null;
