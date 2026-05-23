@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabase';
-import { PRODUCTS } from '../data/products';
 
 const AppContext = createContext();
 
@@ -16,7 +15,7 @@ export const AppProvider = ({ children }) => {
   const [aiQuery, setAiQuery] = useState('');
   const [selCat, setSelCat] = useState(null);
   const [badgeBounce, setBadgeBounce] = useState(false);
-  const [products, setProducts] = useState(PRODUCTS);
+  const [products, setProducts] = useState([]);
   const savedForm = JSON.parse(localStorage.getItem('diamond_customer') || '{}');
   const savedOrders = JSON.parse(localStorage.getItem('diamond_orders') || '[]');
   
@@ -71,14 +70,9 @@ export const AppProvider = ({ children }) => {
     const fetchProducts = async () => {
       const { data } = await supabase.from('products').select('*');
       if (data && data.length > 0) {
-        // Merge Supabase products with local mock products (to ensure Stationery items appear in demo)
-        const merged = [...data];
-        PRODUCTS.forEach(p => {
-          if (!merged.find(m => m.name === p.name)) merged.push(p);
-        });
-        setProducts(merged);
+        setProducts(data);
       } else {
-        setProducts(PRODUCTS);
+        setProducts([]);
       }
     };
     fetchProducts();
