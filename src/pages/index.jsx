@@ -355,83 +355,38 @@ export const AboutPage = () => (
 );
 
 import { PrintJobsTab } from '../admin/PrintJobsTab';
+import { AdminProductsTab } from '../admin/AdminProductsTab';
 
 export const AdminPage = () => {
   const { orders, navigate, updateOrderStatus, logoutAdmin, notifyCustomer, verifyDeliveryOtp } = useAppContext();
   const [adminTab, setAdminTab] = React.useState('orders');
-  const [isUploading, setIsUploading] = React.useState(false);
-  const [uploadStats, setUploadStats] = React.useState('');
-  // OTP input state: { [orderId]: { value, result } }
   const [otpState, setOtpState] = React.useState({});
-
-  const handleCsvUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    setIsUploading(true);
-    setUploadStats('Parsing CSV...');
-    try {
-      const Papa = (await import('papaparse')).default;
-      Papa.parse(file, {
-        header: true,
-        skipEmptyLines: true,
-        complete: async (results) => {
-          try {
-            const rows = results.data;
-            setUploadStats(`Processing ${rows.length} products...`);
-            const { supabase } = await import('../lib/supabase');
-            
-            const formattedProducts = rows.map(row => {
-              let name = row.Name || row.name || row.Item;
-              if (!name) return null;
-              let cat = row.Category || row.category;
-              if (!cat) {
-                const n = name.toLowerCase();
-                if (n.includes('paracetamol') || n.includes('pain') || n.includes('balm')) cat = 'Pain Relief';
-                else if (n.includes('vitamin') || n.includes('calcium') || n.includes('protein')) cat = 'Vitamins';
-                else if (n.includes('syrup') || n.includes('cough')) cat = 'Cold & Flu';
-                else cat = 'Medicines';
-              }
-              const isPopular = String(row.Popular || row.popular || '').toLowerCase() === 'true';
-              return {
-                name: name.trim(),
-                price: parseFloat(row.Price || row.price || row.MRP || 0),
-                discount_price: row.DiscountPrice || row.discount_price ? parseFloat(row.DiscountPrice || row.discount_price) : null,
-                category: cat,
-                stock: parseInt(row.Stock || row.stock || row.Qty || 100),
-                brand: row.Brand || row.brand || 'Diamond Chemist',
-                unit: row.Unit || row.unit || (row.Pack || row.pack) || '1 unit',
-                description: row.Description || row.description || row.Desc || row.desc || '',
-                icon: row.Icon || row.icon || 'ti-pill',
-                popular: isPopular
-              };
-            }).filter(Boolean);
-
-            setUploadStats(`Syncing to Database...`);
-            const { error } = await supabase.from('products').upsert(formattedProducts, { onConflict: 'name' });
-            
-            if (error) throw error;
-            setUploadStats('Upload Complete! 🎉');
-            setTimeout(() => setUploadStats(''), 3000);
-          } catch (err) {
-            alert('Upload failed: ' + err.message);
-            setUploadStats('');
-          } finally {
-            setIsUploading(false);
-          }
-        }
-      });
-    } catch {
-      alert('Error loading parser');
-      setIsUploading(false);
-    }
-  };
+  
+  // Order filtering state
+  const [orderFilter, setOrderFilter] = React.useState('active'); // 'all', 'active', 'completed'
+  const [orderSearch, setOrderSearch] = React.useState('');
   const stats = {
     total: orders.length,
-    pending: orders.filter(o => o.status !== 'Delivered').length,
+    pending: orders.filter(o => !['Delivered', 'Cancelled', 'Rx Rejected'].includes(o.status)).length,
     delivered: orders.filter(o => o.status === 'Delivered').length,
-    revenue: orders.reduce((s, o) => s + o.total, 0)
+    revenue: orders.filter(o => o.status === 'Delivered').reduce((s, o) => s + o.total, 0)
   };
   const statuses = ['Received', 'Accepted', 'Out for Delivery', 'Delivered', 'Cancelled', 'Rx Rejected'];
+
+  const filteredOrders = orders.filter(o => {
+    if (orderFilter === 'active' && ['Delivered', 'Cancelled', 'Rx Rejected'].includes(o.status)) return false;
+    if (orderFilter === 'completed' && !['Delivered', 'Cancelled', 'Rx Rejected'].includes(o.status)) return false;
+    
+    if (orderSearch) {
+      const q = orderSearch.toLowerCase();
+      if (!String(o.id).toLowerCase().includes(q) && 
+          !o.customer?.name?.toLowerCase().includes(q) && 
+          !o.customer?.phone?.includes(q)) {
+        return false;
+      }
+    }
+    return true;
+  });
   return (
     <div className="page" style={{ maxWidth: 900 }}>
       <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -447,46 +402,7 @@ export const AdminPage = () => {
         <button className={`admin-tab ${adminTab === 'products' ? 'active' : ''}`} onClick={() => setAdminTab('products')}>Products</button>
       </div>
       {adminTab === 'print' ? <PrintJobsTab /> : adminTab === 'products' ? (
-        <div style={{
-          background: '#F5F2EB',
-          border: '1.5px dashed #DDD8CE',
-          borderRadius: 12,
-          padding: '40px 20px',
-          textAlign: 'center',
-          marginTop: 16,
-          position: 'relative'
-        }}>
-          {isUploading ? (
-            <div>
-              <i className="ti ti-loader ti-spin" style={{fontSize: 32, color: 'var(--primary-700)', marginBottom: 12, display: 'inline-block'}} />
-              <div style={{fontWeight: 600, color: 'var(--primary-900)'}}>{uploadStats}</div>
-            </div>
-          ) : (
-            <>
-              <i className="ti ti-table-import" style={{fontSize: 36, color: 'var(--primary-500)', display: 'block', marginBottom: 12}} />
-              <div style={{fontWeight: 700, fontSize: 18, color: 'var(--primary-900)', marginBottom: 8}}>
-                Bulk Stock Upload
-              </div>
-              <div style={{fontSize: 14, color: 'var(--text-secondary)', marginBottom: 20}}>
-                Upload your distributor's CSV/Excel file.<br/>
-                Expected columns: Name, Price, Category, Stock.
-              </div>
-              {uploadStats && <div style={{ color: 'var(--success)', fontWeight: 600, marginBottom: 16 }}>{uploadStats}</div>}
-              <label style={{
-                background: 'var(--primary-700)',
-                color: 'white',
-                padding: '10px 24px',
-                borderRadius: 50,
-                fontWeight: 600,
-                cursor: 'pointer',
-                display: 'inline-block'
-              }}>
-                Select CSV File
-                <input type="file" accept=".csv" style={{ display: 'none' }} onChange={handleCsvUpload} />
-              </label>
-            </>
-          )}
-        </div>
+        <AdminProductsTab />
       ) : <>
       <div className="stats-row">
         <div className="stat-card"><i className="ti ti-package"></i><div className="num">{stats.total}</div><div className="label">Total Orders</div></div>
@@ -494,14 +410,33 @@ export const AdminPage = () => {
         <div className="stat-card"><i className="ti ti-circle-check"></i><div className="num">{stats.delivered}</div><div className="label">Delivered</div></div>
         <div className="stat-card"><i className="ti ti-currency-rupee"></i><div className="num">₹{stats.revenue}</div><div className="label">Revenue</div></div>
       </div>
-      {orders.length === 0 ? (
+
+      <div style={{ display: 'flex', gap: 12, marginBottom: 20, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', background: 'var(--bg-subtle)', borderRadius: 8, padding: 4 }}>
+          <button onClick={() => setOrderFilter('active')} style={{ padding: '6px 16px', borderRadius: 6, border: 'none', background: orderFilter === 'active' ? '#fff' : 'transparent', fontWeight: 600, boxShadow: orderFilter === 'active' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none', cursor: 'pointer', color: orderFilter === 'active' ? 'var(--primary-900)' : 'var(--text-secondary)' }}>Active</button>
+          <button onClick={() => setOrderFilter('completed')} style={{ padding: '6px 16px', borderRadius: 6, border: 'none', background: orderFilter === 'completed' ? '#fff' : 'transparent', fontWeight: 600, boxShadow: orderFilter === 'completed' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none', cursor: 'pointer', color: orderFilter === 'completed' ? 'var(--primary-900)' : 'var(--text-secondary)' }}>Completed</button>
+          <button onClick={() => setOrderFilter('all')} style={{ padding: '6px 16px', borderRadius: 6, border: 'none', background: orderFilter === 'all' ? '#fff' : 'transparent', fontWeight: 600, boxShadow: orderFilter === 'all' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none', cursor: 'pointer', color: orderFilter === 'all' ? 'var(--primary-900)' : 'var(--text-secondary)' }}>All</button>
+        </div>
+        <div style={{ flex: 1, minWidth: 200, position: 'relative' }}>
+          <i className="ti ti-search" style={{ position: 'absolute', left: 12, top: 10, color: 'var(--text-tertiary)' }}></i>
+          <input 
+            type="text" 
+            placeholder="Search by ID, Name or Phone..." 
+            value={orderSearch}
+            onChange={(e) => setOrderSearch(e.target.value)}
+            style={{ width: '100%', padding: '8px 12px 8px 36px', borderRadius: 8, border: '1px solid var(--border-default)', outline: 'none' }}
+          />
+        </div>
+      </div>
+
+      {filteredOrders.length === 0 ? (
         <div className="empty-state">
           <div className="empty-icon"><i className="ti ti-clipboard-off"></i></div>
-          <h3>No orders yet</h3>
-          <p>Orders will appear here once customers place them.</p>
+          <h3>No orders found</h3>
+          <p>Try changing your filters or search.</p>
         </div>
       ) : (
-        orders.map(o => (
+        filteredOrders.map(o => (
           <div key={o.id} className="order-card">
             <div className="order-header">
               <span className="order-id">#{o.id}</span>
