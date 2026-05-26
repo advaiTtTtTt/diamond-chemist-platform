@@ -56,7 +56,13 @@ export const AppProvider = ({ children }) => {
   const [customerUser, setCustomerUser] = useState(null);
   const [customerProfile, setCustomerProfile] = useState(null);
   const [showCustomerAuth, setShowCustomerAuth] = useState(false);
-  
+
+  // Referral: capture ?ref=CODE from URL
+  const [pendingRefCode, setPendingRefCode] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('ref')?.toUpperCase() || '';
+  });
+
   const searchRef = useRef(null);
 
   useEffect(() => {
@@ -130,6 +136,19 @@ export const AppProvider = ({ children }) => {
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  // Auto-open sign-up modal if user arrived via referral link (?ref=CODE)
+  useEffect(() => {
+    if (pendingRefCode && !customerProfile) {
+      // Clean the ?ref= from URL so it doesn't stick around
+      const url = new URL(window.location.href);
+      url.searchParams.delete('ref');
+      window.history.replaceState({}, '', url.pathname + url.hash);
+      // Open the auth modal after a brief delay so the page renders first
+      setTimeout(() => setShowCustomerAuth(true), 600);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCustomerProfile = useCallback(async () => {
@@ -594,7 +613,8 @@ export const AppProvider = ({ children }) => {
     adminAuth, adminEmail, setAdminEmail, adminPw, setAdminPw, showAdminModal, setShowAdminModal, openAdmin, loginAdmin, logoutAdmin, authError, isLoggingIn,
     printTrackCode, setPrintTrackCode, points, usePoints, setUsePoints, discount, finalTotal, shareWebsite,
     customerUser, setCustomerUser, customerProfile, setCustomerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer,
-    notifyCustomer, verifyDeliveryOtp
+    notifyCustomer, verifyDeliveryOtp,
+    pendingRefCode, setPendingRefCode
   };
 
   return (
