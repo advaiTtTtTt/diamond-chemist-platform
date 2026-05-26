@@ -482,15 +482,45 @@ export const AppProvider = ({ children }) => {
     navigate('success');
   };
 
-  const updateOrderStatus = (orderId, status) => {
-    setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status } : o));
-    supabase.from('orders').update({ status }).eq('id', orderId).then(({ error }) => {
-      if (error) console.error("Error updating order:", error);
-    });
+  const updateOrderStatus = async (orderId, status) => {
+    let extra = {};
+
+    // Generate a 4-digit OTP when dispatching for delivery
+    if (status === 'Out for Delivery') {
+      const otp = String(Math.floor(1000 + Math.random() * 9000));
+      extra = { delivery_otp: otp, otp_verified: false };
+      // Optimistically update local state with OTP
+      setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status, delivery_otp: otp, otp_verified: false } : o));
+    } else {
+      setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status } : o));
+    }
+
+    const { error } = await supabase.from('orders').update({ status, ...extra }).eq('id', orderId);
+    if (error) console.error('Error updating order:', error);
+
+    // Return the OTP so the caller can pass it to notifyCustomer
+    return extra.delivery_otp || null;
+  };
+
+  // Verify OTP entered by delivery boy — marks order Delivered on match
+  const verifyDeliveryOtp = async (orderId, enteredOtp) => {
+    const order = orders.find(o => o.id === orderId);
+    if (!order) return { success: false, msg: 'Order not found.' };
+    if (order.otp_verified) return { success: true, msg: 'Already verified.' };
+    if (String(enteredOtp).trim() !== String(order.delivery_otp).trim()) {
+      return { success: false, msg: 'Galat OTP! Dawa mat dijiye.' };
+    }
+    // OTP matched — mark delivered
+    setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: 'Delivered', otp_verified: true } : o));
+    const { error } = await supabase.from('orders')
+      .update({ status: 'Delivered', otp_verified: true })
+      .eq('id', orderId);
+    if (error) console.error('OTP verify error:', error);
+    return { success: true, msg: 'OTP sahi hai! Dawa de dijiye. ✅' };
   };
 
   // Send a pre-filled WhatsApp message to customer for critical status changes
-  const notifyCustomer = (order, status) => {
+  const notifyCustomer = (order, status, otp = null) => {
     const phone = '91' + order.customer?.phone;
     let msg = '';
     if (status === 'Cancelled') {
@@ -498,7 +528,12 @@ export const AppProvider = ({ children }) => {
     } else if (status === 'Rx Rejected') {
       msg = `नमस्ते ${order.customer?.name?.split(' ')[0] || ''},\nआपका Diamond Chemist का ऑर्डर #${order.id} रद्द किया गया है क्योंकि जो प्रिस्क्रिप्शन आपने दिया वो मान्य नहीं है। आपका ₹${order.total} का पेमेंट 3-5 दिनों में वापस आ जाएगा।\n- Diamond Chemist 🏥`;
     } else if (status === 'Out for Delivery') {
-      msg = `नमस्ते ${order.customer?.name?.split(' ')[0] || ''},\nआपकी दवाइयाँ रास्ते में हैं! आपका ऑर्डर #${order.id} अभी डिलीवर हो रहा है। कृपया उपलब्ध रहें।\n- Diamond Chemist 🏥`;
+      msg = `नमस्ते ${order.customer?.name?.split(' ')[0] || ''},\n` +
+        `आपकी दवाइयाँ रास्ते में हैं! 🚴\n\n` +
+        `📦 ऑर्डर: #${order.id}\n` +
+        (otp ? `🔐 डिलीवरी OTP: *${otp}*\n\n` +
+        `⚠️ यह OTP सिर्फ डिलीवरी बॉय को बताएं। किसी और को नहीं।\n` : '') +
+        `\n- Diamond Chemist 🏥`;
     }
     if (msg && phone.length >= 12) {
       window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -559,7 +594,7 @@ export const AppProvider = ({ children }) => {
     adminAuth, adminEmail, setAdminEmail, adminPw, setAdminPw, showAdminModal, setShowAdminModal, openAdmin, loginAdmin, logoutAdmin, authError, isLoggingIn,
     printTrackCode, setPrintTrackCode, points, usePoints, setUsePoints, discount, finalTotal, shareWebsite,
     customerUser, setCustomerUser, customerProfile, setCustomerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer,
-    notifyCustomer
+    notifyCustomer, verifyDeliveryOtp
   };
 
   return (

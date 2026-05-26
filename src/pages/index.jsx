@@ -357,10 +357,12 @@ export const AboutPage = () => (
 import { PrintJobsTab } from '../admin/PrintJobsTab';
 
 export const AdminPage = () => {
-  const { orders, navigate, updateOrderStatus, logoutAdmin, notifyCustomer } = useAppContext();
+  const { orders, navigate, updateOrderStatus, logoutAdmin, notifyCustomer, verifyDeliveryOtp } = useAppContext();
   const [adminTab, setAdminTab] = React.useState('orders');
   const [isUploading, setIsUploading] = React.useState(false);
   const [uploadStats, setUploadStats] = React.useState('');
+  // OTP input state: { [orderId]: { value, result } }
+  const [otpState, setOtpState] = React.useState({});
 
   const handleCsvUpload = async (e) => {
     const file = e.target.files[0];
@@ -544,9 +546,70 @@ export const AdminPage = () => {
               {statuses.map(s => (
                 <button key={s} className={'status-btn' + (o.status === s ? ' active' : '')}
                   style={s === 'Cancelled' || s === 'Rx Rejected' ? { background: o.status === s ? 'var(--danger)' : undefined, color: o.status === s ? '#fff' : 'var(--danger)', borderColor: 'var(--danger)' } : {}}
-                  onClick={() => { updateOrderStatus(o.id, s); notifyCustomer(o, s); }}>{s}</button>
+                  onClick={async () => {
+                    const otp = await updateOrderStatus(o.id, s);
+                    notifyCustomer(o, s, otp);
+                  }}>{s}</button>
               ))}
             </div>
+
+            {/* Delivery OTP Verification Panel */}
+            {o.status === 'Out for Delivery' && !o.otp_verified && (
+              <div style={{
+                marginTop: 12, padding: 14, background: '#FFF7ED',
+                border: '1.5px solid #FED7AA', borderRadius: 10
+              }}>
+                <div style={{ fontWeight: 700, fontSize: 13, color: '#92400E', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <i className="ti ti-lock" /> Delivery OTP Verification
+                </div>
+                <div style={{ fontSize: 12, color: '#78350F', marginBottom: 10 }}>
+                  Customer ke WhatsApp pe OTP bheja gaya hai.
+                  Delivery se pehle unse OTP lo aur neeche enter karo.
+                </div>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <input
+                    id={`otp-${o.id}`}
+                    type="tel"
+                    maxLength={4}
+                    placeholder="4-digit OTP"
+                    value={otpState[o.id]?.value || ''}
+                    onChange={e => setOtpState(prev => ({ ...prev, [o.id]: { ...prev[o.id], value: e.target.value, result: null } }))}
+                    style={{
+                      width: 110, padding: '8px 12px', borderRadius: 8, fontSize: 18,
+                      fontWeight: 700, letterSpacing: 6, textAlign: 'center',
+                      border: '2px solid #FED7AA', outline: 'none'
+                    }}
+                  />
+                  <button
+                    onClick={async () => {
+                      const entered = otpState[o.id]?.value || '';
+                      const res = await verifyDeliveryOtp(o.id, entered);
+                      setOtpState(prev => ({ ...prev, [o.id]: { ...prev[o.id], result: res } }));
+                    }}
+                    style={{
+                      padding: '8px 18px', borderRadius: 8, fontWeight: 700, fontSize: 13,
+                      background: '#D97706', color: '#fff', border: 'none', cursor: 'pointer'
+                    }}
+                  >
+                    Verify &amp; Deliver
+                  </button>
+                </div>
+                {otpState[o.id]?.result && (
+                  <div style={{
+                    marginTop: 10, padding: '8px 12px', borderRadius: 8, fontWeight: 600, fontSize: 13,
+                    background: otpState[o.id].result.success ? '#D1FAE5' : '#FEE2E2',
+                    color: otpState[o.id].result.success ? '#065F46' : '#991B1B'
+                  }}>
+                    {otpState[o.id].result.msg}
+                  </div>
+                )}
+              </div>
+            )}
+            {o.status === 'Out for Delivery' && o.otp_verified && (
+              <div style={{ marginTop: 10, padding: '8px 12px', borderRadius: 8, background: '#D1FAE5', color: '#065F46', fontWeight: 700, fontSize: 13 }}>
+                ✅ OTP Verified — Delivery Complete!
+              </div>
+            )}
           </div>
         ))
       )}

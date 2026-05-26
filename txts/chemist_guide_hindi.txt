@@ -28,10 +28,10 @@ SITUATION 1: CUSTOMER NE PAISA DIYA, DELIVERY NAHI HUI
 
 💰 PAISA WAPAS KARNA (AAPKO KARNA HOGA):
    1. Razorpay Dashboard kholo:
-      → https://dashboard.razorpay.com
+      -> https://dashboard.razorpay.com
    2. "Payments" section mein order ka Payment ID dhundo
       (Admin Panel mein order card pe Payment ID dikhti hai)
-   3. "Refund" button dabao → Full Refund karo
+   3. "Refund" button dabao -> Full Refund karo
    4. 3-5 din mein customer ke account mein wapas aa jayega
 
 --------------------------------------------------------
@@ -47,11 +47,11 @@ FAIL" DIKHAYA (Internet cut gaya)
 ✅ AAPKO KYA KARNA HAI:
    1. Admin Panel mein order dhundo
    2. Agar order wahan dikh raha hai aur status "Received"
-      hai → paisa aa gaya hai!
+      hai -> paisa aa gaya hai!
    3. Customer ko batao: "Aapka order mil gaya hai,
       chinta mat karo, dawa aa rahi hai."
-   4. Agar order nahi dikh raha → Razorpay Dashboard check
-      karo. Agar wahan bhi nahi → paisa nahi kata
+   4. Agar order nahi dikh raha -> Razorpay Dashboard check
+      karo. Agar wahan bhi nahi -> paisa nahi kata
 
 🤖 WEBSITE APNE AAP KYA KAREGA:
    - Razorpay hamare server ko signal bhejta hai jab
@@ -101,7 +101,7 @@ SITUATION 4: PRESCRIPTION GALAT / EXPIRED / FAKE HAI
 ✅ AAPKO KYA KARNA HAI:
    1. Admin Panel mein order ka prescription dekho
       ("View Prescription Image" link hai)
-   2. Agar prescription sahi nahi → "Rx Rejected" button
+   2. Agar prescription sahi nahi -> "Rx Rejected" button
       dabao
 
 🤖 WEBSITE + WHATSAPP APNE AAP KYA KAREGA:
@@ -147,7 +147,7 @@ SITUATION 6: WEBSITE PAR DAAM AUR BOX KA MRP ALAG HAI
      ₹10 ka ghata aap uthao — yeh customer ka trust
      banata hai.
    - Turant website ka price update karo:
-     Admin Panel → Products → CSV upload karo updated
+     Admin Panel -> Products -> CSV upload karo updated
      price ke saath
 
 🤖 WEBSITE KYA KAREGA:
@@ -193,7 +193,7 @@ KITNE DIN MEIN WAPAS AATA HAI PAISA:
    HELPLINE
 ========================================================
 
-   Koi bhi problem aaye → Developer se contact karo:
+   Koi bhi problem aaye -> Developer se contact karo:
    Website ya Admin Panel se koi galti ho to batao.
 
    Razorpay Support: +91-120-4825600
