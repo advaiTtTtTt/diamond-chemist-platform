@@ -357,7 +357,7 @@ export const AboutPage = () => (
 import { PrintJobsTab } from '../admin/PrintJobsTab';
 
 export const AdminPage = () => {
-  const { orders, navigate, updateOrderStatus, logoutAdmin } = useAppContext();
+  const { orders, navigate, updateOrderStatus, logoutAdmin, notifyCustomer } = useAppContext();
   const [adminTab, setAdminTab] = React.useState('orders');
   const [isUploading, setIsUploading] = React.useState(false);
   const [uploadStats, setUploadStats] = React.useState('');
@@ -429,7 +429,7 @@ export const AdminPage = () => {
     delivered: orders.filter(o => o.status === 'Delivered').length,
     revenue: orders.reduce((s, o) => s + o.total, 0)
   };
-  const statuses = ['Received', 'Accepted', 'Out for Delivery', 'Delivered'];
+  const statuses = ['Received', 'Accepted', 'Out for Delivery', 'Delivered', 'Cancelled', 'Rx Rejected'];
   return (
     <div className="page" style={{ maxWidth: 900 }}>
       <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -533,10 +533,18 @@ export const AdminPage = () => {
               ))}
             </tbody></table>
             <div className="order-total"><span>Total</span><span>₹{o.total}</span></div>
+            {o.razorpay_payment_id && (
+              <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <i className="ti ti-credit-card" style={{ color: 'var(--primary-500)' }} />
+                <span>Payment ID: <code style={{ background: 'var(--bg-subtle)', padding: '1px 5px', borderRadius: 4 }}>{o.razorpay_payment_id}</code></span>
+                <a href={`https://dashboard.razorpay.com/app/payments/${o.razorpay_payment_id}`} target="_blank" rel="noreferrer" style={{ color: 'var(--primary-500)', fontWeight: 600, fontSize: 11 }}>[View / Refund ↗]</a>
+              </div>
+            )}
             <div className="status-btns">
               {statuses.map(s => (
                 <button key={s} className={'status-btn' + (o.status === s ? ' active' : '')}
-                  onClick={() => updateOrderStatus(o.id, s)}>{s}</button>
+                  style={s === 'Cancelled' || s === 'Rx Rejected' ? { background: o.status === s ? 'var(--danger)' : undefined, color: o.status === s ? '#fff' : 'var(--danger)', borderColor: 'var(--danger)' } : {}}
+                  onClick={() => { updateOrderStatus(o.id, s); notifyCustomer(o, s); }}>{s}</button>
               ))}
             </div>
           </div>

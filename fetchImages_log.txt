@@ -1,0 +1,410 @@
+Reading CSV...
+Found 858 unique medicines. Processing 858...
+
+[1/858] Searching for: ISOJET 10MG CAP 10'S
+  Attempting download from: https://egmedi.com/storage/product_media/71QHVdoI03L._SL1200_.jpg
+  ✓ Saved to isojet-10mg-cap-10-s.jpg
+
+[2/858] Searching for: ROSACEA SOAP 75 GM
+  Attempting download from: https://asset.sastasundar.com/incom/images/product/thumb/Skinshine-Fairness-1599815999-10069610-1.jpg
+  ✓ Saved to rosacea-soap-75-gm.jpg
+
+[3/858] Searching for: BANDY PLUS BOTTLE OF 10ML SUSPENSION
+  Attempting download from: https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3891046328162317923
+  ✓ Saved to bandy-plus-bottle-of-10ml-suspension.jpg
+
+[4/858] Searching for: COMBIHALE FF 250 REDICAPS 30BOX
+  Attempting download from: https://5.imimg.com/data5/SELLER/Default/2026/4/603607684/KC/JC/PG/266081459/levolin-50-mcg-inhaler-250x250.png
+  ✓ Saved to combihale-ff-250-redicaps-30box.jpg
+
+[5/858] Searching for: FUCIBET CREAM 15GM 15GM
+  Attempting download from: https://egmedi.com/storage/product_media/FUSIWAL-OINT.15GM.webp
+  ✓ Saved to fucibet-cream-15gm-15gm.jpg
+
+[6/858] Searching for: ZEVITON SYP-200ML - 200  ML
+  Attempting download from: https://platinumrx.gumlet.io/meds-prescription/default_image.jpg
+  ✓ Saved to zeviton-syp-200ml-200-ml.jpg
+
+[7/858] Searching for: KETO SOAP 50GM 50GM
+  Attempting download from: https://5.imimg.com/data5/SELLER/Default/2025/11/563363491/CU/AK/GS/132283964/keto-ketoconazole-soap.jpg
+  ✓ Saved to keto-soap-50gm-50gm.jpg
+
+[8/858] Searching for: KETO SOAP 100GM 100GM
+  Attempting download from: https://www.swisscosmed.in/wp-content/uploads/2019/07/KETOLECHEM-SOAPPP_compressed.jpg
+  ✓ Saved to keto-soap-100gm-100gm.jpg
+
+[9/858] Searching for: O2 TAB STRIP 10'S
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med_op/1704707824659bc6f0ea9a8.webp
+  ✓ Saved to o2-tab-strip-10-s.jpg
+
+[10/858] Searching for: ENERZAL ZERO ORANGE FLAVOUR BOTTLE OF 400ML LIQUID
+  Attempting download from: https://imgwlns.gumlet.io/images/products/250902-1.png
+  ✓ Saved to enerzal-zero-orange-flavour-bottle-of-400ml-liquid.jpg
+
+[11/858] Searching for: GLYCIPHAGE VG1 TAB 10'S
+  Attempting download from: https://1bpharmacy.com/_next/image?url=https://cdn-1bharatpharmacy.s3.ap-south-1.amazonaws.com/product/1770353500840-6q34ui3.png&w=3840&q=75
+  ✓ Saved to glyciphage-vg1-tab-10-s.jpg
+
+[12/858] Searching for: NEERI SYRUP 100ML
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med/8954/NEERI TAB 1X30_1.webp
+  ✓ Saved to neeri-syrup-100ml.jpg
+
+[13/858] Searching for: DEN TONIC PILL 10GM
+  Attempting download from: https://homoeolab.com/images/products/schola-tone.png
+  ✓ Saved to den-tonic-pill-10gm.jpg
+
+[14/858] Searching for: KETZ SOAP 75GM
+  Attempting download from: https://www.clickoncare.com/cdn/shop/products/kzsoap-75g_2-_1_-3041126728.jpg?v=1683199478&width=1445
+  ✓ Saved to ketz-soap-75gm.jpg
+
+[15/858] Searching for: THYRONORM 50MCG TAB 120``S 120`S
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/8541ea7ba76846a283785eac57cd8a60.jpg?dpr=3&format=auto
+  ✓ Saved to thyronorm-50mcg-tab-120-s-120-s.jpg
+
+[16/858] Searching for: ENERZAL PET ORANGE LIQUID 400 ML
+  Attempting download from: https://image.cdn.shpy.in/82900/1664869564117_SKU-1226_0.jpg?width=600&format=webp
+  ✓ Saved to enerzal-pet-orange-liquid-400-ml.jpg
+
+[17/858] Searching for: BONABONA -XT - 15CAP
+  Attempting download from: https://images.apollo247.in/pub/media/catalog/product/F/O/FOL0856_1_1.jpg?tr=q-80,f-webp,w-400,dpr-3,c-at_max 400w
+  ✓ Saved to bonabona-xt-15cap.jpg
+
+[18/858] Searching for: CUFDOZ AD SYP - 100ML
+  Attempting download from: https://anevaypharma.com/wp-content/uploads/2023/08/WhatsApp-Image-2026-04-23-at-10.15.26.jpeg
+  ✓ Saved to cufdoz-ad-syp-100ml.jpg
+
+[19/858] Searching for: DEPLATT A 75MG STRIP OF 15 TABLETS
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med/27034/deplatt-cv-capsule-15s_17382220728d4d5ec37a1b43da80417cf8004b51c3.webp
+  ✓ Saved to deplatt-a-75mg-strip-of-15-tablets.jpg
+
+[20/858] Searching for: NOVASTAT 10MG TAB 15`S
+  Attempting download from: https://aarianawellness.com/uploads/media/2025/novastat_tg_10_tablet_15s_52339_0_1.bmp
+  ✓ Saved to novastat-10mg-tab-15-s.jpg
+
+[21/858] Searching for: VILDAPRIDE M 50/500MG TAB - 15TAB
+  Attempting download from: https://secmed-prod.sfo3.cdn.digitaloceanspaces.com/secmed-prod/uploads/newproduct/WellnessForever202306153017813.webp
+  ✓ Saved to vildapride-m-50-500mg-tab-15tab.jpg
+
+[22/858] Searching for: VILPOWER M 500MG TABLET 10'S
+  Attempting download from: https://www.egmedi.com/storage/product_media/98f30759396ada9c688e6897cadde4dab9424b81.webp
+  ✓ Saved to vilpower-m-500mg-tablet-10-s.jpg
+
+[23/858] Searching for: CABGOLIN 0.5MG TABLET 4'S
+  Attempting download from: https://store.genericaadhaar.com/uploads/product/medium_1731330988_WhatsApp Image 2024-11-11 at 15.00.54.jpeg
+  ✓ Saved to cabgolin-0-5mg-tablet-4-s.jpg
+
+[24/858] Searching for: CALADRYL SKIN ALLERGY LOTION FOR ALL SKIN TYPES - 125ML
+  Attempting download from: https://www.expressmed.in/assets/uploads/products/prod_img_1639413941_7.png
+  ✓ Saved to caladryl-skin-allergy-lotion-for-all-skin-types-125ml.jpg
+
+[25/858] Searching for: TAZLOC AM 40MG STRIP OF 10 TABLETS
+  Attempting download from: https://imgwlns.gumlet.io/images/products/247539-1.JPG
+  ✓ Saved to tazloc-am-40mg-strip-of-10-tablets.jpg
+
+[26/858] Searching for: BETNOVATE GM CREAM - 20GM
+  Attempting download from: https://www.lifesaverpharma.com/wp-content/uploads/2021/05/Betnovate-N-cream-GlaxoSmithKline.jpg
+  [!] Failed to download https://www.lifesaverpharma.com/wp-content/uploads/2021/05/Betnovate-N-cream-GlaxoSmithKline.jpg: Unexpected response Forbidden
+  Attempting download from: https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3884978109988559990
+  ✓ Saved to betnovate-gm-cream-20gm.jpg
+
+[27/858] Searching for: BETNOVATE C CREAM 30GM
+  Attempting download from: https://healthplus.reeaam.com/wp-content/uploads/webp4-79-570x570.jpg
+  ✓ Saved to betnovate-c-cream-30gm.jpg
+
+[28/858] Searching for: REXIDIN M FORTE GEL 15GM
+  Attempting download from: https://assets.truemeds.in/Images/ProductImage/TM-TACR1-052091/shelcal-hd-tablet-15_shelcal-hd-tablet-15--TM-TACR1-052091_1.png?width=240
+  ✓ Saved to rexidin-m-forte-gel-15gm.jpg
+
+[29/858] Searching for: OVRAL G TABLET 20'S
+  Attempting download from: https://core.mymedicalshop.com/media/category-backgrounds/Stomach.png
+  ✓ Saved to ovral-g-tablet-20-s.jpg
+
+[30/858] Searching for: OVRAL L STRIP OF 21 TABLETS
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med/10033/OVRAL L TAB 1X21_6.webp
+  ✓ Saved to ovral-l-strip-of-21-tablets.jpg
+
+[31/858] Searching for: TELMIDUCE AM TAB 10'S
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/461c72e491414eaba65cd9304b82381f.jpg?dpr=3&format=auto
+  ✓ Saved to telmiduce-am-tab-10-s.jpg
+
+[32/858] Searching for: MAHACEF CV 200MG TAB 6`S
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med_op/17020292936572e7ede6231.webp
+  ✓ Saved to mahacef-cv-200mg-tab-6-s.jpg
+
+[33/858] Searching for: SOMPRAZ D 40MG CAP 15'S
+  Attempting download from: https://imgwlns.gumlet.io/images/products/351406-2.jpg
+  ✓ Saved to sompraz-d-40mg-cap-15-s.jpg
+
+[34/858] Searching for: LIPIROSE 20MG TABLET 10'S
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/114916feed5143e9af72ce72de532228.jpg
+  ✓ Saved to lipirose-20mg-tablet-10-s.jpg
+
+[35/858] Searching for: VETORY SP TABLET 10'S
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med/22464/TROYACE SP TAB 1X10_2.webp
+  ✓ Saved to vetory-sp-tablet-10-s.jpg
+
+[36/858] Searching for: PYZINA 750MG TABLET
+  Attempting download from: https://platinumrx.gumlet.io/meds-prescription/1512b465-f28a-4304-aabc-f26cfb1aa21c_wm.png?w=640&q=80
+  ✓ Saved to pyzina-750mg-tablet.jpg
+
+[37/858] Searching for: NUCORT M 4MG STRIP OF 10 TABLETS
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med/19560/PREDMET 4MG TABLET 15'S_2.webp
+  ✓ Saved to nucort-m-4mg-strip-of-10-tablets.jpg
+
+[38/858] Searching for: MYCODERM POWDER 150GM 150GM
+  Attempting download from: https://www.emedicalwala.com/wp-content/uploads/2022/05/tablets_1880.png
+  ✓ Saved to mycoderm-powder-150gm-150gm.jpg
+
+[39/858] Searching for: COLICAID SYRUP 60ML
+  Attempting download from: https://egmedi.com/storage/product_media/30ml-pepticaine-colic-relief-syrup.jpg
+  ✓ Saved to colicaid-syrup-60ml.jpg
+
+[40/858] Searching for: CALPOL PAED DROPS 15ML
+  Attempting download from: https://rigmeds-main.s3.ap-south-1.amazonaws.com/50019/conversions/Calpol-Paediatric-Drops-4-thumbnail.jpg
+  ✓ Saved to calpol-paed-drops-15ml.jpg
+
+[41/858] Searching for: TUMMY SOFT 5GM BOTTLE OF 50ML DRY SYRUP
+  Attempting download from: https://m.media-amazon.com/images/I/61N9qsVD56L._AC_UF350,350_QL80_.jpg
+  ✓ Saved to tummy-soft-5gm-bottle-of-50ml-dry-syrup.jpg
+
+[42/858] Searching for: TELVAS H 40MG TAB 10`S
+  Attempting download from: https://i.ytimg.com/vi/2cZWMjqh4w0/maxresdefault.jpg
+  ✓ Saved to telvas-h-40mg-tab-10-s.jpg
+
+[43/858] Searching for: ZORYL M 1MG STRIP OF 20 TABLETS
+  ✗ Search Error: Could not execute search
+
+[44/858] Searching for: BETAMIL GM TUBE OF 30GM CREAM
+  Attempting download from: https://platinumrx.gumlet.io/meds-prescription/bf2ca992-c7cb-4bb1-87b5-193a9eaf4aa0_wm.jpeg?w=640&q=80
+  ✓ Saved to betamil-gm-tube-of-30gm-cream.jpg
+
+[45/858] Searching for: COLIZA D PEPPERMINT FALV SUSP 30ML
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med/16751/TUMSUP DROPS 30 ML_4.webp
+  ✓ Saved to coliza-d-peppermint-falv-susp-30ml.jpg
+
+[46/858] Searching for: CANDID TOTAL PLUS CREAM 20 GM
+  Attempting download from: https://imgwlns.gumlet.io/images/products/330114-1.jpg
+  ✓ Saved to candid-total-plus-cream-20-gm.jpg
+
+[47/858] Searching for: CTD M 6.25/25MG TABLET 10'S
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/cropped/fswyqac3jswooc9prnp2.jpg
+  ✓ Saved to ctd-m-6-25-25mg-tablet-10-s.jpg
+
+[48/858] Searching for: ENERZAL ORANGE POW - 75GM
+  Attempting download from: https://cdn01.pharmeasy.in/dam/products_otc/067475/enerzal-orange-flavour-sachet-of-50gm-powder-7-1685357240.jpg?dim=480x480&q=75
+  ✓ Saved to enerzal-orange-pow-75gm.jpg
+
+[49/858] Searching for: ZEROLAC POWDER 400GM
+  Attempting download from: https://www.netforhealth.com/wp-content/uploads/2016/07/WhatsApp-Image-2017-01-10-at-4.48.18-PM-300x300.jpeg
+  ✓ Saved to zerolac-powder-400gm.jpg
+
+[50/858] Searching for: DIZITAC TABLET 10'S
+  Attempting download from: https://pharmeasy.in/blog/wp-content/uploads/2025/12/glp-1-receptor-agonist.webp
+  ✓ Saved to dizitac-tablet-10-s.jpg
+
+[51/858] Searching for: SUPRACAL XT TAB - 15'S
+  Attempting download from: https://meds.myupchar.com/166033/new-ayurvedic-tulsi-drops-for-immunity-1.jpg
+  ✓ Saved to supracal-xt-tab-15-s.jpg
+
+[52/858] Searching for: RAXNIN SACHET - 5G
+  Attempting download from: https://aaruxpharma.com/storage/RuxoNewten_Mockup-01_06202025-scaled.jpg
+  ✓ Saved to raxnin-sachet-5g.jpg
+
+[53/858] Searching for: NAPRA D 500MG TAB - 10TAB
+  Attempting download from: https://image.cdn.shpy.in/82900/1656509863771_SKU-0929_0.jpg?width=600&format=webp
+  ✓ Saved to napra-d-500mg-tab-10tab.jpg
+
+[54/858] Searching for: EPILIVE 500MG TAB - 15TAB
+  Attempting download from: https://assets.truemeds.in/Images/ProductImage/TM-TACR1-013680/epilive-750-tablet-10_epilive-750-tablet-10--TM-TACR1-013680_2.png?width=320
+  ✓ Saved to epilive-500mg-tab-15tab.jpg
+
+[55/858] Searching for: AACTARIL SOAP 75GM
+  Attempting download from: https://www.herbtib.com/image/cache/catalog/himalaya/himalaya-diabecon-400x400.jpg
+  ✓ Saved to aactaril-soap-75gm.jpg
+
+[56/858] Searching for: VOGLINORM GM 1MG STRIP OF 15 TABLETS
+  Attempting download from: https://assets.truemeds.in/Images/ProductImage/TM-TACR1-043199/voglinorm-gm2-tablet-15_voglinorm-gm2-tablet-15--TM-TACR1-043199_5.png?width=320
+  ✓ Saved to voglinorm-gm-1mg-strip-of-15-tablets.jpg
+
+[57/858] Searching for: PREDMET 4MG STRIP OF 15 TABLETS
+  Attempting download from: https://tiimg.tistatic.com/fp/1/009/164/methylprednisolone-tablets-i-p--490.jpg
+  ✓ Saved to predmet-4mg-strip-of-15-tablets.jpg
+
+[58/858] Searching for: LINARES M STRIP OF 10 TABLETS
+  Attempting download from: https://platinumrx.gumlet.io/meds-prescription/2a7c1667-76cb-4f74-a88c-fbbba37d9bbf_wm.png?w=640&q=80
+  ✓ Saved to linares-m-strip-of-10-tablets.jpg
+
+[59/858] Searching for: CARRIAGO GEL - 30GM
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/eea001b7d265400ab7dab29b5aa00cc0.jpg
+  ✓ Saved to carriago-gel-30gm.jpg
+
+[60/858] Searching for: EMOLENE CREAM 100GM 100GM
+  Attempting download from: https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3883148602499773940
+  ✓ Saved to emolene-cream-100gm-100gm.jpg
+
+[61/858] Searching for: MACSART H 40/12.5MG TABLET 10'S
+  Attempting download from: https://5.imimg.com/data5/SELLER/Default/2024/10/460917557/SH/HI/XJ/180648134/hydrochlorothiazide-12-5-mg-tablet-250x250.jpg
+  ✓ Saved to macsart-h-40-12-5mg-tablet-10-s.jpg
+
+[62/858] Searching for: EVERFLAM SP TAB - 10TAB
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_380,h_380/a_ignore,w_380,h_380,c_fit,q_auto,f_auto/cropped/mrokajcpqnqo3cjrabxx.jpg
+  ✓ Saved to everflam-sp-tab-10tab.jpg
+
+[63/858] Searching for: UNWANTED 72 TAB - 1'S
+  Attempting download from: https://i.ytimg.com/vi/tcy5Uy-e1H4/hqdefault.jpg
+  ✓ Saved to unwanted-72-tab-1-s.jpg
+
+[64/858] Searching for: OMEZ INSTA MINT FLAV SACH 5.9GM 6GM
+  ✗ Search Error: Looks like there aren’t any matches for your search
+
+[65/858] Searching for: ROZLIV SYP 200ML - 200  ML
+  Attempting download from: https://assets.truemeds.in/Images/ProductImage/TM-OSSF1-000024/sorliv-sugar-free-solution-200ml_sorliv-sugar-free-solution-200ml--TM-OSSF1-000024_2.png?width=320
+  ✓ Saved to rozliv-syp-200ml-200-ml.jpg
+
+[66/858] Searching for: R B TONE BOTTLE OF 200ML SYRUP
+  Attempting download from: https://tiimg.tistatic.com/fp/1/007/645/brain-booster-syrup-200ml-324.jpg
+  ✓ Saved to r-b-tone-bottle-of-200ml-syrup.jpg
+
+[67/858] Searching for: NASOWASH SACHET 8GM
+  Attempting download from: https://cdn01.pharmeasy.in/dam/products_otc/D90191/liveasy-pain-relief-spray-55-gm-lower-back-pain-sprain-neck-joint-pain-6.01-1777366030.jpg?dim=360x360&q=75
+  ✓ Saved to nasowash-sachet-8gm.jpg
+
+[68/858] Searching for: ORASORE STRIP OF 10 MOUTH ULCER TABLETS
+  Attempting download from: https://assets.truemeds.in/Images/ProductImage/TM-TAET1-000138/GLIMIXIA-M-2-500-MG-Tablet-ER-10_1.webp?width=240
+  ✓ Saved to orasore-strip-of-10-mouth-ulcer-tablets.jpg
+
+[69/858] Searching for: ORASORE CHARCOAL TOOTHPASTE - 120GM
+  Attempting download from: https://5.imimg.com/data5/SELLER/Default/2023/7/321756211/FR/PN/ZB/67284300/charcoal-with-black-seed-toothpaste-500x500.png
+  ✓ Saved to orasore-charcoal-toothpaste-120gm.jpg
+
+[70/858] Searching for: ELECTRAL POWDER  - 21.8GM
+  Attempting download from: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesOyq9AAjGAY44cU0lzyUzfTdFLnAqNc8nrTpfCWfOJphga9ngwAJHvwP&s
+  ✓ Saved to electral-powder-21-8gm.jpg
+
+[71/858] Searching for: MET XL 12.5MG TAB - 20`S
+  Attempting download from: https://cpimg.tistatic.com/8606843/b/4/metoprolol-succinate-extended-release-tablet-ip-12-5mg.jpg
+  ✓ Saved to met-xl-12-5mg-tab-20-s.jpg
+
+[72/858] Searching for: ELECTRAL POWDER - 4.4GM
+  Attempting download from: https://cdn01.pharmeasy.in/dam/products/065285/electral-sachet-of-2180gm-oral-powder-green-7-1727660278.jpg
+  ✓ Saved to electral-powder-4-4gm.jpg
+
+[73/858] Searching for: DABUR DASHMULARISHTA 450ML
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/8cbed0f2f1cf4ad684e3f730040ab802.jpg
+  ✓ Saved to dabur-dashmularishta-450ml.jpg
+
+[74/858] Searching for: ROGAN DIMAGE ROSHAN OIL 400 ML
+  Attempting download from: https://images.meesho.com/images/products/392179766/qbhw5_512.webp?width=512
+  ✓ Saved to rogan-dimage-roshan-oil-400-ml.jpg
+
+[75/858] Searching for: SARTEL 40MG STRIP OF 15 TABLETS
+  Attempting download from: https://egmedi.com/storage/product_media/pharmcacy-production-rxs_1745484546_crop_755.webp
+  ✓ Saved to sartel-40mg-strip-of-15-tablets.jpg
+
+[76/858] Searching for: AMBROLITE LEVO SYP 100ML
+  Attempting download from: https://d300ttx3ph6hjj.cloudfront.net/uploads/10003384_-_ASCORIL_LS_EXP_(100_ML)-300x300.jpg
+  ✓ Saved to ambrolite-levo-syp-100ml.jpg
+
+[77/858] Searching for: SIMYL MCT POWDER 400GM
+  Attempting download from: https://platinumrx.gumlet.io/meds-prescription/8c22e09a-f275-49fe-998a-abb755056045.png?w=1080&q=80
+  ✓ Saved to simyl-mct-powder-400gm.jpg
+
+[78/858] Searching for: CARMICIDE DROPS 15ML BOTTLE 15ML
+  Attempting download from: https://images.apollo247.in/pub/media/catalog/product/C/O/COL1029_1_1.jpg
+  ✓ Saved to carmicide-drops-15ml-bottle-15ml.jpg
+
+[79/858] Searching for: NEERI SYP 200ML
+  Attempting download from: https://www.zevikahealth.com/cdn/shop/files/edited_4_6_0f1d71a6-535e-4f8d-9908-ada6655b43cb.png?v=1750247544&1024w
+  ✓ Saved to neeri-syp-200ml.jpg
+
+[80/858] Searching for: OPTIMOIST EYE DROP 10ML
+  Attempting download from: https://pharma.medibuddy.in/10041891/30a690d0-3f1c-11ed-8d89-bb8a22a8f417.jpg
+  ✓ Saved to optimoist-eye-drop-10ml.jpg
+
+[81/858] Searching for: FLUTICONE OX BOTTLE OF 70MD NASAL SPRAY
+  Attempting download from: https://cdn.platinumrx.in/meds-prescription/30e39907-ed60-4024-bfbb-7c429e833fb9.png
+  ✓ Saved to fluticone-ox-bottle-of-70md-nasal-spray.jpg
+
+[82/858] Searching for: UPRISE D3 400IU BOTTLE OF 15ML DROPS
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/qlwnh1klmvskpvjssgsw.jpg?dpr=3&format=auto
+  ✓ Saved to uprise-d3-400iu-bottle-of-15ml-drops.jpg
+
+[83/858] Searching for: CTD O 6.25/40MG TABLET 10'S
+  Attempting download from: https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/cropped/xqjddorqcbpjvqqqxf8a.jpg
+  ✓ Saved to ctd-o-6-25-40mg-tablet-10-s.jpg
+
+[84/858] Searching for: CITRO SODA SACHET OF 5GM GRANULES
+  Attempting download from: https://www.fitbynet.com/wp-content/uploads/2024/08/enterogermina-probiotic-supplement-for-diarrhea-for-kids-adults-1-strips-4-capsules-each-3-1671741704.webp
+  ✓ Saved to citro-soda-sachet-of-5gm-granules.jpg
+
+[85/858] Searching for: ECOSPRIN AV 75MG CAP - 15`S
+  Attempting download from: https://platinumrx.gumlet.io/meds-prescription/a79a135d-30c7-4979-bf87-ad387a943334_wm.jpeg?w=640&q=80
+  ✓ Saved to ecosprin-av-75mg-cap-15-s.jpg
+
+[86/858] Searching for: ARISTOZYME SYP 200ML
+  Attempting download from: https://d1s24u4ln0wd0i.cloudfront.net/med_op/1701254346656714caa126a.webp
+  ✓ Saved to aristozyme-syp-200ml.jpg
+
+[87/858] Searching for: AMLOVAS M 5/50MG TABLET 10'S
+  Attempting download from: https://assets1.drugcarts.com/category/product/Samlo A 5mg-50mg Tablet,Amlodipine 5mg,Atenolol 50mg,price,uses,side Effects - Drugcarts.jpg
+  ✓ Saved to amlovas-m-5-50mg-tablet-10-s.jpg
+
+[88/858] Searching for: CONCOR PLUS TABLET 10'S
+  Attempting download from: https://cdn01.pharmeasy.in/dam/products/047230/concor-cor-25mg-strip-of-10-tablets-7-1641535947.jpg
+  ✓ Saved to concor-plus-tablet-10-s.jpg
+
+[89/858] Searching for: AMLOPIN 5MG STRIP OF 10 TABLETS
+  Attempting download from: https://onlinemedicinebazar.com/public/images/products/details/6607cfb6553681.55539276.webp
+  ✓ Saved to amlopin-5mg-strip-of-10-tablets.jpg
+
+[90/858] Searching for: PIL ELECTROLYTE ORS POW - 21.8GM
+  Attempting download from: https://guptaagency.in/storage/cipla/cipla-2/img-2515-400x400.jpeg
+  ✓ Saved to pil-electrolyte-ors-pow-21-8gm.jpg
+
+[91/858] Searching for: ISRYL M 1 TAB 15'S
+  Attempting download from: https://static2.medplusmart.com/products/_2061fe_/ISRY0003_L.jpg
+  ✓ Saved to isryl-m-1-tab-15-s.jpg
+
+[92/858] Searching for: FUNGICROS LOTION - 30ML
+  Attempting download from: https://frankrosspharmacy.com/_next/image?url=https://emami-production-2.s3.amazonaws.com/variant_images/files/000/060/682/normal_webp/FR-55636.webp?1778660544&w=640&q=75
+  ✓ Saved to fungicros-lotion-30ml.jpg
+
+[93/858] Searching for: ROSUMAC GOLD 20MG CAPSULE 10'S
+  Attempting download from: https://cdn01.pharmeasy.in/dam/productsnowatermark/I06518/rosumac-gold-forte-10mg-strip-of-10-capsules-front-2-1756904213-non-watermarked.jpg
+  ✓ Saved to rosumac-gold-20mg-capsule-10-s.jpg
+
+[94/858] Searching for: HIMALAYA RENALKA SYP 100ML
+  Attempting download from: https://www.srisritattva.com/cdn/shop/files/AlkalinnSyrup200mlSide.jpg?v=1710322552&width=1445
+  ✓ Saved to himalaya-renalka-syp-100ml.jpg
+
+[95/858] Searching for: ZEDEX COUGH SYRUP 100 ML
+  Attempting download from: https://lookaside.fbsbx.com/lookaside/crawler/instagram/DVfcZ8eD8Ta/0/image.jpg
+  ✓ Saved to zedex-cough-syrup-100-ml.jpg
+
+[96/858] Searching for: KAYAM TAB 30'S
+  Attempting download from: https://prithvimart.com/cdn/shop/products/98ZoLiTvCa_5000x_005771b1-3bf9-40e7-ae87-c489181402ee.jpg?v=1659988419&width=1000
+  ✓ Saved to kayam-tab-30-s.jpg
+
+[97/858] Searching for: TEDIBAR SOAP 75GM 75GM
+  Attempting download from: https://www.bbassets.com/media/uploads/p/l/40118352_7-mee-mee-nourishing-baby-soap-with-almond-milk-extracts.jpg
+  ✓ Saved to tedibar-soap-75gm-75gm.jpg
+
+[98/858] Searching for: BELLADONA PLASTER MEHTA 0BOX
+  Attempting download from: https://coreband.in/wp-content/uploads/2023/10/CoreBand-Products-10-min.png
+  ✓ Saved to belladona-plaster-mehta-0box.jpg
+
+[99/858] Searching for: ISTAVEL 100MG STRIP OF 10 TABLETS
+  Attempting download from: https://img500.exportersindia.com/product_images/bc-500/2021/9/9396671/sitagliptin-phosphate-tablets-1632915729-6016358.jpeg
+  ✓ Saved to istavel-100mg-strip-of-10-tablets.jpg
+
+[100/858] Searching for: FRANXIT TAB 10'S
+  Attempting download from: https://dvijaypharma.com/admin/upload/PRODUCT_1607342173.jpg
+  ✓ Saved to franxit-tab-10-s.jpg
+
+[101/858] Searching for: AMLOPRES AT STRIP - 15TAB
+  Attempting download from: https://storage.googleapis.com/shy-pub/100576/1693581022475_SKU-1821_1.jpg
+  ✓ Saved to amlopres-at-strip-15tab.jpg
+
+[102/858] Searching for: RANRAFT SYP - 200ML
+  Attempting download from: https://asset.sastasundar.com/incom/images/product/thumb/Pepsiraft-Mint-Flavour-Sugar-Free-Suspension-1733898515-10155612-a.jpg
+  ✓ Saved to ranraft-syp-200ml.jpg

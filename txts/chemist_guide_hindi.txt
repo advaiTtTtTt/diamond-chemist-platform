@@ -1,0 +1,204 @@
+========================================================
+    DIAMOND CHEMIST — ONLINE ORDERS KI JANKARI
+    (यह फ़ाइल केमिस्ट के लिए है)
+========================================================
+
+यह document आपको बताएगा कि online orders में क्या-क्या situation आ सकती है,
+आपको क्या करना है, और website + Razorpay अपने आप क्या कर लेगा।
+
+--------------------------------------------------------
+SITUATION 1: CUSTOMER NE PAISA DIYA, DELIVERY NAHI HUI
+(Customer ghar pe nahi tha ya address galat tha)
+--------------------------------------------------------
+
+🔴 KYA HUA:
+   Delivery boy gaya, lekin customer ghar pe nahi tha ya
+   address nahi mila. Delivery nahi ho payi.
+
+✅ AAPKO KYA KARNA HAI:
+   1. Admin Panel kholo (website pe "Admin" button dabao)
+   2. Us order ko dhundo
+   3. "Cancelled" button dabao
+
+🤖 WEBSITE + WHATSAPP APNE AAP KYA KAREGA:
+   - Customer ko WhatsApp message jayega (Hindi mein):
+     "Aapka order deliver nahi ho saka. ₹XXX 3-5 din
+     mein wapas aa jayega."
+   - Order ka status "Cancelled" ho jayega
+
+💰 PAISA WAPAS KARNA (AAPKO KARNA HOGA):
+   1. Razorpay Dashboard kholo:
+      → https://dashboard.razorpay.com
+   2. "Payments" section mein order ka Payment ID dhundo
+      (Admin Panel mein order card pe Payment ID dikhti hai)
+   3. "Refund" button dabao → Full Refund karo
+   4. 3-5 din mein customer ke account mein wapas aa jayega
+
+--------------------------------------------------------
+SITUATION 2: CUSTOMER NE PAISA DIYA, WEBSITE PAR "ORDER
+FAIL" DIKHAYA (Internet cut gaya)
+--------------------------------------------------------
+
+🔴 KYA HUA:
+   Customer ne payment ki, lekin unka phone/internet band
+   ho gaya. Unhe "Order Successful" nahi dikhaya.
+   Ab wo phone karke poochh rahe hain.
+
+✅ AAPKO KYA KARNA HAI:
+   1. Admin Panel mein order dhundo
+   2. Agar order wahan dikh raha hai aur status "Received"
+      hai → paisa aa gaya hai!
+   3. Customer ko batao: "Aapka order mil gaya hai,
+      chinta mat karo, dawa aa rahi hai."
+   4. Agar order nahi dikh raha → Razorpay Dashboard check
+      karo. Agar wahan bhi nahi → paisa nahi kata
+
+🤖 WEBSITE APNE AAP KYA KAREGA:
+   - Razorpay hamare server ko signal bhejta hai jab
+     payment hoti hai, chahe customer ka internet band ho.
+   - Order automatically "Received" ban jata hai.
+
+--------------------------------------------------------
+SITUATION 3: PAISA AA GAYA, LEKIN DAWA STOCK MEIN NAHI HAI
+--------------------------------------------------------
+
+🔴 KYA HUA:
+   Customer ne 5 strips order ki, aapke paas sirf 2 hain.
+
+✅ AAPKO KYA KARNA HAI:
+   Option A — Partial Delivery + Partial Refund:
+   1. 2 strips deliver karo
+   2. Razorpay Dashboard mein jaao
+   3. Us payment pe "Partial Refund" karo
+      (baaki 3 strips ka paisa wapas karo)
+   4. Customer ko WhatsApp karo bataao ki baaki paisa
+      wapas aa raha hai
+
+   Option B — Wait karo:
+   1. Customer ko call karo
+   2. Poochho kya kal tak wait kar sakte hain
+   3. Kal stock aate hi deliver karo
+
+🤖 WEBSITE KYA KAREGA:
+   - Partial refund aap Razorpay Dashboard se manually
+     karte hain. Website automatically nahi kar sakti.
+   - Lekin order ka status aap "Accepted" rakh sakte hain
+     jab tak deliver na ho.
+
+--------------------------------------------------------
+SITUATION 4: PRESCRIPTION GALAT / EXPIRED / FAKE HAI
+(Doctor ka parcha sahi nahi)
+--------------------------------------------------------
+
+🔴 KYA HUA:
+   Customer ne Schedule H1 dawa order ki (jaise sleeping
+   pills ya strong antibiotics), aur jo prescription
+   upload kiya wo expired, blur, ya fake hai.
+   
+   ⚠️ KANOON: Aisi dawa bina sahi prescription ke dena
+   ILLEGAL hai. Kabhi mat karo.
+
+✅ AAPKO KYA KARNA HAI:
+   1. Admin Panel mein order ka prescription dekho
+      ("View Prescription Image" link hai)
+   2. Agar prescription sahi nahi → "Rx Rejected" button
+      dabao
+
+🤖 WEBSITE + WHATSAPP APNE AAP KYA KAREGA:
+   - Customer ko WhatsApp message jayega:
+     "Aapka prescription valid nahi hai. Order cancel
+     kar diya gaya. Paisa 3-5 din mein wapas aa jayega."
+
+💰 PAISA WAPAS KARNA:
+   - Razorpay Dashboard mein Full Refund karo
+   - Payment ID order card pe dikhti hai
+
+--------------------------------------------------------
+SITUATION 5: GALAT DAWA DI YA DABBE MEIN TAKKAR LAGI
+(Wrong medicine ya damaged packaging)
+--------------------------------------------------------
+
+🔴 KYA HUA:
+   Customer ko galat dawa mili, ya glass syrup ki bottle
+   toot gayi delivery ke dauran.
+
+✅ AAPKO KYA KARNA HAI:
+   - Agar AAPKI GALTI (wrong medicine): Free mein sahi
+     dawa bhejo. Purani wapas mat lo (legal issue hoga)
+   - Agar RAASTE MEIN TOOT GAYI: Free replacement bhejo.
+     Insurance claim kar sakte ho agar lagatar ho raha ho.
+
+🤖 WEBSITE KYA KAREGA:
+   - Replacement ke liye aap manually ek new "₹0 order"
+     system mein bana sakte ho taaki delivery boy ko
+     address pata rahe. (Yeh feature baad mein add hoga)
+
+--------------------------------------------------------
+SITUATION 6: WEBSITE PAR DAAM AUR BOX KA MRP ALAG HAI
+(Price mismatch)
+--------------------------------------------------------
+
+🔴 KYA HUA:
+   Website pe dawa ₹100 thi. Customer ne ₹100 diye.
+   Lekin naye batch ke box pe MRP ₹110 likha hai.
+
+✅ AAPKO KYA KARNA HAI:
+   - Is order ke liye ₹100 wali price HONOR karo.
+     ₹10 ka ghata aap uthao — yeh customer ka trust
+     banata hai.
+   - Turant website ka price update karo:
+     Admin Panel → Products → CSV upload karo updated
+     price ke saath
+
+🤖 WEBSITE KYA KAREGA:
+   - CSV upload hone ke baad naye customers ko ₹110
+     dikhega. Purana customer already sahi price pe tha.
+
+========================================================
+   RAZORPAY DASHBOARD — KAISE USE KAREIN
+========================================================
+
+🌐 Website: https://dashboard.razorpay.com
+📧 Login: Apna registered email + password
+
+REFUND KAISE KAREIN:
+   1. Dashboard kholo
+   2. Baayein menu mein "Payments" pe click karo
+   3. Payment ID se search karo
+      (Payment ID Admin Panel mein order card pe hoti hai)
+   4. Payment pe click karo
+   5. "Refund" button dabao
+   6. Full Refund ya Partial Refund choose karo
+   7. Confirm karo
+
+KITNE DIN MEIN WAPAS AATA HAI PAISA:
+   - UPI: 1-3 din
+   - Debit/Credit Card: 5-7 din
+   - Net Banking: 3-5 din
+
+========================================================
+   QUICK REFERENCE — EK NAZAR MEIN
+========================================================
+
+| Situation              | Aap karo         | Auto hoga        |
+|------------------------|------------------|------------------|
+| Delivery fail          | "Cancelled" dabao | WhatsApp message |
+| Internet cut gaya      | Order check karo  | Order saved hai  |
+| Stock nahi             | Call karo, refund | Kuch nahi        |
+| Prescription reject    | "Rx Rejected"    | WhatsApp message |
+| Galat dawa             | Free replacement  | Kuch nahi        |
+| Price mismatch         | Honor karo, fix  | CSV se update    |
+
+========================================================
+   HELPLINE
+========================================================
+
+   Koi bhi problem aaye → Developer se contact karo:
+   Website ya Admin Panel se koi galti ho to batao.
+
+   Razorpay Support: +91-120-4825600
+   (Monday-Friday, 9am-6pm)
+
+========================================================
+   Diamond Chemist — Aapka Bharosemand Neighbourhood Chemist
+========================================================

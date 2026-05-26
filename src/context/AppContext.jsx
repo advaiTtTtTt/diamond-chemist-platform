@@ -431,7 +431,25 @@ export const AppProvider = ({ children }) => {
         total_amount: finalTotal,
         status: 'Received'
       };
-      const res = await supabase.from('orders').insert([dbOrder]).select().single();
+
+      // Launch Razorpay and capture payment_id before saving
+      const rzpPaymentId = await new Promise((resolve) => {
+        const IS_LIVE_RAZORPAY = !!window.Razorpay;
+        if (!IS_LIVE_RAZORPAY) { resolve(null); return; }
+        const options = {
+          key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+          amount: finalTotal * 100,
+          currency: 'INR',
+          name: 'Diamond Chemist',
+          description: 'Medicine Order',
+          handler: (response) => resolve(response.razorpay_payment_id),
+          modal: { ondismiss: () => resolve(null) },
+          prefill: { name: form.name, contact: form.phone },
+        };
+        new window.Razorpay(options).open();
+      });
+
+      const res = await supabase.from('orders').insert([{ ...dbOrder, razorpay_payment_id: rzpPaymentId }]).select().single();
       order = res.data ? normalizeOrder(res.data) : res.data;
       error = res.error;
     }
@@ -469,6 +487,22 @@ export const AppProvider = ({ children }) => {
     supabase.from('orders').update({ status }).eq('id', orderId).then(({ error }) => {
       if (error) console.error("Error updating order:", error);
     });
+  };
+
+  // Send a pre-filled WhatsApp message to customer for critical status changes
+  const notifyCustomer = (order, status) => {
+    const phone = '91' + order.customer?.phone;
+    let msg = '';
+    if (status === 'Cancelled') {
+      msg = `नमस्ते ${order.customer?.name?.split(' ')[0] || ''},\nआपका Diamond Chemist का ऑर्डर #${order.id} डिलीवर नहीं हो सका। आपका ₹${order.total} का पेमेंट 3-5 दिनों में वापस आ जाएगा।\nकिसी भी सवाल के लिए हमसे संपर्क करें।\n- Diamond Chemist 🏥`;
+    } else if (status === 'Rx Rejected') {
+      msg = `नमस्ते ${order.customer?.name?.split(' ')[0] || ''},\nआपका Diamond Chemist का ऑर्डर #${order.id} रद्द किया गया है क्योंकि जो प्रिस्क्रिप्शन आपने दिया वो मान्य नहीं है। आपका ₹${order.total} का पेमेंट 3-5 दिनों में वापस आ जाएगा।\n- Diamond Chemist 🏥`;
+    } else if (status === 'Out for Delivery') {
+      msg = `नमस्ते ${order.customer?.name?.split(' ')[0] || ''},\nआपकी दवाइयाँ रास्ते में हैं! आपका ऑर्डर #${order.id} अभी डिलीवर हो रहा है। कृपया उपलब्ध रहें।\n- Diamond Chemist 🏥`;
+    }
+    if (msg && phone.length >= 12) {
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
   };
 
   const openAdmin = () => {
@@ -524,7 +558,8 @@ export const AppProvider = ({ children }) => {
     orders, lastOrder, updateOrderStatus,
     adminAuth, adminEmail, setAdminEmail, adminPw, setAdminPw, showAdminModal, setShowAdminModal, openAdmin, loginAdmin, logoutAdmin, authError, isLoggingIn,
     printTrackCode, setPrintTrackCode, points, usePoints, setUsePoints, discount, finalTotal, shareWebsite,
-    customerUser, setCustomerUser, customerProfile, setCustomerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer
+    customerUser, setCustomerUser, customerProfile, setCustomerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer,
+    notifyCustomer
   };
 
   return (
