@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useAppContext } from '../context/AppContext';
 
 export const TermsPage = () => {

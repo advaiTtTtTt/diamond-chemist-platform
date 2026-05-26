@@ -148,7 +148,7 @@ function SettingsStep({ flow }) {
           </div>
           
           {s.sides === 'double' && (
-            <div style={{ marginTop: 16, padding: 12, background: 'var(--surface)', borderRadius: 8, border: '1px solid var(--border-default)' }}>
+            <div style={{ marginTop: 16, padding: 12, background: 'var(--bg-surface)', borderRadius: 8, border: '1px solid var(--border-default)' }}>
               <label style={{ fontSize: 13, marginBottom: 8, display: 'block' }}>Flip Binding Option</label>
               <div style={{ display: 'flex', gap: 16 }}>
                 <label style={{ display: 'flex', gap: 8, alignItems: 'flex-start', cursor: 'pointer', flex: 1 }}>
@@ -367,7 +367,7 @@ export function PrintOrderPage() {
         <button className="back-btn" onClick={() => navigate('print')}><i className="ti ti-arrow-left"></i></button>
         <h2>Print Order</h2>
       </div>
-      <StepBar steps={flow.steps} current={flow.currentStep} />
+      <StepBar current={flow.currentStep} />
       <div className="print-wizard-body">
         {flow.currentStep === 0 && <UploadStep flow={flow} />}
         {flow.currentStep === 1 && <SettingsStep flow={flow} />}

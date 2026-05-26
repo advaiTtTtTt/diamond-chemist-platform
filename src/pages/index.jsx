@@ -117,7 +117,7 @@ export const CartPage = () => {
 };
 
 export const CheckoutPage = () => {
-  const { navigate, form, setForm, errors, locating, detectLocation, handlePrescriptionUpload, isUploadingRx, cart, cartTotal, deliveryFee, placeOrder, isPlacingOrder, points, usePoints, setUsePoints, discount, finalTotal } = useAppContext();
+  const { navigate, form, setForm, errors, locating, detectLocation, handlePrescriptionUpload, isUploadingRx, cart, cartTotal, placeOrder, isPlacingOrder, points, usePoints, setUsePoints, discount, finalTotal } = useAppContext();
   return (
     <div className="page" style={{ maxWidth: 1000 }}>
       <div className="page-header">
@@ -173,7 +173,7 @@ export const CheckoutPage = () => {
               ) : form.prescription ? (
                 <div style={{ position: 'relative', display: 'inline-block' }}>
                   <img src={form.prescription} alt="Prescription" style={{ maxHeight: 100, borderRadius: 4 }} />
-                  <button onClick={() => setForm(prev => ({ ...prev, prescription: null }))} style={{ position: 'absolute', top: -10, right: -10, background: 'var(--error)', color: '#fff', border: 'none', borderRadius: '50%', width: 24, height: 24, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><i className="ti ti-x" style={{ fontSize: 16 }}></i></button>
+                  <button onClick={() => setForm(prev => ({ ...prev, prescription: null }))} style={{ position: 'absolute', top: -10, right: -10, background: 'var(--danger)', color: '#fff', border: 'none', borderRadius: '50%', width: 24, height: 24, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><i className="ti ti-x" style={{ fontSize: 16 }}></i></button>
                 </div>
               ) : (
                 <label style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'var(--text-secondary)' }}>
@@ -389,12 +389,18 @@ export const AdminPage = () => {
                 else if (n.includes('syrup') || n.includes('cough')) cat = 'Cold & Flu';
                 else cat = 'Medicines';
               }
+              const isPopular = String(row.Popular || row.popular || '').toLowerCase() === 'true';
               return {
                 name: name.trim(),
                 price: parseFloat(row.Price || row.price || row.MRP || 0),
                 discount_price: row.DiscountPrice || row.discount_price ? parseFloat(row.DiscountPrice || row.discount_price) : null,
                 category: cat,
-                stock: parseInt(row.Stock || row.stock || row.Qty || 100)
+                stock: parseInt(row.Stock || row.stock || row.Qty || 100),
+                brand: row.Brand || row.brand || 'Diamond Chemist',
+                unit: row.Unit || row.unit || (row.Pack || row.pack) || '1 unit',
+                description: row.Description || row.description || row.Desc || row.desc || '',
+                icon: row.Icon || row.icon || 'ti-pill',
+                popular: isPopular
               };
             }).filter(Boolean);
 
@@ -412,7 +418,7 @@ export const AdminPage = () => {
           }
         }
       });
-    } catch (err) {
+    } catch {
       alert('Error loading parser');
       setIsUploading(false);
     }
@@ -431,7 +437,7 @@ export const AdminPage = () => {
           <button className="back-btn" onClick={() => navigate('home')}><i className="ti ti-arrow-left"></i></button>
           <h2>Admin Dashboard</h2>
         </div>
-        <button onClick={logoutAdmin} style={{ padding: '6px 12px', borderRadius: 6, border: '1px solid var(--error)', color: 'var(--error)', background: 'transparent', cursor: 'pointer', fontWeight: 600 }}>Logout</button>
+        <button onClick={logoutAdmin} style={{ padding: '6px 12px', borderRadius: 6, border: '1px solid var(--danger)', color: 'var(--danger)', background: 'transparent', cursor: 'pointer', fontWeight: 600 }}>Logout</button>
       </div>
       <div className="admin-tabs">
         <button className={`admin-tab ${adminTab === 'orders' ? 'active' : ''}`} onClick={() => setAdminTab('orders')}>Medicine Orders</button>
@@ -450,7 +456,7 @@ export const AdminPage = () => {
         }}>
           {isUploading ? (
             <div>
-              <i className="ti ti-loader ti-spin" style={{fontSize: 32, color: 'var(--primary-600)', marginBottom: 12, display: 'inline-block'}} />
+              <i className="ti ti-loader ti-spin" style={{fontSize: 32, color: 'var(--primary-700)', marginBottom: 12, display: 'inline-block'}} />
               <div style={{fontWeight: 600, color: 'var(--primary-900)'}}>{uploadStats}</div>
             </div>
           ) : (

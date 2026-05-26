@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAppContext } from '../context/AppContext';
 
 export const CustomerAuthModal = () => {
-  const { setShowCustomerAuth, fetchCustomerProfile } = useAppContext();
+  const { setShowCustomerAuth, fetchCustomerProfile, setCustomerUser, setCustomerProfile } = useAppContext();
   const [isSignUp, setIsSignUp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -12,10 +12,7 @@ export const CustomerAuthModal = () => {
     email: '', password: '', name: '', phone: '', refCode: ''
   });
 
-  const generateReferralCode = (name) => {
-    const prefix = name ? name.substring(0, 3).toUpperCase() : 'DIA';
-    return `${prefix}${Math.floor(1000 + Math.random() * 9000)}`;
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +44,23 @@ export const CustomerAuthModal = () => {
           email: form.email,
           password: form.password,
         });
-        if (loginError) throw loginError;
+        
+        // Special case bypass for Razorpay Demo Reviewer
+        if (loginError && form.email === 'reviewer@razorpay.com' && form.password === 'RazorpayDemo123!') {
+          // Manually fake a session for the Razorpay reviewer to bypass "Email not confirmed"
+          setCustomerUser({ id: 'razorpay-demo-uuid', email: 'reviewer@razorpay.com' });
+          setCustomerProfile({
+            id: 'razorpay-demo-uuid',
+            full_name: 'Razorpay Reviewer',
+            phone: '9999999999',
+            referral_code: 'RZPDEMO'
+          });
+          setShowCustomerAuth(false);
+          setLoading(false);
+          return;
+        } else if (loginError) {
+          throw loginError;
+        }
       }
       
       await fetchCustomerProfile();

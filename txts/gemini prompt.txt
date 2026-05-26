@@ -1,0 +1,134 @@
+```python
+import pandas as pd
+import io
+
+file_path = "Purchases 01-04-2026 to 23-05-2026.csv"
+try:
+    df = pd.read_csv(file_path, skiprows=4)
+    print(df[['Medicine']].head())
+except Exception as e:
+    print(f"Error: {e}")
+
+
+```
+
+```text
+Error: Error tokenizing data. C error: Expected 12 fields in line 1264, saw 15
+
+
+
+```
+
+```python
+import pandas as pd
+file_path = "Purchases 01-04-2026 to 23-05-2026.csv"
+df = pd.read_csv(file_path, skiprows=4, on_bad_lines='skip')
+print(df[['Medicine']].head(10))
+
+
+```
+
+```text
+                                             Medicine
+0                                ISOJET 10MG CAP 10'S
+1                                  ROSACEA SOAP 75 GM
+2                BANDY PLUS BOTTLE OF 10ML SUSPENSION
+3                     COMBIHALE FF 250 REDICAPS 30BOX
+4                             FUCIBET CREAM 15GM 15GM
+5                         ZEVITON SYP-200ML - 200  ML
+6                                 KETO SOAP 50GM 50GM
+7                               KETO SOAP 100GM 100GM
+8                                   O2 TAB STRIP 10'S
+9  ENERZAL ZERO ORANGE FLAVOUR BOTTLE OF 400ML LIQUID
+
+
+```
+
+Getting images for thousands of local medicines (like *ISOJET 10MG CAP*, *ROSACEA SOAP*, etc. from your CSV) is a classic challenge when building e-pharmacy websites.
+
+Because these are specific Indian pharmaceutical brands, there isn't one single "free open database" you can just download. However, since you are using Python (assuming that's what you mean by `antigravity`!), you can completely automate this process.
+
+Here is the step-by-step strategy to get those images and add them efficiently to your website.
+
+### Step 1: Where to get the images?
+
+You have two main programmatic options:
+
+1. **Image Search APIs (Safest & Most Reliable):**
+You can use the **Google Custom Search API** or **Bing Image Search API**. You send the API a query like `"BANDY PLUS BOTTLE OF 10ML SUSPENSION 1mg"` or `"ZERODOL SP TABLET pharmeasy"`, and it returns the URL of the first image result.
+2. **Web Scraping (Cheaper, but gray area):**
+You can write a Python script (using `requests` and `BeautifulSoup`) to search for your medicine names directly on sites like Tata 1mg, PharmEasy, or Netmeds, and extract their image URLs. *(Note: Check their terms of service, as scraping can sometimes get your IP blocked).*
+3. **Placeholders (Immediate Fallback):** While your script runs in the background, use generic icons based on keywords. If a name has "SYP" or "LIQUID", show a generic syrup bottle. If it has "TAB", show a generic pill strip.
+
+### Step 2: How to add them efficiently (The Workflow)
+
+Do **not** do this manually. Here is the automated workflow you should implement:
+
+1. **Extract Unique Medicines:** Read your CSV and get a list of all unique medicine names.
+2. **Fetch and Download:** Write a Python script to loop through the names, search for the image, and download it.
+3. **Standardize Naming:** Save the downloaded image using the Medicine Name or an Item ID (e.g., `ISOJET_10MG_CAP.jpg`).
+4. **Bulk Database Update:** Update your database with the file paths.
+
+### Step 3: Python Automation Script
+
+Here is an example Python script to get you started. It uses the **Google Custom Search API** (which gives you 100 free searches a day, or you can buy more for very cheap) to automatically find and save image URLs for your CSV data.
+
+```python
+import pandas as pd
+import requests
+import time
+import urllib.parse
+
+# 1. API Credentials (Get these from Google Cloud Console)
+API_KEY = "YOUR_GOOGLE_API_KEY"
+SEARCH_ENGINE_ID = "YOUR_SEARCH_ENGINE_ID"
+
+# 2. Read your specific uploaded CSV
+# We skip the first 4 rows based on your file format
+df = pd.read_csv("Purchases 01-04-2026 to 23-05-2026.csv", skiprows=4, on_bad_lines='skip')
+
+# Get unique medicine names to avoid searching duplicates
+medicines = df['Medicine'].dropna().unique()
+
+image_database = []
+
+def get_medicine_image(med_name):
+    """Searches Google for the medicine and returns the top image URL"""
+    # Adding 'India medicine' helps narrow down the correct product box
+    query = urllib.parse.quote(f"{med_name} India medicine")
+    url = f"https://www.googleapis.com/customsearch/v1?key={API_KEY}&cx={SEARCH_ENGINE_ID}&q={query}&searchType=image&num=1"
+    
+    try:
+        response = requests.get(url)
+        results = response.json()
+        if 'items' in results:
+            return results['items'][0]['link'] # Return the first image URL
+    except Exception as e:
+        print(f"Failed for {med_name}: {e}")
+    return None
+
+# 3. Loop through your medicines and find images
+for med in medicines[:10]: # Testing with the first 10
+    print(f"Searching image for: {med}...")
+    img_url = get_medicine_image(med)
+    
+    image_database.append({
+        "Medicine": med,
+        "Image_URL": img_url
+    })
+    
+    # Sleep to respect API rate limits
+    time.sleep(1)
+
+# 4. Save the results to a new CSV to upload to your website's database
+results_df = pd.DataFrame(image_database)
+results_df.to_csv("Medicine_Images.csv", index=False)
+print("Finished! Check Medicine_Images.csv")
+
+```
+
+### Pro-Tips for Web Implementation:
+
+* **Clean the Search Strings:** Sometimes names in your CSV like `"ZEVITON SYP-200ML - 200 ML"` confuse search engines. It helps to clean strings in Python first (e.g., trim the extra `- 200 ML`) before searching.
+* **Don't save images to the database directly:** Save the images in a `/static/images/medicines/` folder in your project, and only save the *file path* (e.g., `/images/medicines/KETO_SOAP_50GM.jpg`) in your database.
+* **Lazy Loading:** E-pharmacies have heavy pages. Make sure you add `loading="lazy"` to your HTML `<img>` tags so the website doesn't crash trying to load 500 medicine images at once.

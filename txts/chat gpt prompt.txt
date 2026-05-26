@@ -1,0 +1,152 @@
+For a local chemist site with ~857 medicines, manually downloading images will become painful. The scalable approach is:
+
+## Option 1 — Use an image API/database (recommended)
+
+Many medicine databases already have package images.
+
+Possible sources:
+
+* [1mg](https://www.1mg.com?utm_source=chatgpt.com)
+* [Netmeds](https://www.netmeds.com?utm_source=chatgpt.com)
+* [PharmEasy](https://pharmeasy.in?utm_source=chatgpt.com)
+* [RxNorm API](https://rxnav.nlm.nih.gov?utm_source=chatgpt.com) (drug info, not always images)
+* [OpenFDA](https://open.fda.gov?utm_source=chatgpt.com) (drug data)
+
+Problem: Indian medicine packaging images are often not exposed through official APIs.
+
+---
+
+## Option 2 — Automated image collection workflow (likely best for your case)
+
+Your CSV already contains medicine names.
+
+Workflow:
+
+### Step 1
+
+Clean medicine names:
+
+Example:
+
+```
+ZEROLAC POWDER 400GM
+→ Zerolac Powder 400g
+```
+
+Remove:
+
+* TAB
+* CAPS
+* RESPULES
+* PCS
+* extra codes
+
+---
+
+### Step 2
+
+Create search terms automatically:
+
+```
+medicine_name + " medicine pack"
+```
+
+Examples:
+
+```
+"Duolin 3 Respules medicine pack"
+"Electral Powder sachet"
+"Sporlac Eva Capsules"
+```
+
+---
+
+### Step 3
+
+Use browser automation:
+
+Tools:
+
+* Python + Playwright
+* Python + Selenium
+
+Script flow:
+
+1. Read CSV
+2. Search Google Images
+3. Download first medicine package image
+4. Rename:
+
+```
+duolin-3-respules.jpg
+electral-powder.jpg
+```
+
+5. Store:
+
+```
+website/
+    images/
+        medicines/
+```
+
+---
+
+### Step 4
+
+Link automatically in website database:
+
+Example JSON:
+
+```json
+{
+"name":"Duolin 3 Respules",
+"image":"images/medicines/duolin-3-respules.jpg"
+}
+```
+
+Then Antigravity reads the image path.
+
+---
+
+## Better approach for your website
+
+Do not store images inside Antigravity manually one-by-one.
+
+Structure:
+
+```
+medicines.csv
+
+Name,Price,Image
+Duolin 3 Respules,50,/images/duolin.jpg
+Electral Powder,20,/images/electral.jpg
+```
+
+Then generate pages automatically.
+
+---
+
+## For missing images
+
+Some local medicines will have no public images.
+
+Fallback image:
+
+```
+[Medicine Icon]
+Name: Duolin 3 Respules
+```
+
+Generate placeholders automatically.
+
+---
+
+Since you already uploaded the medicine dataset, I can process all ~857 medicine names and generate:
+
+* cleaned medicine names
+* image search queries
+* image filenames
+* ready-to-import CSV for Antigravity
+
+That would save substantial manual work.

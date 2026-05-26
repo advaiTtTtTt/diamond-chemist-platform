@@ -1,13 +1,23 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
 
 const AppContext = createContext();
 
 export const useAppContext = () => useContext(AppContext);
 
+const normalizeOrder = (o) => ({
+  ...o,
+  total: o.total !== undefined ? o.total : o.total_amount,
+  time: o.time || (o.created_at ? new Date(o.created_at).toLocaleString('en-IN') : ''),
+  customer: o.customer || o.customer_info || {},
+});
+
 export const AppProvider = ({ children }) => {
-  const [page, setPage] = useState('home');
+  const [page, setPage] = useState(() => {
+    const hash = window.location.hash.slice(1);
+    return hash || 'home';
+  });
   const [cart, setCart] = useState([]);
   const [search, setSearch] = useState('');
   const [aiResults, setAiResults] = useState(null);
@@ -81,9 +91,9 @@ export const AppProvider = ({ children }) => {
       const { data: sessionData } = await supabase.auth.getSession();
       if (sessionData?.session) {
         const { data, error } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
-        if (data && !error) setOrders(data);
+        if (data && !error) setOrders(data.map(normalizeOrder));
       } else {
-        setOrders([]); // Non-admins don't need to fetch the historical orders list
+        setOrders([]);
       }
     };
     fetchOrders();
@@ -111,7 +121,18 @@ export const AppProvider = ({ children }) => {
     };
   }, []);
 
-  const fetchCustomerProfile = async () => {
+  // Browser history support
+  useEffect(() => {
+    const onPop = (e) => {
+      const p = e.state?.page || window.location.hash.slice(1) || 'home';
+      setPage(p);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  const fetchCustomerProfile = useCallback(async () => {
     if (!customerUser) return;
     try {
       const { data: profile } = await supabase.from('profiles').select('*').eq('id', customerUser.id).single();
@@ -129,11 +150,12 @@ export const AppProvider = ({ children }) => {
     } catch (e) {
       console.log('Error fetching profile:', e);
     }
-  };
+  }, [customerUser]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchCustomerProfile();
-  }, [customerUser]);
+  }, [fetchCustomerProfile]);
 
   const cartCount = cart.reduce((s, c) => s + c.qty, 0);
   const cartTotal = cart.reduce((s, c) => s + c.qty * c.price, 0);
@@ -159,7 +181,11 @@ export const AppProvider = ({ children }) => {
   const removeFromCart = (id) => setCart(prev => prev.filter(c => c.id !== id));
   const getQty = (id) => { const c = cart.find(x => x.id === id); return c ? c.qty : 0; };
 
-  const navigate = (p) => { setPage(p); window.scrollTo(0, 0); };
+  const navigate = (p) => {
+    setPage(p);
+    window.scrollTo(0, 0);
+    window.history.pushState({ page: p }, '', `#${p === 'home' ? '' : p}`);
+  };
 
   const doSearch = async (q) => {
     if (!q.trim()) return;
@@ -271,7 +297,7 @@ export const AppProvider = ({ children }) => {
       
       const dist = getDistance(SHOP_LAT, SHOP_LON, lat, lon);
       
-      const IS_DEMO = false;
+      const IS_DEMO = import.meta.env.VITE_DEMO_MODE === 'true';
       if (!IS_DEMO && dist > 50) {
         alert(`We only deliver within 50 metres. Your location is approximately ${Math.round(dist)} metres away.`);
         setLocating(false);
@@ -371,7 +397,7 @@ export const AppProvider = ({ children }) => {
     if (!form.address.trim()) errs.address = 'Street/Area is required';
     
     // Hardcoded to true for demo so you don't need to restart the server!
-    const IS_DEMO = false; 
+    const IS_DEMO = import.meta.env.VITE_DEMO_MODE === 'true';
     if (!IS_DEMO) {
       if (!form.gps) errs.address = 'Please use "Detect Location" to verify you are within our 50-metre delivery zone.';
     }
@@ -406,7 +432,7 @@ export const AppProvider = ({ children }) => {
         status: 'Received'
       };
       const res = await supabase.from('orders').insert([dbOrder]).select().single();
-      order = res.data;
+      order = res.data ? normalizeOrder(res.data) : res.data;
       error = res.error;
     }
     
@@ -498,7 +524,7 @@ export const AppProvider = ({ children }) => {
     orders, lastOrder, updateOrderStatus,
     adminAuth, adminEmail, setAdminEmail, adminPw, setAdminPw, showAdminModal, setShowAdminModal, openAdmin, loginAdmin, logoutAdmin, authError, isLoggingIn,
     printTrackCode, setPrintTrackCode, points, usePoints, setUsePoints, discount, finalTotal, shareWebsite,
-    customerUser, customerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer
+    customerUser, setCustomerUser, customerProfile, setCustomerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer
   };
 
   return (

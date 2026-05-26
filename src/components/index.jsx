@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+// eslint-disable-next-line react-refresh/only-export-components
 export * from './CustomerAuthModal';
 import { useAppContext } from '../context/AppContext';
 import { CATEGORIES, QUICK_SEARCHES } from '../data/constants';
 
 export const Navbar = () => {
   const { navigate, cartCount, badgeBounce, shareWebsite, points, customerProfile, setShowCustomerAuth, logoutCustomer, openAdmin } = useAppContext();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const closeAndNav = (p) => { setMobileMenuOpen(false); navigate(p); };
   return (
+    <>
     <nav className="navbar">
       <div className="nav-brand" style={{ cursor: 'pointer' }} onClick={() => navigate('home')}>
         <img src="logo.jpeg" alt="Diamond Chemist" />
@@ -44,8 +48,41 @@ export const Navbar = () => {
           {cartCount > 0 && <span className={'cart-badge' + (badgeBounce ? ' bounce' : '')}>{cartCount}</span>}
         </button>
         <button className="admin-link" onClick={openAdmin}>Admin</button>
+        <button className="hamburger-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <i className={`ti ${mobileMenuOpen ? 'ti-x' : 'ti-menu-2'}`}></i>
+        </button>
       </div>
     </nav>
+    {mobileMenuOpen && (
+      <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)}>
+        <div className="mobile-menu" onClick={e => e.stopPropagation()}>
+          <div className="mobile-menu-header">
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 700, color: 'var(--primary-900)' }}>Menu</span>
+            <button className="mobile-menu-close" onClick={() => setMobileMenuOpen(false)}><i className="ti ti-x"></i></button>
+          </div>
+          {customerProfile && (
+            <div style={{ padding: '12px 14px', marginBottom: 8, background: 'var(--primary-50)', borderRadius: 10 }}>
+              <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--primary-900)' }}>Hi, {customerProfile.full_name?.split(' ')[0]}</div>
+              {points > 0 && <div style={{ fontSize: 12, color: '#D97706', marginTop: 2 }}>🪙 {points} Diamond Points</div>}
+            </div>
+          )}
+          <button className="mobile-menu-link" onClick={() => closeAndNav('home')}><i className="ti ti-home"></i>Home</button>
+          <button className="mobile-menu-link" onClick={() => closeAndNav('shop')}><i className="ti ti-shopping-bag"></i>Shop Medicines</button>
+          <button className="mobile-menu-link" onClick={() => closeAndNav('print')}><i className="ti ti-printer"></i>Print Service</button>
+          <button className="mobile-menu-link" onClick={() => closeAndNav('orders')}><i className="ti ti-receipt"></i>My Orders</button>
+          <button className="mobile-menu-link" onClick={() => closeAndNav('about')}><i className="ti ti-info-circle"></i>About Us</button>
+          <button className="mobile-menu-link" onClick={() => { setMobileMenuOpen(false); shareWebsite(); }} style={{ color: 'var(--primary-700)' }}><i className="ti ti-share"></i>Share & Earn</button>
+          <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid var(--border-default)' }}>
+            {!customerProfile ? (
+              <button className="mobile-menu-link" onClick={() => { setMobileMenuOpen(false); setShowCustomerAuth(true); }} style={{ fontWeight: 600, color: 'var(--primary-700)' }}><i className="ti ti-login"></i>Login / Sign Up</button>
+            ) : (
+              <button className="mobile-menu-link" onClick={() => { setMobileMenuOpen(false); logoutCustomer(); }} style={{ color: 'var(--danger)' }}><i className="ti ti-logout"></i>Logout</button>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 
@@ -131,6 +168,10 @@ export const ServicesSection = () => {
 export const ProductCard = ({ p }) => {
   const { getQty, addToCart, updateQty } = useAppContext();
   const qty = getQty(p.id);
+  const icon = p.icon || 'ti-pill';
+  const brand = p.brand || 'Diamond Chemist';
+  const unit = p.unit || (p.stock ? `Stock: ${p.stock}` : '1 unit');
+  const desc = p.desc || p.description || p.category || '';
   
   return (
     <div className="prod-card">
@@ -138,10 +179,10 @@ export const ProductCard = ({ p }) => {
         <span className="chip chip-cat">{p.category}</span>
         {p.popular && <span className="chip chip-pop">★ Popular</span>}
       </div>
-      <div className="prod-icon-box"><i className={'ti ' + p.icon}></i></div>
+      <div className="prod-icon-box"><i className={'ti ' + icon}></i></div>
       <div className="prod-name">{p.name}</div>
-      <div className="prod-meta">{p.brand} · {p.unit}</div>
-      <div className="prod-desc">{p.desc}</div>
+      <div className="prod-meta">{brand} · {unit}</div>
+      <div className="prod-desc">{desc}</div>
       <div className="prod-price">₹{p.price}</div>
       {qty === 0 ? (
         <button className="btn-add" onClick={() => addToCart(p)}>Add to Cart</button>

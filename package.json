@@ -11,9 +11,15 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",
+    "axios": "^1.16.1",
     "csv-parse": "^6.2.1",
+    "csv-parser": "^3.2.1",
+    "duckduckgo-images-api": "^1.0.5",
+    "fs-extra": "^11.3.5",
+    "googlethis": "^1.8.0",
     "papaparse": "^5.5.3",
     "pdf-lib": "^1.17.1",
+    "playwright": "^1.60.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },

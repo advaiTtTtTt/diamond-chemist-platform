@@ -176,7 +176,7 @@ export function usePrintFlow() {
     setPickupCode(data.pickup_code);
     setPaymentStatus('paying');
 
-    await loadRazorpay();
+    if (!window.Razorpay) throw new Error('Payment system unavailable. Please reload the page.');
     return new Promise((resolve, reject) => {
       const rzp = new window.Razorpay({
         key: data.razorpay_key_id,
@@ -227,15 +227,6 @@ export function usePrintFlow() {
       rzp.open();
     });
   };
-
-  const loadRazorpay = () => new Promise((resolve, reject) => {
-    if (window.Razorpay) { resolve(); return; }
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.onload = resolve;
-    script.onerror = reject;
-    document.body.appendChild(script);
-  });
 
   return {
     currentStep, setCurrentStep, steps: STEPS,

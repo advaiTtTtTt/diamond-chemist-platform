@@ -1,0 +1,27 @@
+Got it — Diamond Chemist, Dombivli. I can see the medicine list clearly. Now let me give you a practical breakdown.
+
+---
+
+**Getting the images**
+
+The easiest legal source for Indian medicine product images is **1mg.com** or **PharmEasy** — they have clean, high-quality pack photos for virtually every medicine in your list (Thyronorm, Deplatt, Glyciphage, etc.). Here's how to do it efficiently:
+
+1. Go to [1mg.com](https://www.1mg.com) and search each medicine name
+2. On the product page, right-click the image → "Open image in new tab" → save it
+3. Name the file the same as your medicine (e.g., `thyronorm-50mcg.jpg`) so it's easy to map
+
+For **bulk efficiency**, since you have a lot of meds, you can search multiple at once and batch-save. Alternatively, I can write you a Python script that automatically searches 1mg and downloads images — just say the word.
+
+---
+
+**Adding them to your website efficiently**
+
+I'm not personally familiar with **Antigravity** as a builder — could you tell me a bit more about it? (Is it like a drag-and-drop builder, or do you write code in it?) That'll help me tell you the fastest way to bulk-upload and link images to the right products.
+
+---
+
+**One thing to keep in mind**
+
+Since this is a local chemist's website (not an e-commerce store selling online), images are mostly for display/catalog purposes — that's totally fine. Just avoid hotlinking images directly from 1mg (download and host them yourself on your site).
+
+Want me to also extract the full medicine list from the CSV so you have a clean checklist to work through?
