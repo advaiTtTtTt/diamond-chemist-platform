@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppProvider, useAppContext } from './context/AppContext';
-import { Navbar, Footer, CustomerAuthModal } from './components';
+import { Navbar, Footer, CustomerAuthModal, ShareModal } from './components';
 import { HomePage, ShopPage, CartPage, CheckoutPage, SuccessPage, AboutPage, AdminPage, PrivacyPage, UserOrdersPage, TermsPage, RefundPage, ShippingPage, ContactPage } from './pages';
 import { PrintLandingPage, PrintOrderPage, PrintSuccessScreen, PrintTrackingScreen } from './features/print';
 
@@ -35,12 +35,13 @@ class ErrorBoundary extends React.Component {
 }
 
 function AppContent() {
-  const { page, navigate, showAdminModal, setShowAdminModal, adminEmail, setAdminEmail, adminPw, setAdminPw, loginAdmin, authError, isLoggingIn, lastOrder, showCustomerAuth } = useAppContext();
+  const { page, navigate, showAdminModal, setShowAdminModal, adminEmail, setAdminEmail, adminPw, setAdminPw, loginAdmin, authError, isLoggingIn, lastOrder, showCustomerAuth, showShareModal } = useAppContext();
 
   return (
     <div>
       <Navbar />
       {showCustomerAuth && <CustomerAuthModal />}
+      {showShareModal && <ShareModal />}
       
       {/* Active Order Indicator */}
       {lastOrder && lastOrder.status !== 'Delivered' && page === 'home' && (

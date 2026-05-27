@@ -375,11 +375,11 @@ export const AppProvider = ({ children }) => {
           setForm(prev => ({ ...prev, prescription: data.publicUrl }));
           setIsUploadingRx(false);
         }, 'image/jpeg', 0.6);
-      }
-      img.src = event.target.result;
-    }
+    };
     reader.readAsDataURL(file);
   };
+  
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const shareWebsite = async () => {
     if (!customerProfile) {
@@ -387,21 +387,7 @@ export const AppProvider = ({ children }) => {
       setShowCustomerAuth(true);
       return;
     }
-    const refLink = `${window.location.origin}/?ref=${customerProfile.referral_code}`;
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: 'Diamond Chemist',
-          text: `Use my code ${customerProfile.referral_code} to get 20 FREE Diamond Points on sign up!`,
-          url: refLink,
-        });
-      } else {
-        await navigator.clipboard.writeText(refLink);
-        alert('Your unique Referral Link copied to clipboard!');
-      }
-    } catch (err) {
-      console.log('Share error:', err);
-    }
+    setShowShareModal(true);
   };
 
   const placeOrder = async () => {
@@ -610,6 +596,7 @@ export const AppProvider = ({ children }) => {
     orders, lastOrder, updateOrderStatus,
     adminAuth, adminEmail, setAdminEmail, adminPw, setAdminPw, showAdminModal, setShowAdminModal, openAdmin, loginAdmin, logoutAdmin, authError, isLoggingIn,
     printTrackCode, setPrintTrackCode, points, usePoints, setUsePoints, discount, finalTotal, shareWebsite,
+    showShareModal, setShowShareModal,
     customerUser, setCustomerUser, customerProfile, setCustomerProfile, showCustomerAuth, setShowCustomerAuth, fetchCustomerProfile, logoutCustomer,
     notifyCustomer, verifyDeliveryOtp,
     pendingRefCode, setPendingRefCode

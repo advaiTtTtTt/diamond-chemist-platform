@@ -304,3 +304,48 @@ export const LoyaltySection = () => {
   );
 };
 
+export const ShareModal = () => {
+  const { customerProfile, setShowShareModal } = useAppContext();
+  const [copied, setCopied] = useState(false);
+
+  if (!customerProfile) return null;
+
+  const refLink = `${window.location.origin}/?ref=${customerProfile.referral_code}`;
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(refLink);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={() => setShowShareModal(false)}>
+      <div className="modal-card" onClick={e => e.stopPropagation()} style={{ textAlign: 'center', padding: '30px 20px', maxWidth: 400, position: 'relative' }}>
+        <button onClick={() => setShowShareModal(false)} style={{ position: 'absolute', top: 12, right: 12, background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 24, color: 'var(--text-secondary)' }}>
+          <i className="ti ti-x"></i>
+        </button>
+        <div style={{ background: '#FEF3C7', width: 64, height: 64, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#D97706', fontSize: 32 }}>
+          <i className="ti ti-gift"></i>
+        </div>
+        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, marginBottom: 8, color: 'var(--primary-900)' }}>Share & Earn</h3>
+        <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 20, lineHeight: 1.5 }}>
+          Share your referral link with friends. They get 20 Diamond Points on signup, and you earn 50 points when they place their first order!
+        </p>
+        <div style={{ background: 'var(--bg-subtle)', border: '1px dashed var(--border-strong)', borderRadius: 8, padding: 12, marginBottom: 16 }}>
+          <span style={{ fontSize: 12, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700 }}>Your Referral Code</span>
+          <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--primary-700)', letterSpacing: 2, marginTop: 4 }}>
+            {customerProfile.referral_code}
+          </div>
+        </div>
+        <button className="btn-primary" onClick={copyLink} style={{ width: '100%', padding: 14, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: copied ? 'var(--success)' : 'var(--primary-700)' }}>
+          {copied ? <><i className="ti ti-check"></i> Link Copied!</> : <><i className="ti ti-copy"></i> Copy Referral Link</>}
+        </button>
+      </div>
+    </div>
+  );
+};
+
