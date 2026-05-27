@@ -6,4 +6,4 @@ export const CATEGORIES = [
   { name: 'Stationery', icon: 'ti-pencil' }
 ];
 
-export const QUICK_SEARCHES = ['Crocin', 'Bandage', 'Vitamins', 'Cough Syrup', 'Pen'];
+export const QUICK_SEARCHES = ['Calpol', 'Electral', 'Thyronorm', 'Cough Syrup', 'Betnovate'];

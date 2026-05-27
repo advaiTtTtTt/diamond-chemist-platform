@@ -211,27 +211,22 @@ export const AppProvider = ({ children }) => {
     setAiLoading(true); setAiQuery(q); setAiResults(null);
     await new Promise(r => setTimeout(r, 800));
     const lower = q.toLowerCase();
-    const keywords = {
-      'fever': ['Dolo 650', 'Crocin Advance', 'Digital Thermometer'],
-      'cold': ['Cetirizine 10mg', 'Crocin Advance', 'Adulsa Cough Syrup'],
-      'cough': ['Cetirizine 10mg', 'Adulsa Cough Syrup'],
-      'pain': ['Dolo 650', 'Crocin Advance'],
-      'stomach': ['Pan 40', 'Gripe Water'],
-      'acidity': ['Pan 40'],
-      'vitamin': ['Vitamin C 500mg', 'B-Complex Forte', 'Calcium + D3'],
-      'immunity': ['Vitamin C 500mg'],
-      'wound': ['Dettol Antiseptic', 'Band-Aid Pack'],
-      'baby': ['Himalaya Baby Cream', 'Gripe Water'],
-      'skin': ['Vaseline Body Lotion', 'Himalaya Baby Cream'],
-      'allergy': ['Cetirizine 10mg'],
-      'infection': ['Azithral 500', 'Dettol Antiseptic'],
-      'bone': ['Calcium + D3'],
-      'energy': ['B-Complex Forte', 'Vitamin C 500mg'],
-      'thermometer': ['Digital Thermometer'],
-      'oximeter': ['Pulse Oximeter'],
-      'bandage': ['Band-Aid Pack'],
-      'lotion': ['Vaseline Body Lotion'],
-      'adulsa': ['Adulsa Cough Syrup'],
+    const queryWords = lower.split(/\s+/).filter(w => w.length > 1);
+
+    // Symptom hints → search terms matched against real inventory only
+    const symptomTerms = {
+      fever: ['calpol', 'paracetamol', 'pcm', 'dolo', 'crocin', 'feb'],
+      cold: ['cough', 'syrup', 'syp', 'cold', 'cetirizine', 'levocet', 'nasal'],
+      cough: ['cough', 'syrup', 'syp', 'ambrolite', 'ascoril', 'benadryl'],
+      pain: ['pain', 'diclofenac', 'aceclofenac', 'nimesulide', 'combiflam', 'spasm'],
+      stomach: ['pan', 'pantop', 'omeprazole', 'digene', 'antacid', 'domperidone'],
+      acidity: ['digene', 'eno', 'antacid', 'pantop', 'omeprazole'],
+      vitamin: ['vitamin', 'b-complex', 'calcium', 'd3', 'electral', 'supradyn'],
+      skin: ['cream', 'lotion', 'soap', 'ointment', 'betnovate', 'candid'],
+      allergy: ['cetirizine', 'levocet', 'fexofenadine', 'montelukast'],
+      diabetes: ['metformin', 'glyciphage', 'glimepiride', 'vildagliptin'],
+      bp: ['telma', 'telmisartan', 'amlodipine', 'atenolol'],
+      thyroid: ['thyronorm', 'thyroxine'],
     };
 
     // Levenshtein distance for fuzzy matching (spell check)
@@ -254,23 +249,26 @@ export const AppProvider = ({ children }) => {
     };
 
     let matched = new Set();
-    const queryWords = lower.split(' ').filter(w => w.length > 2);
-    
-    // Check keywords with fuzzy match
-    Object.keys(keywords).forEach(k => {
+
+    // Map symptom words to search terms, then match real products
+    Object.entries(symptomTerms).forEach(([symptom, terms]) => {
       queryWords.forEach(qw => {
         const threshold = qw.length > 5 ? 3 : 2;
-        if (k.includes(qw) || getEditDistance(k, qw) <= threshold) {
-          keywords[k].forEach(n => matched.add(n));
+        if (symptom.includes(qw) || getEditDistance(symptom, qw) <= threshold) {
+          products.forEach(p => {
+            const hay = `${p.name} ${p.desc || ''} ${p.brand || ''}`.toLowerCase();
+            if (terms.some(t => hay.includes(t))) matched.add(p.name);
+          });
         }
       });
     });
 
-    // Check product names with fuzzy match
+    // Direct product name / brand / description search
     products.forEach(p => {
       const pNameLower = p.name.toLowerCase();
-      const pDescLower = p.desc.toLowerCase();
-      if (pNameLower.includes(lower) || pDescLower.includes(lower) || p.brand.toLowerCase().includes(lower)) {
+      const pDescLower = (p.desc || '').toLowerCase();
+      const pBrandLower = (p.brand || '').toLowerCase();
+      if (pNameLower.includes(lower) || pDescLower.includes(lower) || pBrandLower.includes(lower)) {
         matched.add(p.name);
       }
       queryWords.forEach(qw => {
