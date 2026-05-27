@@ -1,3 +1,15 @@
+-- =============================================================================
+-- sync_products.sql
+-- Removes ALL products from the database that are NOT in the chemist's CSV,
+-- then upserts only the real inventory from the CSV.
+-- Run this in Supabase SQL Editor to clean up the catalog.
+-- =============================================================================
+
+-- Step 1: Delete ALL existing products (nuclear clean slate)
+DELETE FROM public.products;
+
+-- Step 2: Insert the real inventory from the chemist's CSV
+-- (This is the content of upload_chemist_db.sql — auto-generated from the CSV)
 -- Auto-generated from "database by chemist .csv" (856 unique products, duplicates merged)
 -- Run this in Supabase SQL editor to load real chemist inventory.
 -- Prices are MRP from purchase records (rounded up).

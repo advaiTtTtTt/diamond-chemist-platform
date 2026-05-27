@@ -133,20 +133,6 @@ export const ServicesSection = () => {
           </div>
         </div>
 
-        <div className="service-box" onClick={() => { setSelCat('Stationery'); navigate('shop'); }} style={{
-          background: 'var(--bg-surface)', padding: '24px', borderRadius: '16px', 
-          border: '1px solid var(--border-default)', cursor: 'pointer', transition: 'all 0.2s ease',
-          display: 'flex', alignItems: 'flex-start', gap: '16px'
-        }}>
-          <div style={{ width: 56, height: 56, borderRadius: '12px', background: '#FCE7F3', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <i className="ti ti-pencil" style={{ fontSize: 28, color: '#DB2777' }}></i>
-          </div>
-          <div>
-            <h3 style={{ fontSize: 18, marginBottom: 4, color: 'var(--primary-900)', fontFamily: "'Outfit', sans-serif", fontWeight: 700 }}>Stationery</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: 13, lineHeight: 1.4 }}>School supplies, notebooks, pens, and office needs.</p>
-          </div>
-        </div>
-
         <div className="service-box" onClick={() => navigate('print')} style={{
           background: 'var(--bg-surface)', padding: '24px', borderRadius: '16px', 
           border: '1px solid var(--border-default)', cursor: 'pointer', transition: 'all 0.2s ease',

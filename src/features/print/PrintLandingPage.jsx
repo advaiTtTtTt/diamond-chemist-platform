@@ -12,8 +12,23 @@ export function PrintLandingPage() {
   };
 
   return (
-    <div className="print-page">
-      <section className="print-hero">
+    <div style={{ position: 'relative' }}>
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, 
+        backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+        zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: 'rgba(255,255,255,0.5)'
+      }}>
+        <div style={{ 
+          background: 'var(--primary-900)', color: 'white', padding: '20px 40px', 
+          borderRadius: 16, fontSize: 28, fontWeight: 700,
+          boxShadow: '0 10px 30px rgba(0,0,0,0.2)' 
+        }}>
+          Feature Coming Soon 🚀
+        </div>
+      </div>
+      <div className="print-page" style={{ pointerEvents: 'none', userSelect: 'none', filter: 'blur(2px)' }}>
+        <section className="print-hero">
         <div className="print-hero-inner">
           <div className="print-hero-pill">🖨️ Print in minutes · Pickup at the shop</div>
           <h1 className="print-hero-title">Upload. Pay. Collect.</h1>
@@ -117,6 +132,7 @@ export function PrintLandingPage() {
           </div>
         </div>
       </section>
+    </div>
     </div>
   );
 }

@@ -9,10 +9,10 @@ import { Hero, CatSection, PopularSection, SearchBar, ProductCard, ServicesSecti
 export const HomePage = () => (
   <div style={{ animation: 'fadeIn .2s ease' }}>
     <Hero />
+    <SearchBar />
     <ServicesSection />
     <CatSection />
     <LoyaltySection />
-    <PopularSection />
   </div>
 );
 

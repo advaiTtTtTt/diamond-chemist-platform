@@ -69,6 +69,9 @@ for (let i = headerIdx + 1; i < lines.length; i++) {
   const qty = parseInt(parts[6], 10);
 
   if (!name || Number.isNaN(mrp)) continue;
+  // Skip summary/junk rows from the CSV
+  if (/^total purchased|^computed values|^ computed/i.test(name)) continue;
+  if (mrp <= 0) continue;
 
   const key = name.toUpperCase();
   const existing = merged.get(key);
