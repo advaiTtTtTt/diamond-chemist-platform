@@ -5,7 +5,7 @@ import { useAppContext } from '../context/AppContext';
 import { CATEGORIES, QUICK_SEARCHES } from '../data/constants';
 
 export const Navbar = () => {
-  const { navigate, cartCount, badgeBounce, shareWebsite, points, customerProfile, setShowCustomerAuth, logoutCustomer, openAdmin } = useAppContext();
+  const { navigate, cartCount, badgeBounce, shareWebsite, points, customerProfile, setShowCustomerAuth, logoutCustomer, openAdmin, setShowShareModal } = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const closeAndNav = (p) => { setMobileMenuOpen(false); navigate(p); };
   return (
@@ -22,7 +22,7 @@ export const Navbar = () => {
         <button className="nav-link" onClick={() => navigate('orders')}>My Orders</button>
         <button className="nav-link" onClick={() => navigate('about')}>About</button>
         <button className="nav-link" onClick={shareWebsite} style={{ color: 'var(--primary-700)', fontWeight: 600 }}>
-          <i className="ti ti-share" style={{ marginRight: 4 }}></i>Share & Earn
+          <i className="ti ti-gift" style={{ marginRight: 6 }}></i> Share & Earn
         </button>
       </div>
       <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -32,12 +32,17 @@ export const Navbar = () => {
           </button>
         ) : (
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', lineHeight: 1.2 }}>
-              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--primary-900)' }}>Hi, {customerProfile.full_name?.split(' ')[0] || 'User'}</span>
-              <span style={{ fontSize: 11, cursor: 'pointer', color: 'var(--text-secondary)', textDecoration: 'underline' }} onClick={logoutCustomer}>Logout</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--primary-100)', color: 'var(--primary-700)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>
+                <i className="ti ti-user"></i>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.2 }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--primary-900)' }}>Hi, {customerProfile.full_name?.split(' ')[0] || 'User'}</span>
+                <span style={{ fontSize: 11, cursor: 'pointer', color: 'var(--text-secondary)', textDecoration: 'underline' }} onClick={logoutCustomer}>Logout</span>
+              </div>
             </div>
             {points > 0 && (
-              <div className="points-badge" style={{ background: '#FEF3C7', color: '#D97706', padding: '4px 10px', borderRadius: '20px', fontSize: '14px', fontWeight: 600 }}>
+              <div className="points-badge" onClick={() => setShowShareModal(true)} style={{ background: '#FEF3C7', color: '#D97706', padding: '4px 10px', borderRadius: '20px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 🪙 {points} pts
               </div>
             )}
@@ -305,7 +310,7 @@ export const LoyaltySection = () => {
 };
 
 export const ShareModal = () => {
-  const { customerProfile, setShowShareModal } = useAppContext();
+  const { customerProfile, setShowShareModal, points } = useAppContext();
   const [copied, setCopied] = useState(false);
 
   if (!customerProfile) return null;
@@ -324,24 +329,41 @@ export const ShareModal = () => {
 
   return (
     <div className="modal-overlay" onClick={() => setShowShareModal(false)}>
-      <div className="modal-card" onClick={e => e.stopPropagation()} style={{ textAlign: 'center', padding: '30px 20px', maxWidth: 400, position: 'relative' }}>
+      <div className="modal-card" onClick={e => e.stopPropagation()} style={{ textAlign: 'center', padding: '32px 24px', maxWidth: 420, position: 'relative' }}>
         <button onClick={() => setShowShareModal(false)} style={{ position: 'absolute', top: 12, right: 12, background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 24, color: 'var(--text-secondary)' }}>
           <i className="ti ti-x"></i>
         </button>
-        <div style={{ background: '#FEF3C7', width: 64, height: 64, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#D97706', fontSize: 32 }}>
-          <i className="ti ti-gift"></i>
+        
+        <div style={{ background: 'linear-gradient(135deg, #FEF3C7, #FDE68A)', width: 72, height: 72, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#D97706', fontSize: 36, boxShadow: '0 4px 12px rgba(217, 119, 6, 0.15)' }}>
+          <i className="ti ti-diamond"></i>
         </div>
-        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, marginBottom: 8, color: 'var(--primary-900)' }}>Share & Earn</h3>
-        <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 20, lineHeight: 1.5 }}>
-          Share your referral link with friends. They get 20 Diamond Points on signup, and you earn 50 points when they place their first order!
+        
+        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, marginBottom: 4, color: 'var(--primary-900)' }}>Diamond Wallet</h3>
+        
+        <div style={{ fontSize: 42, fontWeight: 800, color: '#D97706', letterSpacing: -1, marginBottom: 8 }}>
+          {points} <span style={{ fontSize: 18, color: 'var(--text-secondary)', fontWeight: 600 }}>pts</span>
+        </div>
+        
+        <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 24, lineHeight: 1.5, padding: '0 12px' }}>
+          Your points can be used for up to <strong>50% off</strong> on your medicine orders at checkout.
         </p>
-        <div style={{ background: 'var(--bg-subtle)', border: '1px dashed var(--border-strong)', borderRadius: 8, padding: 12, marginBottom: 16 }}>
+
+        <div style={{ height: 1, background: 'var(--border-light)', margin: '0 12px 24px' }}></div>
+
+        <h4 style={{ fontSize: 18, fontWeight: 700, color: 'var(--primary-800)', marginBottom: 8 }}><i className="ti ti-gift" style={{ marginRight: 6 }}></i> Share & Earn More</h4>
+        
+        <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginBottom: 16, lineHeight: 1.5, padding: '0 12px' }}>
+          Share your unique referral link. Friends get <strong>20 Points</strong> on signup, and you get <strong>50 Points</strong> when they place their first order!
+        </p>
+        
+        <div style={{ background: 'var(--bg-subtle)', border: '1px dashed var(--border-strong)', borderRadius: 12, padding: '16px 12px', marginBottom: 16 }}>
           <span style={{ fontSize: 12, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700 }}>Your Referral Code</span>
-          <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--primary-700)', letterSpacing: 2, marginTop: 4 }}>
+          <div style={{ fontSize: 26, fontWeight: 800, color: 'var(--primary-700)', letterSpacing: 2, marginTop: 4 }}>
             {customerProfile.referral_code}
           </div>
         </div>
-        <button className="btn-primary" onClick={copyLink} style={{ width: '100%', padding: 14, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: copied ? 'var(--success)' : 'var(--primary-700)' }}>
+        
+        <button className="btn-primary" onClick={copyLink} style={{ width: '100%', padding: '14px 20px', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: copied ? 'var(--success)' : 'var(--primary-700)', transition: 'background 0.2s ease' }}>
           {copied ? <><i className="ti ti-check"></i> Link Copied!</> : <><i className="ti ti-copy"></i> Copy Referral Link</>}
         </button>
       </div>

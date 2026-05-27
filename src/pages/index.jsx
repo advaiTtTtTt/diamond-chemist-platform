@@ -478,14 +478,26 @@ export const AdminPage = () => {
               </div>
             )}
             <div className="status-btns">
-              {statuses.map(s => (
-                <button key={s} className={'status-btn' + (o.status === s ? ' active' : '')}
-                  style={s === 'Cancelled' || s === 'Rx Rejected' ? { background: o.status === s ? 'var(--danger)' : undefined, color: o.status === s ? '#fff' : 'var(--danger)', borderColor: 'var(--danger)' } : {}}
-                  onClick={async () => {
-                    const otp = await updateOrderStatus(o.id, s);
-                    notifyCustomer(o, s, otp);
-                  }}>{s}</button>
-              ))}
+              {statuses.map(s => {
+                const isDeliveredDisabled = s === 'Delivered' && !o.otp_verified;
+                return (
+                  <button key={s} className={'status-btn' + (o.status === s ? ' active' : '')}
+                    disabled={isDeliveredDisabled}
+                    title={isDeliveredDisabled ? "OTP Verification required before marking Delivered" : ""}
+                    style={{
+                      ...(s === 'Cancelled' || s === 'Rx Rejected' ? { background: o.status === s ? 'var(--danger)' : undefined, color: o.status === s ? '#fff' : 'var(--danger)', borderColor: 'var(--danger)' } : {}),
+                      ...(isDeliveredDisabled ? { opacity: 0.5, cursor: 'not-allowed', background: '#f5f5f5', color: '#999', borderColor: '#ddd' } : {})
+                    }}
+                    onClick={async () => {
+                      if (isDeliveredDisabled) {
+                        alert('You must select "Out for Delivery" first and verify the customer\'s OTP to mark this as Delivered.');
+                        return;
+                      }
+                      const otp = await updateOrderStatus(o.id, s);
+                      notifyCustomer(o, s, otp);
+                    }}>{s}</button>
+                );
+              })}
             </div>
 
             {/* Delivery OTP Verification Panel */}

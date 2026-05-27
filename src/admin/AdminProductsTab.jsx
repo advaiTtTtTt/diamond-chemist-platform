@@ -167,85 +167,69 @@ export function AdminProductsTab() {
         </div>
       </div>
 
-      <div style={{ overflowX: 'auto', background: '#fff', borderRadius: 12, border: '1px solid var(--border-subtle)', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-          <thead>
-            <tr style={{ background: 'var(--bg-subtle)', borderBottom: '1px solid var(--border-default)', textAlign: 'left', color: 'var(--text-secondary)' }}>
-              <th style={{ padding: '12px 16px', fontWeight: 600 }}>Product Name</th>
-              <th style={{ padding: '12px 16px', fontWeight: 600 }}>Category</th>
-              <th style={{ padding: '12px 16px', fontWeight: 600 }}>Price (₹)</th>
-              <th style={{ padding: '12px 16px', fontWeight: 600 }}>Stock</th>
-              <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'center' }}>Popular</th>
-              <th style={{ padding: '12px 16px', fontWeight: 600, textAlign: 'center' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.slice(0, 50).map(p => (
-              <tr key={p.id} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
-                <td style={{ padding: '12px 16px', fontWeight: 500, color: 'var(--text-primary)' }}>{p.name}</td>
-                <td style={{ padding: '12px 16px', color: 'var(--text-secondary)' }}>{p.category}</td>
-                
-                <td style={{ padding: '12px 16px' }}>
-                  {editingId === p.id ? (
-                    <input 
-                      type="number" 
-                      value={editForm.price} 
-                      onChange={e => setEditForm({...editForm, price: e.target.value})}
-                      style={{ width: 80, padding: 4, borderRadius: 4, border: '1px solid var(--border-default)' }}
-                    />
-                  ) : (
-                    <span>₹{p.price}</span>
-                  )}
-                </td>
-                
-                <td style={{ padding: '12px 16px' }}>
-                  {editingId === p.id ? (
-                    <input 
-                      type="number" 
-                      value={editForm.stock} 
-                      onChange={e => setEditForm({...editForm, stock: e.target.value})}
-                      style={{ width: 60, padding: 4, borderRadius: 4, border: '1px solid var(--border-default)' }}
-                    />
-                  ) : (
-                    <span style={{ color: p.stock < 10 ? 'var(--danger)' : 'inherit', fontWeight: p.stock < 10 ? 600 : 400 }}>
-                      {p.stock}
-                    </span>
-                  )}
-                </td>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
+        {filteredProducts.map(p => (
+          <div key={p.id} style={{
+            background: '#fff', 
+            borderRadius: 12, 
+            border: '1px solid var(--border-subtle)', 
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+            padding: '16px',
+            display: 'flex',
+            flexDirection: 'column',
+            position: 'relative'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+              <span style={{ fontSize: 11, background: 'var(--bg-subtle)', color: 'var(--text-secondary)', padding: '4px 8px', borderRadius: 4, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                {p.category}
+              </span>
+              <div>
+                {editingId === p.id ? (
+                  <input type="checkbox" checked={editForm.popular} onChange={e => setEditForm({...editForm, popular: e.target.checked})} />
+                ) : (
+                  p.popular ? <i className="ti ti-star-filled" style={{ color: '#FCD34D', fontSize: 18 }}></i> : <i className="ti ti-star" style={{ color: 'var(--border-strong)', fontSize: 18 }}></i>
+                )}
+              </div>
+            </div>
 
-                <td style={{ padding: '12px 16px', textAlign: 'center' }}>
-                  {editingId === p.id ? (
-                    <input 
-                      type="checkbox" 
-                      checked={editForm.popular}
-                      onChange={e => setEditForm({...editForm, popular: e.target.checked})}
-                    />
-                  ) : (
-                    p.popular ? <i className="ti ti-star-filled" style={{ color: '#FCD34D' }}></i> : <i className="ti ti-star" style={{ color: 'var(--border-strong)' }}></i>
-                  )}
-                </td>
+            <h4 style={{ margin: '0 0 16px 0', fontSize: 15, fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.4, flex: 1 }}>
+              {p.name}
+            </h4>
 
-                <td style={{ padding: '12px 16px', textAlign: 'center' }}>
-                  {editingId === p.id ? (
-                    <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-                      <button onClick={() => handleSave(p.id)} style={{ padding: '4px 8px', background: 'var(--success)', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Save</button>
-                      <button onClick={() => setEditingId(null)} style={{ padding: '4px 8px', background: 'var(--bg-subtle)', color: 'var(--text-secondary)', border: 'none', borderRadius: 4, cursor: 'pointer' }}>Cancel</button>
-                    </div>
-                  ) : (
-                    <button onClick={() => handleEdit(p)} style={{ padding: '4px 8px', background: 'transparent', color: 'var(--primary-600)', border: '1px solid var(--primary-600)', borderRadius: 4, cursor: 'pointer', fontSize: 12 }}>Edit</button>
-                  )}
-                </td>
-              </tr>
-            ))}
-            {filteredProducts.length > 50 && (
-              <tr>
-                <td colSpan="6" style={{ padding: '16px', textAlign: 'center', color: 'var(--text-secondary)', fontSize: 13, background: 'var(--bg-subtle)' }}>
-                  Showing first 50 results. Please use the search bar to find specific products.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, background: '#FAFAFA', padding: '10px 12px', borderRadius: 8 }}>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: 11, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Price</span>
+                {editingId === p.id ? (
+                  <input type="number" value={editForm.price} onChange={e => setEditForm({...editForm, price: e.target.value})} style={{ width: 70, padding: 4, borderRadius: 4, border: '1px solid var(--border-default)' }} />
+                ) : (
+                  <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--primary-700)' }}>₹{p.price}</span>
+                )}
+              </div>
+              <div style={{ width: 1, height: 30, background: 'var(--border-subtle)' }}></div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                <span style={{ fontSize: 11, color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Stock</span>
+                {editingId === p.id ? (
+                  <input type="number" value={editForm.stock} onChange={e => setEditForm({...editForm, stock: e.target.value})} style={{ width: 60, padding: 4, borderRadius: 4, border: '1px solid var(--border-default)' }} />
+                ) : (
+                  <span style={{ fontSize: 15, fontWeight: p.stock < 10 ? 700 : 600, color: p.stock < 10 ? 'var(--danger)' : 'var(--text-primary)' }}>{p.stock} units</span>
+                )}
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              {editingId === p.id ? (
+                <div style={{ display: 'flex', gap: 8, width: '100%' }}>
+                  <button onClick={() => handleSave(p.id)} style={{ flex: 1, padding: '8px', background: 'var(--success)', color: 'white', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600 }}>Save</button>
+                  <button onClick={() => setEditingId(null)} style={{ flex: 1, padding: '8px', background: 'var(--bg-subtle)', color: 'var(--text-secondary)', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600 }}>Cancel</button>
+                </div>
+              ) : (
+                <button onClick={() => handleEdit(p)} style={{ width: '100%', padding: '8px', background: 'transparent', color: 'var(--primary-600)', border: '1px solid var(--primary-600)', borderRadius: 6, cursor: 'pointer', fontSize: 13, fontWeight: 600, transition: 'background 0.2s ease' }}>
+                  <i className="ti ti-pencil" style={{ marginRight: 6 }}></i>Edit Product
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

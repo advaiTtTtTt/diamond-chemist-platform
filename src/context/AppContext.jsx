@@ -68,16 +68,16 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setAdminAuth(!!session && session.user?.email === 'haste6inertia@gmail.com');
-      if (session && session.user?.email !== 'haste6inertia@gmail.com') {
+      if (session) {
         setCustomerUser(session.user);
       }
     });
 
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       setAdminAuth(!!session && session.user?.email === 'haste6inertia@gmail.com');
-      if (session && session.user?.email !== 'haste6inertia@gmail.com') {
+      if (session) {
         setCustomerUser(session.user);
-      } else if (!session) {
+      } else {
         setCustomerUser(null);
         setCustomerProfile(null);
       }
@@ -157,12 +157,19 @@ export const AppProvider = ({ children }) => {
       const { data: profile } = await supabase.from('profiles').select('*').eq('id', customerUser.id).single();
       if (profile) {
         setCustomerProfile(profile);
-        // Pre-fill checkout form if empty
         setForm(prev => ({ 
           ...prev, 
           name: prev.name || profile.full_name, 
           phone: prev.phone || profile.phone 
         }));
+      } else {
+        // Fallback for old admin accounts or edge cases without a profile
+        setCustomerProfile({
+          id: customerUser.id,
+          full_name: customerUser.email.split('@')[0],
+          phone: '9999999999',
+          referral_code: 'ADMINREF'
+        });
       }
       const { data: pts } = await supabase.rpc('get_active_points', { customer_id: customerUser.id });
       setPoints(pts || 0);
@@ -284,6 +291,7 @@ export const AppProvider = ({ children }) => {
     const results = products.filter(p => matched.has(p.name));
     setAiResults(results.length > 0 ? results : []);
     setAiLoading(false);
+    navigate('shop');
   };
 
   const clearAi = () => { setAiResults(null); setAiQuery(''); setSearch(''); };
@@ -375,6 +383,8 @@ export const AppProvider = ({ children }) => {
           setForm(prev => ({ ...prev, prescription: data.publicUrl }));
           setIsUploadingRx(false);
         }, 'image/jpeg', 0.6);
+      };
+      img.src = event.target.result;
     };
     reader.readAsDataURL(file);
   };
@@ -465,8 +475,42 @@ export const AppProvider = ({ children }) => {
       return;
     }
 
-    const newPoints = usePoints ? points - discount : points;
-    setPoints(newPoints);
+    // Handle Points Transactions Securely
+    let newPoints = points;
+    if (customerUser && !IS_DEMO) {
+      // Deduct used points
+      if (usePoints && discount > 0) {
+        await supabase.from('points_ledger').insert({
+          user_id: customerUser.id,
+          amount: -discount,
+          transaction_type: 'redeemed'
+        });
+      }
+
+      // Check if this is the user's first order to grant the 50 Point Referrer Bonus
+      if (customerProfile?.referred_by) {
+        // Look at previous orders (not including this new one, which hasn't been added to state yet)
+        const pastOrders = orders.filter(o => o.customer?.phone === form.phone || o.customer?.phone === customerProfile.phone);
+        if (pastOrders.length === 0) {
+          // Give the referrer 50 points!
+          await supabase.from('points_ledger').insert({
+            user_id: customerProfile.referred_by,
+            amount: 50,
+            transaction_type: 'referral_bonus'
+          });
+        }
+      }
+
+      // Refresh points from backend securely
+      const { data: pts } = await supabase.rpc('get_active_points', { customer_id: customerUser.id });
+      newPoints = pts || 0;
+      setPoints(newPoints);
+    } else {
+      // Fallback for demo mode or guests
+      newPoints = usePoints ? points - discount : points;
+      setPoints(newPoints);
+    }
+    
     setUsePoints(false);
 
     localStorage.setItem('diamond_customer', JSON.stringify({
@@ -608,3 +652,4 @@ export const AppProvider = ({ children }) => {
     </AppContext.Provider>
   );
 };
+
