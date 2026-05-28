@@ -164,13 +164,30 @@ export const ProductCard = ({ p }) => {
   const unit = p.unit || (p.stock ? `Stock: ${p.stock}` : '1 unit');
   const desc = p.desc || p.description || p.category || '';
   
+  const imgFilename = p.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') + '.jpg';
+  const imgUrl = `/images/medicines/${imgFilename}`;
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div className="prod-card">
       <div className="prod-chips">
         <span className="chip chip-cat">{p.category}</span>
         {p.popular && <span className="chip chip-pop">★ Popular</span>}
       </div>
-      <div className="prod-icon-box"><i className={'ti ' + icon}></i></div>
+      
+      {!imgError ? (
+        <div style={{ height: 120, width: '100%', marginBottom: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img 
+            src={imgUrl} 
+            alt={p.name} 
+            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: 8 }} 
+            onError={() => setImgError(true)} 
+          />
+        </div>
+      ) : (
+        <div className="prod-icon-box"><i className={'ti ' + icon}></i></div>
+      )}
+
       <div className="prod-name">{p.name}</div>
       <div className="prod-meta">{brand} · {unit}</div>
       <div className="prod-desc">{desc}</div>
